@@ -56,4 +56,6 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('user')->with('delete','Data berhasil di Hapus!');
     }
+
+    
 }

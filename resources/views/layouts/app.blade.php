@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +12,7 @@
     <link rel="shortcut icon" href="/template/dist/assets/images/favicon.svg" type="image/x-icon">
     {{-- Simple Data Table --}}
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    @stack('styles')
 </head>
 
 <body>
@@ -351,3 +351,4 @@
 </body>
 
 </html>
+@stack('scripts')
