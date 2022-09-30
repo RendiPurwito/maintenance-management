@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card rounded-0">
                 <div class="card-header">
                     <h5 class="card-title">{{ $pageTitle }}</h5>
@@ -17,9 +17,21 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary confirm-form" data-form="submitForm" data-message="Submit your entry for '{{ $form->name }}'?">
-                            <i class="fa fa-submit"></i> Submit Form
-                        </button>
+                        <button id="Submit" type="submit" class="btn btn-primary confirm-form" data-form="submitForm"> <i class="fa fa-submit"></i> Submit Form </button>
+                        <noscript>
+                            <p>This site is best viewed with Javascript. Please allow javascript to run.</p>
+                        </noscript>
+                    
+                        <script type="text/javascript">
+                            $(function(){
+                                $('#Submit').attr('disabled', false);
+                    
+                                var $input = $('<button id="Submit" type="submit" class="btn btn-primary confirm-form" data-form="submitForm"> <i class="fa fa-submit"></i> Submit Form </button>');
+                                $input.appendTo($("#formSubmit"));
+                    
+                                $('#Submit').attr('data-message', "Submit your entry for '{{ $form->name }}'?");
+                            });
+                        </script>
                     </div>
                 </form>
             </div>
@@ -32,5 +44,5 @@
     <script type="text/javascript">
         window._form_builder_content = {!! json_encode($form->form_builder_json) !!}
     </script>
-    <script src="{{ asset('vendor/formbuilder/js/render-form.js') }}{{ jazmy\FormBuilder\Helper::bustCache() }}" defer></script>
+    <script src="{{ asset('/vendor/formbuilder/js/render-form.js') }}{{ jazmy\FormBuilder\Helper::bustCache() }}" defer></script>
 @endpush

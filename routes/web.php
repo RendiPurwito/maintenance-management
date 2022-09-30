@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +14,28 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Auth
+Route::get('/', [LoginController::class, 'login']);
+Route::post('/', [LoginController::class, 'authenticate'])->middleware('guest');
+Route::get('/logout',[LoginController::class,'logout']);
+Route::get('/register', [LoginController::class, 'register'])->middleware('guest');
+Route::post('/register', [LoginController::class, 'storeregister'])->middleware('guest');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/admin/dashboard', function () {
+// Dashboard Admin
+Route::get('/admin/', function(){
     return view('admin.dashboard');
-});
+})->name('admin-dashboard')->middleware('admin');
 
-// Admin User
-Route::get('/admin/user', [UserController::class, 'index'])->name('user');
-Route::get('/admin/user/create', [UserController::class, 'create']);
-Route::post('/admin/user', [UserController::class, 'store']);
-Route::get('/admin/user/{id}/edit', [UserController::class, 'edit']);
-Route::post('/admin/user/{id}', [UserController::class, 'update']);
-Route::get('/admin/user/{id}', [UserController::class, 'destroy']);
+// Dashboard User
+Route::get('/dashboard', function(){
+    return view('user.dashboard');
+})->name('dashboard');
+
+// Admin CRUD User
+Route::get('/admin/user', [UserController::class, 'index'])->name('user')->middleware('admin');
+Route::get('/admin/user/create', [UserController::class, 'create'])->middleware('admin');
+Route::post('/admin/user', [UserController::class, 'store'])->middleware('admin');
+Route::get('/admin/user/{id}/edit', [UserController::class, 'edit'])->middleware('admin');
+Route::post('/admin/user/{id}', [UserController::class, 'update'])->middleware('admin');
+Route::get('/admin/user/{id}', [UserController::class, 'destroy'])->middleware('admin');
 

@@ -103,5 +103,5 @@
         window.FormBuilder = window.FormBuilder || {}
         window.FormBuilder.form_roles = @json($form_roles);
     </script>
-    <script src="{{ asset('vendor/formbuilder/js/create-form.js') }}{{ jazmy\FormBuilder\Helper::bustCache() }}" defer></script>
+    <script src="{{ asset('/vendor/formbuilder/js/create-form.js') }}{{ jazmy\FormBuilder\Helper::bustCache() }}" defer></script>
 @endpush

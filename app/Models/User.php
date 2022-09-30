@@ -11,7 +11,7 @@ use jazmy\FormBuilder\Traits\HasFormBuilderTraits;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasFormBuilderTraits;
 
     /**
      * The attributes that are mass assignable.
@@ -46,10 +46,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected function team(){
-        return $this->hasMany(Team::class);
-    }
-
-    use HasFormBuilderTraits;
-    
 }
