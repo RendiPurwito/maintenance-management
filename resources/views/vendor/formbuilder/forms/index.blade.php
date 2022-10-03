@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card rounded-0">
+            <div class="card rounded-0 p-3">
                 <div class="card-header">
                     <h5 class="card-title">
                         Forms

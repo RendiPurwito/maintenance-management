@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use jazmy\FormBuilder\Controllers\FormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +23,12 @@ Route::get('/register', [LoginController::class, 'register'])->middleware('guest
 Route::post('/register', [LoginController::class, 'storeregister'])->middleware('guest');
 
 // Dashboard Admin
-Route::get('/admin/', function(){
+Route::get('/admin', function(){
     return view('admin.dashboard');
 })->name('admin-dashboard')->middleware('admin');
 
 // Dashboard User
-Route::get('/dashboard', function(){
-    return view('user.dashboard');
-})->name('dashboard');
+Route::get('/dashboard', [FormController::class, 'formList'])->name('dashboard');
 
 // Admin CRUD User
 Route::get('/admin/user', [UserController::class, 'index'])->name('user')->middleware('admin');

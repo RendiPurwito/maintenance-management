@@ -7,10 +7,7 @@
             <div class="card rounded-0">
                 <div class="card-header">
                     <h5 class="card-title">
-                        Viewing my submission for form 
-                        <strong>{{ $submission->form->name }}</strong>
-                        
-                        <div class="btn-toolbar float-md-right" role="toolbar">
+                        <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group" role="group" aria-label="First group">
                                 <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm" title="Back To My Submissions">
                                     <i class="fa fa-arrow-left"></i> 
@@ -30,6 +27,9 @@
                                 </form> --}}
                             </div>
                         </div>
+
+                        Viewing my submission for form 
+                        <strong>{{ $submission->form->name }}</strong>
                     </h5>
                 </div>
 

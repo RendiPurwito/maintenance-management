@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="/template/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="/template/dist/assets/css/app.css">
     <link rel="shortcut icon" href="/template/dist/assets/images/favicon.svg" type="image/x-icon">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js" integrity="sha512-CX7sDOp7UTAq+i1FYIlf9Uo27x4os+kGeoT7rgwvY+4dmjqV0IuE/Bl5hVsjnQPQiTOhAX1O2r2j5bjsFBvv/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- JQUERY --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js" referrerpolicy="no-referrer"></script>
+    {{-- Font Awesome --}}
+    <script src="https://kit.fontawesome.com/e5a524ad24.js"></script>
 </head>
 
 <body>
@@ -23,26 +26,37 @@
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class='sidebar-title'>Main Menu</li>
-                        <li class="sidebar-item active ">
-                            <a href="/admin/dashboard" class='sidebar-link'>
+                        @if (auth()->user()->role == 'user')
+                        <li class="sidebar-item  @if (\Request::is('dashboard*')) active  @endif">
+                            <a href="dashboard" class='sidebar-link'>
                                 <i data-feather="home" width="20"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
+                        @endif
 
-                        <li class="sidebar-item">
-                            <a href="/admin/user" class='sidebar-link'>
+                        @if(auth()->user()->role == 'admin')
+                        <li class="sidebar-item @if (\Request::is('admin')) active  @endif">
+                            <a href="/admin" class='sidebar-link '>
+                                <i data-feather="home" width="20"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        
+                        <li class="sidebar-item @if (\Request::is('admin/user')) active  @endif">
+                            <a href="/admin/user" class='sidebar-link '>
                                 <i data-feather="user" width="20"></i>
                                 <span>User</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item  ">
+                        <li class="sidebar-item @if (\Request::is('form-builder/forms')) active  @endif">
                             <a href="/form-builder" class='sidebar-link'>
                                 <i data-feather="file-plus" width="20"></i>
                                 <span>Form Builder</span>
                             </a>
-
+                        </li>
+                        @endif
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -75,10 +89,10 @@
             </nav>
 
             <div class="main-content container-fluid">
-                <div class="page-title">
+                {{-- <div class="page-title">
                     <h3>Dashboard</h3>
                     <p class="text-subtitle text-muted">A good dashboard to display your statistics</p>
-                </div>
+                </div> --}}
                 <section class="section">
                     @yield('content')
                 </section>

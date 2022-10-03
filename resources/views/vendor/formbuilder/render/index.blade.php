@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Back</a>
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card rounded-0">
@@ -17,7 +18,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <button id="Submit" type="submit" class="btn btn-primary confirm-form" data-form="submitForm"> <i class="fa fa-submit"></i> Submit Form </button>
+                        <button id="Submit" type="submit" class="btn btn-primary confirm-form" data-form="submitForm"></i> Submit Form </button>
                         <noscript>
                             <p>This site is best viewed with Javascript. Please allow javascript to run.</p>
                         </noscript>

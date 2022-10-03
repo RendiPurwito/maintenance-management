@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card rounded-0">
                 <div class="card-header">
                     <h5 class="card-title">
@@ -36,7 +36,7 @@
                                         <td>{{ $submission->created_at->toDayDateTimeString() }}</td>
                                         <td>
                                             <a href="{{ route('formbuilder::my-submissions.show', [$submission->id]) }}" class="btn btn-primary btn-sm" title="View submission">
-                                                <i class="fa fa-eye"></i> View
+                                                <i class="fa fa-eye"></i> 
                                             </a> 
 
                                             @if($submission->form->allowsEdit())
