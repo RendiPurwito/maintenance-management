@@ -2,30 +2,33 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-12">
             <div class="card rounded-0 p-3">
-                <div class="card-header">
-                    <h5 class="card-title">
-                        Forms
-
-                        <div class="btn-toolbar float-md-right" role="toolbar">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="col-7">
+                        <h5 class="card-title">
+                            Forms
+                        </h5>
+                    </div>
+                    <div class="col-5">
+                        <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group" role="group" aria-label="Third group">
                                 <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary btn-sm">
                                     <i class="fa fa-plus-circle"></i> Create a New Form
                                 </a>
-
-                                <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm">
+    
+                                {{-- <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm">
                                     <i class="fa fa-th-list"></i> My Submissions
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
-                    </h5>
+                    </div>
                 </div>
 
                 @if($forms->count())
                     <div class="table-responsive">
-                        <table class="table table-bordered d-table table-striped pb-0 mb-0">
+                        <table class="table d-table table-striped pb-0 mb-0">
                             <thead>
                                 <tr>
                                     <th class="five">#</th>

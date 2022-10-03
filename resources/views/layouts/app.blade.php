@@ -14,12 +14,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js" referrerpolicy="no-referrer"></script>
     {{-- Font Awesome --}}
     <script src="https://kit.fontawesome.com/e5a524ad24.js"></script>
+    @yield('css')
+    {{-- <style>
+        *{
+            border: 1px solid
+        }
+    </style> --}}
 </head>
 
 <body>
     <div id="app">
-        <div id="sidebar" class='active'>
-            <div class="sidebar-wrapper active">
+        <div id="sidebar">
+            <div class="sidebar-wrapper ">
                 <div class="sidebar-header">
                     <img src="/template/assets/images/logo.svg" alt="" srcset="">
                 </div>
@@ -104,12 +110,11 @@
     <script src="/template/dist/assets/js/feather-icons/feather.min.js"></script>
     <script src="/template/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/template/dist/assets/js/app.js"></script>
-
     <script src="/template/dist/assets/vendors/chartjs/Chart.min.js"></script>
     <script src="/template/dist/assets/vendors/apexcharts/apexcharts.min.js"></script>
     <script src="/template/dist/assets/js/pages/dashboard.js"></script>
-
     <script src="/template/dist/assets/js/main.js"></script>
+    @yield('javascript')
 
 </body>
 
