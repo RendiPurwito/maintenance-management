@@ -187,4 +187,11 @@ class FormController extends Controller
 
         return back()->with('success', "'{$form->name}' deleted.");
     }
+
+    public function formList(){
+        $forms = Form::all();
+        return view('user.dashboard', [
+            'forms' => $forms
+        ]);
+    }
 }

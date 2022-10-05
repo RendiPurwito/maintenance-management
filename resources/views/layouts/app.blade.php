@@ -39,6 +39,13 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
+
+                        <li class="sidebar-item  @if (\Request::is('my-submissions*')) active  @endif">
+                            <a href="/form-builder/my-submissions" class='sidebar-link'>
+                                <i data-feather="home" width="20"></i>
+                                <span>My Submissions</span>
+                            </a>
+                        </li>
                         @endif
 
                         @if(auth()->user()->role == 'admin')

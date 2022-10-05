@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card rounded-0">
+            <div class="card rounded-0 p-3">
                 <div class="card-header">
                     <h5 class="card-title">
                         {{ $pageTitle }} ({{ $submissions->count() }})
@@ -17,7 +17,7 @@
 
                 @if($submissions->count())
                     <div class="table-responsive">
-                        <table class="table table-bordered d-table table-striped pb-0 mb-0">
+                        <table class="table  d-table table-striped pb-0 mb-0">
                             <thead>
                                 <tr>
                                     <th class="five">#</th>

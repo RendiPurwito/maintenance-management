@@ -31,7 +31,8 @@
                     @foreach($form_headers as $header)
                         <li class="list-group-item">
                             <strong>{{ $header['label'] ?? title_case($header['name']) }}: </strong> 
-                            <span class="float-right">
+                            <br>
+                            <span class="">
                                 {{ $submission->renderEntryContent($header['name'], $header['type']) }}
                             </span>
                         </li>

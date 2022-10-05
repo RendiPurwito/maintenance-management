@@ -6,12 +6,12 @@
         <div class="col-md-12">
             <div class="card rounded-0 p-3">
                 <div class="card-header d-flex justify-content-between">
-                    <div class="col-7">
+                    <div class="col-8">
                         <h5 class="card-title">
                             Forms
                         </h5>
                     </div>
-                    <div class="col-5">
+                    <div class="col-4 offset-1">
                         <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group" role="group" aria-label="Third group">
                                 <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary btn-sm">

@@ -23,23 +23,26 @@
                                 <th>Role</th>
                                 <th>Email</th>
                                 <th>Password</th>
-                                <th>No Telepon</th>
+                                {{-- <th>No Telepon</th>
                                 <th>Alamat</th>
-                                <th>Action</th>
+                                <th>Action</th> --}}
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
                             <tr>
-                                <td class="d-flex">
-                                    <button class="border border-primary rounded-circle"><i class="fa-solid fa-plus"></i></button>
+                                <td>
                                     {{ $loop->iteration }}
                                 </td>
-                                <td>{{ $user->name }}</td>
+                                <td>
+                                    <a href="" class="text-secondary">
+                                        {{ $user->name }}
+                                    </a>
+                                </td>
                                 <td>{{ $user->role}}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->password}}</td>
-                                <td>{{ $user->no_telepon }}</td>
+                                {{-- <td>{{ $user->no_telepon }}</td>
                                 <td>{{ $user->alamat }}</td>
                                 <td>
                                     <a href="/admin/user/{{ $user->id }}/edit" class="text-warning">
@@ -60,6 +63,13 @@
                                                 d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                                         </svg>
                                     </a>
+                                </td> --}}
+                            </tr>
+                            <tr>
+                                <td>
+                                    <tr>
+                                        <strong>Password</strong>
+                                    </tr>
                                 </td>
                             </tr>
                             @endforeach
@@ -100,38 +110,31 @@
                         <thead>
                             <tr>
                                 <th data-sortable="" style="width: 7%;">
-                                    <a href="#"
-                                        class="dataTable-sorter">ID
+                                    <a href="#" class="dataTable-sorter">ID
                                     </a>
                                 </th>
                                 <th data-sortable="" style="width: 17%;">
-                                    <a href="#"
-                                        class="dataTable-sorter">Name
+                                    <a href="#" class="dataTable-sorter">Name
                                     </a>
                                 </th>
                                 <th data-sortable="" style="width: 10%;">
-                                    <a href="#"
-                                        class="dataTable-sorter">Role
+                                    <a href="#" class="dataTable-sorter">Role
                                     </a>
                                 </th>
                                 <th data-sortable="" style="width: 16%;">
-                                    <a href="#"
-                                        class="dataTable-sorter">Email
+                                    <a href="#" class="dataTable-sorter">Email
                                     </a>
                                 </th>
                                 <th data-sortable="" style="width: 13.9854%;">
-                                    <a href="#"
-                                        class="dataTable-sorter">Password
+                                    <a href="#" class="dataTable-sorter">Password
                                     </a>
                                 </th>
                                 <th data-sortable="" style="width: 14.5%;">
-                                    <a href="#"
-                                        class="dataTable-sorter">No Telepon
+                                    <a href="#" class="dataTable-sorter">No Telepon
                                     </a>
                                 </th>
                                 <th data-sortable="" style="width: 18%;">
-                                    <a href="#"
-                                        class="dataTable-sorter">Alamat
+                                    <a href="#" class="dataTable-sorter">Alamat
                                     </a>
                                 </th>
                                 <th style="width: 13.9854%;">
@@ -143,50 +146,50 @@
                             @foreach ($users as $user)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-    <td>{{ $user->name }}</td>
-    <td>{{ $user->role}}</td>
-    <td>{{ $user->email }}</td>
-    <td>{{ $user->password}}</td>
-    <td>{{ $user->no_telepon }}</td>
-    <td>{{ $user->alamat }}</td>
-    <td>
-        <a href="/admin/user/{{ $user->id }}/edit" class="text-warning">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                class="bi bi-pencil-square" viewBox="0 0 16 16">
-                <path
-                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                <path fill-rule="evenodd"
-                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-            </svg>
-        </a>
-        <a href="/admin/user/{{ $user->id }}" class="text-danger">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-trash"
-                viewBox="0 0 16 16">
-                <path
-                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                <path fill-rule="evenodd"
-                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-            </svg>
-        </a>
-    </td>
-    </tr>
-    @endforeach
-    </tbody>
-    </table>
-</div>
-<div class="dataTable-bottom">
-    <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-    <ul class="pagination pagination-primary float-right dataTable-pagination">
-        <li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
-        <li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
-        <li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
-        <li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
-        <li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
-    </ul>
-</div>
-</div>
-</div>
-</div> --}}
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->role}}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->password}}</td>
+                                <td>{{ $user->no_telepon }}</td>
+                                <td>{{ $user->alamat }}</td>
+                                <td>
+                                    <a href="/admin/user/{{ $user->id }}/edit" class="text-warning">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path
+                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                            <path fill-rule="evenodd"
+                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                        </svg>
+                                    </a>
+                                    <a href="/admin/user/{{ $user->id }}" class="text-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path
+                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                            <path fill-rule="evenodd"
+                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="dataTable-bottom">
+                    <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
+                    <ul class="pagination pagination-primary float-right dataTable-pagination">
+                        <li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
+                        <li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
+                        <li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
+                        <li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> --}}
 </div>
 @endsection
 

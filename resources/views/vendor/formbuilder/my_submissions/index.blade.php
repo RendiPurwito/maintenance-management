@@ -4,20 +4,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card rounded-0">
+            <div class="card rounded-0 p-3">
                 <div class="card-header">
                     <h5 class="card-title">
                         {{ $pageTitle }} ({{ $submissions->count() }})
-
-                        <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary float-md-right btn-sm" title="Back To My Forms">
+                        {{-- <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary float-md-right btn-sm" title="Back To My Forms">
                             <i class="fa fa-th-list"></i> My Forms
-                        </a>
+                        </a> --}}
                     </h5>
                 </div>
 
                 @if($submissions->count())
                     <div class="table-responsive">
-                        <table class="table table-bordered d-table table-striped pb-0 mb-0">
+                        <table class="table  d-table table-hover pb-0 mb-0">
                             <thead>
                                 <tr>
                                     <th class="five">#</th>
