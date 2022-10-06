@@ -55,6 +55,6 @@ class LoginController extends Controller
             'alamat' => $request->alamat,
             'remember_token' => Str::random(60)
         ]);
-        return redirect("/");
+        return redirect("/")->with('registerSuccess', 'Registrasi Berhasil');
     }
 }

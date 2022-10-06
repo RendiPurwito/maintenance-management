@@ -51,6 +51,12 @@
         toastr.error("{!! Session::get('loginError') !!}")
     </script>
     @endif
+
+    @if (Session::has('registerSuccess'))
+    <script>
+        toastr.success("{!! Session::get('registerSuccess') !!}")
+    </script>
+    @endif
     <div id="auth">
 
         <div class="container">

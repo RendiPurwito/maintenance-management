@@ -39,7 +39,7 @@ class FormController extends Controller
     {
         $pageTitle = "Forms";
 
-        $forms = Form::getForUser(auth()->user());
+        $forms = Form::paginate(5);
 
         return view('formbuilder::forms.index', compact('pageTitle', 'forms'));
     }

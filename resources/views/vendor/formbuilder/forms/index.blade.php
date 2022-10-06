@@ -6,29 +6,25 @@
         <div class="col-md-12">
             <div class="card rounded-0 p-3">
                 <div class="card-header d-flex justify-content-between">
-                    <div class="col-8">
-                        <h5 class="card-title">
-                            Forms
-                        </h5>
-                    </div>
-                    <div class="col-4 offset-1">
-                        <div class="btn-toolbar" role="toolbar">
-                            <div class="btn-group" role="group" aria-label="Third group">
-                                <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-plus-circle"></i> Create a New Form
-                                </a>
-    
-                                {{-- <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-th-list"></i> My Submissions
-                                </a> --}}
-                            </div>
+                    <h5 class="card-title">
+                        Forms
+                    </h5>
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group" aria-label="Third group">
+                            <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-plus-circle"></i> Create a New Form
+                            </a>
+        
+                            {{-- <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-th-list"></i> My Submissions
+                            </a> --}}
                         </div>
                     </div>
                 </div>
-
+        
                 @if($forms->count())
                     <div class="table-responsive">
-                        <table class="table d-table table-striped pb-0 mb-0">
+                        <table class="table table-hover ">
                             <thead>
                                 <tr>
                                     <th class="five">#</th>
@@ -60,11 +56,11 @@
                                             <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="" data-original="" title="Copy form URL to clipboard">
                                                 <i class="fa fa-clipboard"></i> 
                                             </button> 
-
+        
                                             <form action="{{ route('formbuilder::forms.destroy', $form) }}" method="POST" id="deleteFormForm_{{ $form->id }}" class="d-inline-block">
                                                 @csrf 
                                                 @method('DELETE')
-
+        
                                                 <button type="submit" class="btn btn-danger btn-sm confirm-form" data-form="deleteFormForm_{{ $form->id }}" data-message="Delete form '{{ $form->name }}'?" title="Delete form '{{ $form->name }}'">
                                                     <i class="fa fa-trash-o"></i> 
                                                 </button>
@@ -75,11 +71,9 @@
                             </tbody>
                         </table>
                     </div>
-                    @if($forms->hasPages())
-                        <div class="card-footer mb-0 pb-0">
-                            <div>{{ $forms->links() }}</div>
-                        </div>
-                    @endif
+                    <div>{{ $forms->links() }}</div>
+                    {{-- @if($forms->hasPages())
+                    @endif --}}
                 @else
                     <div class="card-body">
                         <h4 class="text-danger text-center">
@@ -91,4 +85,5 @@
         </div>
     </div>
 </div>
+
 @endsection
