@@ -39,7 +39,8 @@ class FormController extends Controller
     {
         $pageTitle = "Forms";
 
-        $forms = Form::paginate(5);
+        $forms = Form::getForUser(auth()->user());
+        // $submissions_count = Submission::
 
         return view('formbuilder::forms.index', compact('pageTitle', 'forms'));
     }
@@ -109,8 +110,7 @@ class FormController extends Controller
     public function show($id)
     {
         $user = auth()->user();
-        $form = Form::where(['user_id' => $user->id, 'id' => $id])
-                    ->with('user')
+        $form = Form::with('user')
                     ->withCount('submissions')
                     ->firstOrFail();
 

@@ -20,7 +20,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
-        $this->validate($request,[
+        $validatedData = $this->validate($request,[
             'name' => 'required',
             'role' => 'required',
             'email' => 'required',
@@ -28,7 +28,8 @@ class UserController extends Controller
             'password' => 'required',
             'alamat' => 'required',
         ]);
-        User::create($request->all());
+        $validatedData['password'] = bcrypt($validatedData['password']);
+        User::create($validatedData);
         return redirect()->route('user')->with('success','Data berhasil di Tambah!');
     }
 
@@ -48,13 +49,13 @@ class UserController extends Controller
             'alamat' => ['required'],
         ]);
         User::where('id',$id)->update($validasi);
-        return redirect()->route('user')->with('edit','Data berhasil di Ubah!');
+        return redirect()->route('user')->with('success','Data berhasil di Ubah!');
     }
 
     public function destroy($id){
         $user = user::find($id);
         $user->delete();
-        return redirect()->route('user')->with('delete','Data berhasil di Hapus!');
+        return redirect()->route('user')->with('success','User deleted successfully!');
     }
 
     

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +56,7 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        
+
                         <li class="sidebar-item @if (\Request::is('admin/user')) active  @endif">
                             <a href="/admin/user" class='sidebar-link '>
                                 <i data-feather="user" width="20"></i>
@@ -122,6 +123,53 @@
     <script src="/template/dist/assets/js/pages/dashboard.js"></script>
     <script src="/template/dist/assets/js/main.js"></script>
     @yield('javascript')
+    {{-- Sweet Alert --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function confirmDel(id) {
+            let url = $('#confirmButton').attr('data-name');
+            swal({
+                icon: 'warning',
+                title: 'Are you sure?',
+                text: 'This action cannot be undone!',
+                buttons: true,
+                dangerMode: true
+            }).then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/admin/" + url + "/" + id
+                    swal({
+                        icon: "success",
+                        title: 'User deleted successfully!',
+                    });
+                }
+            })
+        }
+
+        // $('.delete-button').on('click', function (event) {
+        //     // return confirm('Are you sure want to delete?');
+        //     event.preventDefault();//this will hold the url
+        //     Swal.fire({
+        //         title: 'Are you sure ?',
+        //         text: "You won't be able to revert this !",
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonColor: '#3085d6',
+        //         cancelButtonColor: '#d33',
+        //         confirmButtonText: 'Yes, delete it!'
+        //     })
+        //     .then((willDelete) => {
+        //         if (willDelete) {
+        //             swal("Done! category has been softdeleted!", {
+        //                 icon: "success",
+        //                 button: false,
+        //             });
+        //         location.reload(true);//this will release the event
+        //         } else {
+        //             swal("Your imaginary file is safe!");
+        //         }
+        //     });
+        // });
+    </script>
 
 </body>
 
