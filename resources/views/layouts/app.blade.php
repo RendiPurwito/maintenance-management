@@ -126,8 +126,48 @@
     {{-- Sweet Alert --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
+        $('#submitButton').on('click', function (e) {
+            e.preventDefault();
+            var form = $(this).parents('form');
+            swal({
+                icon: "warning",
+                title: "Are you sure?",
+                text: "Save this user definition?",
+                buttons: true,
+                dangerMode: true
+            }).then((isConfirm) => {
+                if (isConfirm) {
+                    form.submit();
+                    swal({
+                        icon: "success",
+                        title: 'User successfully created!',
+                    });
+                }
+            });
+        });
+
+        $('#submitEditButton').on('click', function (e) {
+            e.preventDefault();
+            var form = $(this).parents('form');
+            swal({
+                icon: "warning",
+                title: "Are you sure?",
+                text: "Save this user definition?",
+                buttons: true,
+                dangerMode: true
+            }).then((isConfirm) => {
+                if (isConfirm) {
+                    form.submit();
+                    swal({
+                        icon: "success",
+                        title: 'User successfully updated!',
+                    });
+                }
+            });
+        });
+
         function confirmDel(id) {
-            let url = $('#confirmButton').attr('data-name');
+            let url = $('#deleteButton').attr('data-name');
             swal({
                 icon: 'warning',
                 title: 'Are you sure?',
@@ -139,7 +179,7 @@
                     window.location = "/admin/" + url + "/" + id
                     swal({
                         icon: "success",
-                        title: 'User deleted successfully!',
+                        title: 'User successfully deleted!',
                     });
                 }
             })

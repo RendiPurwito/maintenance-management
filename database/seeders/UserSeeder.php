@@ -16,16 +16,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create('id_ID');
-    	for($i = 1; $i <= 5; $i++){
-    		DB::table('users')->insert([
-    			'name' => $faker->name,
-                'role' => 'admin',
-    			'email' => $faker->unique()->email,
-    			'no_telepon' => $faker->phoneNumber,
-    			'password' => $faker->randomDigit,
-    			'alamat' => $faker->address
-    		]);
-    	}
+        DB::table('users')->insert([
+            'name' => 'Rendi Purwito Armin',
+            'role' => 'admin',
+            'email' => 'rendi@gmail.com',
+            'no_telepon' => '081297096073',
+            'password' => bcrypt('12345'),
+            'alamat' => 'Jln Tunas Karsa No.56, RT 03/RW 06, Kec Tapos, Depok'
+        ]);
     }
 }

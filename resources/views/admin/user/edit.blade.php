@@ -6,7 +6,7 @@
         <h4 class="fw-bold">Edit User</h4>
     </div>
     <div class="card-body">
-        <form action="/admin/user/{{ $user->id }}" method="POST">
+        <form action="/admin/user/{{ $user->id }}" method="POST" id="editForm">
             @csrf
             <div class="mb-4">
                 <label for="name" class="form-label">Name</label>
@@ -42,7 +42,7 @@
                 <textarea class="form-control" id="alamat" name="alamat" style="height: 70px">{{$user->alamat}}</textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary float-right">Submit</button>
+            <button type="submit" class="btn btn-primary float-right" id="submitEditButton">Submit</button>
         </form>
     </div>
 </div>
