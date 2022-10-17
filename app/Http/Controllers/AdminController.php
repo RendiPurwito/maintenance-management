@@ -5,12 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
     }
 
+    public function dashboard(){
+        $notifications = auth()->user()->unreadNotifications;
+
+        return view('admin.dashboard', compact('notifications'));
+    }
+
+    public function mark(Request $request){
+        auth()->user()
+            ->unreadNotifications
+            ->when($request->input('id'), function ($query) use ($request) {
+                return $query->where('id', $request->input('id'));
+            })
+            ->markAsRead();
+
+        return response()->noContent();
+    }
+
+    // User CRUD
     public function index(){
         return view('admin.user.index',[
             'users' => User::paginate(5),

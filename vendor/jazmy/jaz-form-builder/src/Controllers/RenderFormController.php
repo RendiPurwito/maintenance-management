@@ -7,12 +7,13 @@ Last Updated: 12/29/2018
 ----------------------*/
 namespace jazmy\FormBuilder\Controllers;
 
-use App\Http\Controllers\Controller;
-use jazmy\FormBuilder\Helper;
-use jazmy\FormBuilder\Models\Form;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Throwable;
+use Illuminate\Http\Request;
+use jazmy\FormBuilder\Helper;
+use Illuminate\Support\Facades\DB;
+use jazmy\FormBuilder\Models\Form;
+use App\Http\Controllers\Controller;
+use App\Events\Submitted;
 
 class RenderFormController extends Controller
 {
@@ -74,11 +75,8 @@ class RenderFormController extends Controller
             ]);
 
             DB::commit();
-
-            return redirect()
-                    ->route('formbuilder::form.feedback', $identifier)
-                    ->with('success', 'Form successfully submitted.');
-        } catch (Throwable $e) {
+            return redirect()->route('formbuilder::form.feedback', $identifier)->with('success', 'Form successfully submitted.');
+        }catch (Throwable $e){
             info($e);
 
             DB::rollback();

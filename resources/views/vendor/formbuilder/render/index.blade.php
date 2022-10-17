@@ -23,7 +23,7 @@
                             <p>This site is best viewed with Javascript. Please allow javascript to run.</p>
                         </noscript>
                     
-                        <script type="text/javascript">
+                        {{-- <script>
                             $(function(){
                                 $('#Submit').attr('disabled', false);
                     
@@ -32,7 +32,7 @@
                     
                                 $('#Submit').attr('data-message', "Submit your entry for '{{ $form->name }}'?");
                             });
-                        </script>
+                        </script> --}}
                     </div>
                 </form>
             </div>

@@ -1,6 +1,6 @@
 <?php
 
-Route::middleware('web', 'admin')
+Route::middleware('web')
 	->prefix(config('formbuilder.url_path', '/form-builder'))
 	->namespace('jazmy\FormBuilder\Controllers')
 	->name('formbuilder::')
