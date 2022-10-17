@@ -34,8 +34,8 @@
                     <ul class="menu">
                         <li class='sidebar-title'>Main Menu</li>
                         @if (auth()->user()->role == 'user')
-                        <li class="sidebar-item  @if (\Request::is('dashboard*')) active  @endif">
-                            <a href="dashboard" class='sidebar-link'>
+                        <li class="sidebar-item  @if (\Request::is('dashboard')) active  @endif">
+                            <a href="/dashboard" class='sidebar-link'>
                                 <i data-feather="home" width="20"></i>
                                 <span>Dashboard</span>
                             </a>

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use jazmy\FormBuilder\Controllers\FormController;
 
@@ -23,18 +23,19 @@ Route::get('/register', [LoginController::class, 'register'])->middleware('guest
 Route::post('/register', [LoginController::class, 'storeregister'])->middleware('guest');
 
 // Dashboard Admin
-Route::get('/admin', function(){
-    return view('admin.dashboard');
-})->name('admin-dashboard')->middleware('admin');
+Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin-dashboard')->middleware('admin');
+
+// Mark read notification
+Route::post('/mark-as-read', [AdminController::class, 'mark'])->name('mark');
 
 // Dashboard User
 Route::get('/dashboard', [FormController::class, 'formList'])->name('dashboard');
 
 // Admin CRUD User
-Route::get('/admin/user', [UserController::class, 'index'])->name('user')->middleware('admin');
-Route::get('/admin/user/create', [UserController::class, 'create'])->middleware('admin');
-Route::post('/admin/user', [UserController::class, 'store'])->middleware('admin');
+Route::get('/admin/user', [AdminController::class, 'index'])->name('user')->middleware('admin');
+Route::get('/admin/user/create', [AdminController::class, 'create'])->middleware('admin');
+Route::post('/admin/user', [AdminController::class, 'store'])->middleware('admin');
 Route::get('/admin/user/{id}/edit', [UserController::class, 'edit'])->middleware('admin');
-Route::post('/admin/user/{id}', [UserController::class, 'update'])->middleware('admin');
-Route::get('/admin/user/{id}', [UserController::class, 'destroy'])->middleware('admin');
+Route::post('/admin/user/{id}', [AdminController::class, 'update'])->middleware('admin');
+Route::get('/admin/user/{id}', [AdminController::class, 'destroy'])->middleware('admin');
 
