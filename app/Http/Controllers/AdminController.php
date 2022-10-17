@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Notifications\NewUserNotification;
 
 class AdminController extends Controller
 {
@@ -17,7 +19,7 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('notifications'));
     }
 
-    public function mark(Request $request){
+    public function markNotif(Request $request){
         auth()->user()
             ->unreadNotifications
             ->when($request->input('id'), function ($query) use ($request) {
@@ -42,16 +44,36 @@ class AdminController extends Controller
     }
 
     public function store(Request $request){
-        $validatedData = $this->validate($request,[
-            'name' => 'required',
-            'role' => 'required',
-            'email' => 'required',
+        // $validatedData = $this->validate($request,[
+        //     'name' => 'required',
+        //     'role' => 'required',
+        //     'email' => 'required',
+        //     'no_telepon' => 'required',
+        //     'password' => 'required',
+        //     'alamat' => 'required',
+        // ]);
+        // $validatedData['password'] = bcrypt($validatedData['password']);
+        // User::create($validatedData);
+        $request->validate([
+            'name'  => 'required',
+            'role'  => 'required',
+            'email' => 'required|email|unique:users',
             'no_telepon' => 'required',
             'password' => 'required',
-            'alamat' => 'required',
+            'alamat' => 'required'
         ]);
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        User::create($validatedData);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->role = $request->role;
+        $user->email = $request->email;
+        $user->no_telepon = $request->no_telepon;
+        $user->password = Hash::make($request->password);
+        $user->alamat = $request->alamat;
+        $user->save();
+        
+        $registration = User::first();
+        $registration->notify(new NewUserNotification($user));
         return redirect()->route('user')->with('success','Data berhasil di Tambah!');
     }
 

@@ -7,16 +7,17 @@ Last Updated: 12/29/2018
 ----------------------*/
 namespace jazmy\FormBuilder\Controllers;
 
+use Throwable;
+use Illuminate\Http\Request;
+use jazmy\FormBuilder\Helper;
+use Illuminate\Support\Facades\DB;
+use jazmy\FormBuilder\Models\Form;
 use App\Http\Controllers\Controller;
+use App\Notifications\NewFormNotification;
 use jazmy\FormBuilder\Events\Form\FormCreated;
 use jazmy\FormBuilder\Events\Form\FormDeleted;
 use jazmy\FormBuilder\Events\Form\FormUpdated;
-use jazmy\FormBuilder\Helper;
-use jazmy\FormBuilder\Models\Form;
 use jazmy\FormBuilder\Requests\SaveFormRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Throwable;
 
 class FormController extends Controller
 {
@@ -75,6 +76,7 @@ class FormController extends Controller
         $input = $request->merge(['user_id' => $user->id])->except('_token');
 
         DB::beginTransaction();
+        $creation = Form::first();
 
         // generate a random identifier
         $input['identifier'] = $user->id.'-'.Helper::randomString(20);
@@ -83,7 +85,7 @@ class FormController extends Controller
         try {
             // dispatch the event
             event(new FormCreated($created));
-
+            $creation->notify(new NewFormNotification($created));
             DB::commit();
 
             return response()

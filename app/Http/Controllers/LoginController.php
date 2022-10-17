@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Notifications\NewUserNotification;
 
 class LoginController extends Controller
 {
@@ -45,16 +47,37 @@ class LoginController extends Controller
 
     public function storeregister(Request $request)
     {
-        // dd($request->all());
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => 'user',
-            'no_telepon' => $request->no_telepon,
-            'alamat' => $request->alamat,
-            'remember_token' => Str::random(60)
+        $request->validate([
+            'name'  => 'required',
+            'email' => 'required|email|unique:users',
+            'no_telepon' => 'required',
+            'password' => 'required',
+            'alamat' => 'required'
         ]);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->role = 'user';
+        $user->email = $request->email;
+        $user->no_telepon = $request->no_telepon;
+        $user->password = Hash::make($request->password);
+        $user->alamat = $request->alamat;
+        $user->save();
+        $registration = User::first();
+        #store notification info into notifications table
+        $registration->notify(new NewUserNotification($user));
+        // dd('user registered successfully, Notification send to Admin Successfully.');
+
+        // dd($request->all());
+        // User::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'password' => bcrypt($request->password),
+        //     'role' => 'user',
+        //     'no_telepon' => $request->no_telepon,
+        //     'alamat' => $request->alamat,
+        //     'remember_token' => Str::random(60)
+        // ]);
         return redirect("/")->with('registerSuccess', 'Registrasi Berhasil');
     }
 }

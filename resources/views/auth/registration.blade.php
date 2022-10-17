@@ -32,6 +32,9 @@
                                             <label for="name-column">Name</label>
                                             <input type="text" id="name-column" class="form-control"
                                                 name="name">
+                                                @if ($errors->has('name'))
+                                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                                                @endif
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -39,6 +42,9 @@
                                             <label for="password-column">Password</label>
                                             <input type="password" id="password-column" class="form-control"
                                                 name="password">
+                                                @if ($errors->has('password'))
+                                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -46,6 +52,9 @@
                                             <label for="email-column">Email</label>
                                             <input type="email" id="email-column" class="form-control"
                                                 name="email">
+                                                @if ($errors->has('email'))
+                                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                                @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
@@ -53,12 +62,18 @@
                                             <label for="no_telepon-column">No Telepon</label>
                                             <input type="number" id="no_telepon-column" class="form-control"
                                                 name="no_telepon">
+                                                @if ($errors->has('no_telepon'))
+                                                <span class="text-danger">{{ $errors->first('no_telepon') }}</span>
+                                                @endif
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="alamat-column">Alamat</label> <br>
                                             <textarea name="alamat" id="alamat-column" class="col-12" rows="2"></textarea>
+                                            @if ($errors->has('alamat'))
+                                            <span class="text-danger">{{ $errors->first('alamat') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </diV>

@@ -8,12 +8,14 @@ Last Updated: 12/29/2018
 namespace jazmy\FormBuilder\Controllers;
 
 use Throwable;
+use App\Events\Submitted;
 use Illuminate\Http\Request;
 use jazmy\FormBuilder\Helper;
 use Illuminate\Support\Facades\DB;
 use jazmy\FormBuilder\Models\Form;
 use App\Http\Controllers\Controller;
-use App\Events\Submitted;
+use jazmy\FormBuilder\Models\Submission;
+use App\Notifications\NewSubmissionNotification;
 
 class RenderFormController extends Controller
 {
@@ -54,6 +56,7 @@ class RenderFormController extends Controller
         $form = Form::where('identifier', $identifier)->firstOrFail();
 
         DB::beginTransaction();
+        $submission = Submission::first();
 
         try {
             $input = $request->except('_token');
@@ -69,11 +72,12 @@ class RenderFormController extends Controller
 
             $user_id = auth()->user()->id ?? null;
 
-            $form->submissions()->create([
+            $submitted = $form->submissions()->create([
                 'user_id' => $user_id,
                 'content' => $input,
             ]);
 
+            $submission->notify(new NewSubmissionNotification($submitted));
             DB::commit();
             return redirect()->route('formbuilder::form.feedback', $identifier)->with('success', 'Form successfully submitted.');
         }catch (Throwable $e){

@@ -7,6 +7,7 @@
     <title>@yield('title')</title>
     @stack('styles')
     <link rel="stylesheet" href="/template/dist/assets/css/bootstrap.css">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
     <link rel="stylesheet" href="/template/dist/assets/vendors/chartjs/Chart.min.css">
     <link rel="stylesheet" href="/template/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="/template/dist/assets/css/app.css">
@@ -86,6 +87,21 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav d-flex align-items-center navbar-light ml-auto">
+                        <li class="dropdown nav-icon">
+                            <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
+                                <div class="d-lg-inline-block">
+                                    <i data-feather="bell"></i>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-large">
+                                <h6 class='py-2 px-4'>Notifications</h6>
+                                <ul class="list-group rounded-none">
+                                    <li class="list-group-item border-0 align-items-start">
+                                        
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown"
                                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">

@@ -7,13 +7,15 @@ Last Updated: 12/29/2018
 ----------------------*/
 namespace jazmy\FormBuilder\Models;
 
+use Illuminate\Support\Str;
+use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\HtmlString;
-use Illuminate\Support\Str;
+use Illuminate\Notifications\Notifiable;
 
 class Submission extends Model
 {
+    use Notifiable;
 	/**
 	 * The table name
 	 *

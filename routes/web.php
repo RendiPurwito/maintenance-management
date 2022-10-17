@@ -26,7 +26,7 @@ Route::post('/register', [LoginController::class, 'storeregister'])->middleware(
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin-dashboard')->middleware('admin');
 
 // Mark read notification
-Route::post('/mark-as-read', [AdminController::class, 'mark'])->name('mark');
+Route::post('/mark-as-read', [AdminController::class, 'markNotif'])->name('markNotif');
 
 // Dashboard User
 Route::get('/dashboard', [FormController::class, 'formList'])->name('dashboard');

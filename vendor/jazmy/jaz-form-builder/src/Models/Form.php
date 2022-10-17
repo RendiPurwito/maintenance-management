@@ -7,11 +7,13 @@ Last Updated: 12/29/2018
 ----------------------*/
 namespace jazmy\FormBuilder\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Form extends Model
 {
+    use Notifiable;
     const FORM_PUBLIC = "PUBLIC";
     const FORM_PRIVATE = "PRIVATE";
 
