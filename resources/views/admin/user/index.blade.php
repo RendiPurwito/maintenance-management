@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="assets/css/bootstrap.css">
-<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+{{-- <link rel="stylesheet" href="assets/css/bootstrap.css"> --}}
+{{-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css"> --}}
 <link rel="stylesheet" href="/template/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 @endsection
 
 @section('content')
 <div class="container">
-    <div class="row" id="table-hover-row">
+    <div class="row" >
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
@@ -20,7 +20,7 @@
                 <div class="card-content">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover mb-0" id="table1">
+                            <table class="table table-hover mb-0" >
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -34,10 +34,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($users as $index => $user)
                                     <tr>
                                         <td>
-                                            {{ $loop->iteration }}
+                                            {{ $index + $users->firstItem() }}
                                         </td>
                                         <td>
                                             <a href="" class="text-secondary">
@@ -70,8 +70,12 @@
                             </table>
                         </div>
                     </div>
-                    {{-- <div>{{ $users->links() }}
-                </div> --}}
+                    <div class="card-footer float-right">
+                        @if($users->currentPage())
+                        <div>{{ $users->links() }}</div>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
         {{-- <div class="card">
@@ -188,6 +192,6 @@
 @section('javascript')
 <script src="/template/dist/assets/js/feather-icons/feather.min.js"></script>
 <script src="/template/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
-<script src="/template/dist/assets/js/vendors.js"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script> --}}
+{{-- <script src="/template/dist/assets/js/vendors.js"></script> --}}
 @endsection

@@ -35,7 +35,7 @@ Route::get('/dashboard', [FormController::class, 'formList'])->name('dashboard')
 Route::get('/admin/user', [AdminController::class, 'index'])->name('user')->middleware('admin');
 Route::get('/admin/user/create', [AdminController::class, 'create'])->middleware('admin');
 Route::post('/admin/user', [AdminController::class, 'store'])->middleware('admin');
-Route::get('/admin/user/{id}/edit', [UserController::class, 'edit'])->middleware('admin');
+Route::get('/admin/user/{id}/edit', [AdminController::class, 'edit'])->middleware('admin');
 Route::post('/admin/user/{id}', [AdminController::class, 'update'])->middleware('admin');
 Route::get('/admin/user/{id}', [AdminController::class, 'destroy'])->middleware('admin');
 

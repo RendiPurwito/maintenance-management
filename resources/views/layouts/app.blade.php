@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     @stack('styles')
-    <link rel="stylesheet" href="/template/dist/assets/css/bootstrap.css">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
-    <link rel="stylesheet" href="/template/dist/assets/vendors/chartjs/Chart.min.css">
+    {{-- <link rel="stylesheet" href="/template/dist/assets/css/bootstrap.css"> --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="/template/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="/template/dist/assets/css/app.css">
     <link rel="shortcut icon" href="/template/dist/assets/images/favicon.svg" type="image/x-icon">
@@ -130,13 +129,13 @@
         </div>
     </div>
     @stack('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script> --}}
     <script src="/template/dist/assets/js/feather-icons/feather.min.js"></script>
     <script src="/template/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/template/dist/assets/js/app.js"></script>
-    <script src="/template/dist/assets/vendors/chartjs/Chart.min.js"></script>
-    <script src="/template/dist/assets/vendors/apexcharts/apexcharts.min.js"></script>
-    <script src="/template/dist/assets/js/pages/dashboard.js"></script>
+    {{-- <script src="/template/dist/assets/vendors/chartjs/Chart.min.js"></script> --}}
+    {{-- <script src="/template/dist/assets/vendors/apexcharts/apexcharts.min.js"></script> --}}
+    {{-- <script src="/template/dist/assets/js/pages/dashboard.js"></script> --}}
     <script src="/template/dist/assets/js/main.js"></script>
     @yield('javascript')
     {{-- Sweet Alert --}}
@@ -200,33 +199,6 @@
                 }
             })
         }
-
-        // $('.delete-button').on('click', function (event) {
-        //     // return confirm('Are you sure want to delete?');
-        //     event.preventDefault();//this will hold the url
-        //     Swal.fire({
-        //         title: 'Are you sure ?',
-        //         text: "You won't be able to revert this !",
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonColor: '#3085d6',
-        //         cancelButtonColor: '#d33',
-        //         confirmButtonText: 'Yes, delete it!'
-        //     })
-        //     .then((willDelete) => {
-        //         if (willDelete) {
-        //             swal("Done! category has been softdeleted!", {
-        //                 icon: "success",
-        //                 button: false,
-        //             });
-        //         location.reload(true);//this will release the event
-        //         } else {
-        //             swal("Your imaginary file is safe!");
-        //         }
-        //     });
-        // });
     </script>
-
 </body>
-
 </html>

@@ -53,12 +53,13 @@ class NewFormNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            'form_id' => $this->created->identifier,
-            'user'  => $this->created->user_id,
-            'form' => $this->created->name,
+            'id' => $this->created->identifier,
+            'name'  => auth()->user()->name,
+            'message' => 'has just created form',
+            'subject' => $this->created->name,
         ];
     }
 }

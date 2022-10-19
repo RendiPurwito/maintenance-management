@@ -53,11 +53,17 @@ class NewSubmissionNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            'form_id' => $this->submitted->form_id,
-            'user'  => $this->submitted->user_id,
+            // 'name'  => $this->submitted->user_id,
+            // 'form' => $this->submitted->form_id,
+            // 'submission_id' => $this->submitted->id,
+            // 'message' => 'has just been submitted'
+            'id' => $this->submitted->id,
+            'name'  => auth()->user()->name,
+            'message' => 'has just submitted form',
+            'subject' => $this->submitted->form_id,
         ];
     }
 }

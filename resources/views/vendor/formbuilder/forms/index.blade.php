@@ -71,9 +71,9 @@
                             </tbody>
                         </table>
                     </div>
+                    @if($forms->hasPages())
                     <div>{{ $forms->links() }}</div>
-                    {{-- @if($forms->hasPages())
-                    @endif --}}
+                    @endif
                 @else
                     <div class="card-body">
                         <h4 class="text-danger text-center">

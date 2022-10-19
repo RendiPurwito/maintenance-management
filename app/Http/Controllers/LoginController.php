@@ -63,9 +63,9 @@ class LoginController extends Controller
         $user->password = Hash::make($request->password);
         $user->alamat = $request->alamat;
         $user->save();
-        $registration = User::first();
+        $notification = User::first();
         #store notification info into notifications table
-        $registration->notify(new NewUserNotification($user));
+        $notification->notify(new NewUserNotification($user));
         // dd('user registered successfully, Notification send to Admin Successfully.');
 
         // dd($request->all());

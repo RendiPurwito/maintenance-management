@@ -53,12 +53,14 @@ class NewUserNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            'name'  => $this->user->name,
-            'email' => $this->user->email,
-            'message' => 'has just registered'
+            'id' => $this->user->id, 
+            'name'  => auth()->user()->name,
+            // 'email' => $this->user->email,
+            'message' => 'has just registered',
+            'subject' => $this->user->name,
         ];
     }
 }

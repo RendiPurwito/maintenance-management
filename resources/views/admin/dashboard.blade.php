@@ -4,24 +4,26 @@
 <div class="row">
     <div class="card">
         <div class="card-header mb-3 d-flex pt-3">
-            <h5 class="font-weight-bold mr-3">
-                <a href="#" class="text-dark" id="showr">User Registration</a>
+            <h5 class="font-weight-bold">Notifcation</h5>
+            {{-- <h5 class="font-weight-bold mr-3">
+                <a href="#" class="text-dark" id="showr">User</a>
             </h5>
             <h5 class="font-weight-bold mr-3">
-                <a href="#" class="text-dark" id="showc">Form Creation</a>
+                <a href="#" class="text-dark" id="showc">Form</a>
             </h5>
             <h5 class="font-weight-bold">
-                <a href="#" class="text-dark" id="shows">Form Submission</a>
-            </h5>
+                <a href="#" class="text-dark" id="shows">Submission</a>
+            </h5> --}}
         </div>
         <div class="card-body">
             {{-- Showing User Registration Notification --}}
-            <div id="registration-notif" style="display: none">
-                @forelse($notifications as $registration)
-                <div class="alert alert-light-info font-weight-bold text-dark" role="alert">
-                    [{{ $registration->created_at }}] User {{ $registration->data['name'] }}
-                    ({{ $registration->data['email'] }}) {{ $registration->data['message'] }}.
-                    <a href="#" class="float-right mark-as-read font-weight-bolder" data-id="{{ $registration->id }}">
+            <div id="registration-notif" >
+                @forelse($notifications as $notification)
+                <div class="alert alert-light-info text-dark" role="alert">
+                    {{-- [{{ $registration->created_at }}] User {{ $registration->data['name'] }}
+                    ({{ $registration->data['email'] }}) {{ $registration->data['message'] }}. --}}
+                    [{{ $notification->created_at }}] User <b>{{ $notification->data['name'] }}</b> {{ $notification->data['message'] }} <b>{{ $notification->data['subject'] }}</b> (<a href="#">{{ $notification->data['id']}}</a>)
+                    <a href="#" class="float-right mark-as-read font-weight-bolder" data-id="{{ $notification->id }}">
                         Mark as read
                     </a>
                 </div>
@@ -37,10 +39,10 @@
             </div>
 
             {{-- Showing Form Creation Notification --}}
-            <div id="creation-notif" style="display: none">
-                @forelse($notifications as $creation)
+            {{-- <div id="creation-notif" style="display: none">
+                @forelse($creations as $creation)
                 <div class="alert alert-light-info font-weight-bold text-dark" role="alert">
-                    [{{ $creation->created_at }}] User {{ $creation->data['user'] }}
+                    [{{ $creation->created_at }}] User {{ $creation->data['admin'] }}
                     has just submitted {{ $creation->data['form']}}({{ $creation->data['form_id']}}).
                     <a href="#" class="float-right mark-as-read font-weight-bolder" data-id="{{ $creation->id }}">
                         Mark as read
@@ -55,16 +57,16 @@
                 @empty
                 There are no new notifications
                 @endforelse
-            </div>
+            </div> --}}
 
             {{-- Showing Form Submission Notification --}}
-            <div id="submission-notif" style="display: none">
-                @forelse($notifications as $notification)
+            {{-- <div id="submission-notif" style="display: none">
+                @forelse($submissions as $submission)
                 <div class="alert alert-light-info font-weight-bold text-dark" role="alert">
-                    [{{ $notification->created_at }}] User {{ $notification->data['user'] }}
+                    [{{ $submission->created_at }}] User {{ $submission->data['user'] }}
                     has submitted
-                    {{ $notification->data['form_id'] }}.
-                    <a href="#" class="float-right mark-as-read font-weight-bolder" data-id="{{ $notification->id }}">
+                    {{ $submission->data['form'] }} ({{ $submission->data['submission_id'] }}).
+                    <a href="#" class="float-right mark-as-read font-weight-bolder" data-id="{{ $submission->id }}">
                         Mark as read
                     </a>
                 </div>
@@ -77,7 +79,7 @@
                 @empty
                 There are no new notifications
                 @endforelse
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

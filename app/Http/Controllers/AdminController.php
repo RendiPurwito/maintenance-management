@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use jazmy\FormBuilder\Models\Form;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\NewUserNotification;
 
@@ -15,8 +16,10 @@ class AdminController extends Controller
 
     public function dashboard(){
         $notifications = auth()->user()->unreadNotifications;
+        $form = Form::all();
 
-        return view('admin.dashboard', compact('notifications'));
+
+        return view('admin.dashboard', compact('notifications', 'form'));
     }
 
     public function markNotif(Request $request){
@@ -33,7 +36,7 @@ class AdminController extends Controller
     // User CRUD
     public function index(){
         return view('admin.user.index',[
-            'users' => User::paginate(5),
+            'users' => User::orderBy('name')->Paginate(10),
         ]);
     }
 
@@ -72,8 +75,8 @@ class AdminController extends Controller
         $user->alamat = $request->alamat;
         $user->save();
         
-        $registration = User::first();
-        $registration->notify(new NewUserNotification($user));
+        $notification = User::first();
+        $notification->notify(new NewUserNotification($user));
         return redirect()->route('user')->with('success','Data berhasil di Tambah!');
     }
 
