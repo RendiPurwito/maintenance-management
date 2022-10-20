@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container">
-    <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">Back</a>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card rounded-0">
-                <div class="card-header">
-                    <h5 class="card-title">{{ $pageTitle }}</h5>
+            <div class="card">
+                <div class="card-header d-flex justify-content-between mb-3">
+                    <h5 class="card-title fw-bold">{{ $pageTitle }}</h5>
+                    <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm"><i class="fa fa-arrow-left"></i>Back</a>
                 </div>
 
                 <form action="{{ route('formbuilder::form.submit', $form->identifier) }}" method="POST" id="submitForm" enctype="multipart/form-data">
@@ -17,8 +17,8 @@
                         <div id="fb-render"></div>
                     </div>
 
-                    <div class="card-footer">
-                        <button id="Submit" type="submit" class="btn btn-primary confirm-form" data-form="submitForm"></i> Submit Form </button>
+                    <div class="card-footer d-flex justify-content-end">
+                        <button id="Submit" type="submit" class="btn btn-primary confirm-form " data-form="submitForm"></i> Submit Form </button>
                         <noscript>
                             <p>This site is best viewed with Javascript. Please allow javascript to run.</p>
                         </noscript>
@@ -27,7 +27,7 @@
                             $(function(){
                                 $('#Submit').attr('disabled', false);
                     
-                                var $input = $('<button id="Submit" type="submit" class="btn btn-primary confirm-form" data-form="submitForm"> <i class="fa fa-submit"></i> Submit Form </button>');
+                                var $input = $('<button id="Submit" type="submit" class="btn btn-primary confirm-form float-end" data-form="submitForm"> <i class="fa fa-submit"></i> Submit Form </button>');
                                 $input.appendTo($("#formSubmit"));
                     
                                 $('#Submit').attr('data-message', "Submit your entry for '{{ $form->name }}'?");

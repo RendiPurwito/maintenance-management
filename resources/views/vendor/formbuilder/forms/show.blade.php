@@ -4,28 +4,27 @@
 <div class="">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card rounded-0">
-                <div class="card-header">
-                    <h5 class="card-title">
+            <div class="card ">
+                <div class="card-header d-flex justify-content-between mb-3">
+                    <h5 class="card-title fw-bold">
                         Form Preview for '{{ $form->name }}' 
-
-                        <div class="btn-toolbar float-md-right" role="toolbar">
-                            <div class="btn-group" role="group">
-                                <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary float-md-right btn-sm">
-                                    <i class="fa fa-arrow-left"></i> 
-                                </a>
-                                <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary float-md-right btn-sm">
-                                    <i class="fa fa-th-list"></i> Submissions
-                                </a> 
-                                <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary float-md-right btn-sm">
-                                    <i class="fa fa-edit"></i> Edit
-                                </a> 
-                                <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary float-md-right btn-sm">
-                                    <i class="fa fa-plus-circle"></i> New Form
-                                </a>
-                            </div>
-                        </div>
                     </h5>
+                    <div class="btn-toolbar float-md-end" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary float-md-right btn-sm">
+                                <i class="fa fa-arrow-left"></i> 
+                            </a>
+                            <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary float-md-right btn-sm">
+                                <i class="fa fa-th-list"></i> Submissions
+                            </a> 
+                            <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary float-md-right btn-sm">
+                                <i class="fa fa-edit"></i> Edit
+                            </a> 
+                            <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary float-md-right btn-sm">
+                                <i class="fa fa-plus-circle"></i> New Form
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -34,14 +33,13 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card rounded-0">
+            <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">
+                    <h5 class="card-title fw-bold">
                         Details 
-                        
-                        <button class="btn btn-primary btn-sm clipboard float-right" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="Copied" data-original="Copy Form URL" title="Copy form URL to clipboard">
+                        {{-- <button class="btn btn-primary btn-sm clipboard float-right" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="Copied" data-original="Copy Form URL" title="Copy form URL to clipboard">
                             <i class="fa fa-clipboard"></i> Copy Form URL
-                        </button> 
+                        </button>  --}}
                     </h5>
                 </div>
 

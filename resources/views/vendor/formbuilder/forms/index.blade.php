@@ -26,7 +26,7 @@
                     <div class="card-body">
                         @if($forms->count())
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="table">
                                 <thead>
                                     <tr>
                                         <th class="five">#</th>
@@ -55,9 +55,9 @@
                                                 <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary btn-sm" title="Edit form">
                                                     <i class="fa fa-pencil"></i> 
                                                 </a> 
-                                                <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="" data-original="" title="Copy form URL to clipboard">
+                                                {{-- <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="" data-original="" title="Copy form URL to clipboard">
                                                     <i class="fa fa-clipboard"></i> 
-                                                </button> 
+                                                </button>  --}}
             
                                                 <form action="{{ route('formbuilder::forms.destroy', $form) }}" method="POST" id="deleteFormForm_{{ $form->id }}" class="d-inline-block">
                                                     @csrf 
@@ -73,14 +73,16 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div>{{ $forms->links() }}</div>
-                        {{-- @if($forms->hasPages())
-                        @endif --}}
-                    @else  
+                        @else  
                         <h4 class="text-danger text-center">
                             No form to display.
                         </h4>
-                    @endif
+                        @endif
+                    </div>
+                    <div class="card-footer px-4">
+                        <div>{{ $forms->links('vendor.pagination.bootstrap-5') }}</div>
+                    {{-- @if($forms->hasPages())
+                    @endif --}}
                     </div>
                 </div>
             </div>

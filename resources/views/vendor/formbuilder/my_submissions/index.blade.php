@@ -16,7 +16,7 @@
 
                 @if($submissions->count())
                     <div class="table-responsive">
-                        <table class="table  d-table table-hover pb-0 mb-0">
+                        <table class="table  d-table table-hover pb-0 mb-0" id="table">
                             <thead>
                                 <tr>
                                     <th class="five">#</th>

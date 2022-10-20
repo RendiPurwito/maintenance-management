@@ -4,27 +4,26 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card rounded-0">
-                <div class="card-header">
-                    <h5 class="card-title">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between mb-3">
+                    <h5 class="card-title fw-bold">
                         Viewing Submission #{{ $submission->id }} for form '{{ $submission->form->name }}'
-                        
-                        <div class="btn-toolbar float-right" role="toolbar">
-                            <div class="btn-group" role="group" aria-label="First group">
-                                <a href="{{ route('formbuilder::forms.submissions.index', $submission->form->id) }}" class="btn btn-primary float-md-right btn-sm" title="Back To Submissions">
-                                    <i class="fa fa-arrow-left"></i> 
-                                </a>
-                                <form action="{{ route('formbuilder::forms.submissions.destroy', [$submission->form, $submission]) }}" method="POST" id="deleteSubmissionForm_{{ $submission->id }}" class="d-inline-block">
-                                    @csrf 
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-danger btn-sm rounded-0 confirm-form" data-form="deleteSubmissionForm_{{ $submission->id }}" data-message="Delete submission" title="Delete this submission?">
-                                        <i class="fa fa-trash-o"></i> 
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
                     </h5>
+                    <div class="btn-toolbar float-end" role="toolbar">
+                        <div class="btn-group" role="group" aria-label="First group">
+                            <a href="{{ route('formbuilder::forms.submissions.index', $submission->form->id) }}" class="btn btn-primary float-md-right btn-sm" title="Back To Submissions">
+                                <i class="fa fa-arrow-left"></i> 
+                            </a>
+                            <form action="{{ route('formbuilder::forms.submissions.destroy', [$submission->form, $submission]) }}" method="POST" id="deleteSubmissionForm_{{ $submission->id }}" class="d-inline-block">
+                                @csrf 
+                                @method('DELETE')
+
+                                <button type="submit" class="btn btn-danger btn-sm rounded-0 confirm-form" data-form="deleteSubmissionForm_{{ $submission->id }}" data-message="Delete submission" title="Delete this submission?">
+                                    <i class="fa fa-trash-o"></i> 
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
                 <ul class="list-group list-group-flush">
@@ -42,7 +41,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card rounded-0">
+            <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">Details</h5>
                 </div>

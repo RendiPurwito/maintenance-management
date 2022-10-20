@@ -172,7 +172,9 @@
 
     <script>
         $(document).ready(function () {
-            $('table').DataTable({
+            $('#table').DataTable({
+                paging: false,
+                info: false,
                 pagingType: 'full_numbers',
                 lengthMenu: [
                     [10, 25, 50, -1],

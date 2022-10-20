@@ -23,7 +23,7 @@
                 <div class="card-content">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="table">
                                 <thead>
                                     <tr>
                                         <th >ID</th>
@@ -50,12 +50,11 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->no_telepon }}</td>
                                         <td>{{ $user->alamat }}</td>
-                                        <td>
-                                            <a href="/admin/user/{{ $user->id }}/edit" class="btn btn-primary btn-sm">
+                                        <td class="">
+                                            <a href="/admin/user/{{ $user->id }}/edit" class="btn btn-primary btn-sm mb-1">
                                                 <i class="fa-solid fa-pencil"></i>
                                             </a>
-                                            <a href="#" class="btn btn-danger btn-sm"
-                                                onclick="confirmDel({{$user->id}})" data-name="user" id="deleteButton">
+                                            <a href="#" class="btn btn-danger btn-sm" onclick="confirmDel({{$user->id}})" data-name="user" id="deleteButton">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </a>
                                         </td>
@@ -65,8 +64,8 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <div>{{ $users->links() }}</div>
+                    <div class="card-footer px-4">
+                        <div>{{ $users->links('vendor.pagination.bootstrap-5') }}</div>
                     </div>
                 </div>
             </div>
