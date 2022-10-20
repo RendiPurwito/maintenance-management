@@ -135,8 +135,8 @@ class Form extends Model
     public static function getForUser($user)
     {
         return static::withCount('submissions')
-                    ->latest()
-                    ->paginate(5);
+                    ->orderBy('name')
+                    ->paginate(10);
     }
 
     /**

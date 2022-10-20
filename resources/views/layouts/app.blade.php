@@ -5,16 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
+    {{--! JQUERY --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js" referrerpolicy="no-referrer"></script>
+
+    {{--! Form Builder CSS --}}
     @stack('styles')
-    {{-- <link rel="stylesheet" href="/template/dist/assets/css/bootstrap.css"> --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    {{--! Bootstrap --}}
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+
+    {{--! DataTable CSS --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+    {{-- Bootstrap CDN --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
+
+    {{--! Voler CSS --}}
     <link rel="stylesheet" href="/template/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="/template/dist/assets/css/app.css">
     <link rel="shortcut icon" href="/template/dist/assets/images/favicon.svg" type="image/x-icon">
-    {{-- JQUERY --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js" referrerpolicy="no-referrer"></script>
-    {{-- Font Awesome --}}
+
+    {{--! Footable CSS --}}
+    {{-- <link rel="stylesheet" href="/footable/css/footable.bootstrap.css"> --}}
+
+    {{--! Font Awesome --}}
     <script src="https://kit.fontawesome.com/e5a524ad24.js"></script>
+
     @yield('css')
     {{-- <style>
         *{
@@ -28,7 +44,7 @@
         <div id="sidebar">
             <div class="sidebar-wrapper ">
                 <div class="sidebar-header">
-                    <img src="/template/assets/images/logo.svg" alt="" srcset="">
+                    <img src="/template/dist/assets/images/logo.svg" alt="" srcset="">
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
@@ -85,8 +101,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav d-flex align-items-center navbar-light ml-auto">
-                        <li class="dropdown nav-icon">
+                    <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
+                        {{-- <li class="dropdown nav-icon">
                             <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
                                 <div class="d-lg-inline-block">
                                     <i data-feather="bell"></i>
@@ -100,7 +116,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown"
                                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
@@ -128,8 +144,16 @@
             </div>
         </div>
     </div>
+    {{--! Form Builder JS --}}
     @stack('scripts')
+
+    {{--! Footable JS --}}
+    {{-- <script src="/footable/js/footable.js"></script> --}}
+
+    {{--! Simple Datatables JS CDN --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script> --}}
+
+    {{--! Voler JS --}}
     <script src="/template/dist/assets/js/feather-icons/feather.min.js"></script>
     <script src="/template/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/template/dist/assets/js/app.js"></script>
@@ -138,9 +162,25 @@
     {{-- <script src="/template/dist/assets/js/pages/dashboard.js"></script> --}}
     <script src="/template/dist/assets/js/main.js"></script>
     @yield('javascript')
-    {{-- Sweet Alert --}}
+
+    {{--! Sweet Alert JS --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {{--! DataTable JS CDN --}}
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js">
+    </script>
+
     <script>
+        $(document).ready(function () {
+            $('table').DataTable({
+                pagingType: 'full_numbers',
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, 'All'],
+                ],
+            });
+        });
+
         $('#submitButton').on('click', function (e) {
             e.preventDefault();
             var form = $(this).parents('form');
@@ -201,4 +241,5 @@
         }
     </script>
 </body>
+
 </html>

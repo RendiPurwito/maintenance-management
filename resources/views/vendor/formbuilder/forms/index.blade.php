@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="card rounded-0 p-3">
-                <div class="card-header d-flex justify-content-between">
-                    <h5 class="card-title">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between mb-3">
+                    <h5 class="fw-bold">
                         Forms
                     </h5>
                     <div class="btn-toolbar" role="toolbar">
@@ -22,65 +22,67 @@
                     </div>
                 </div>
         
-                @if($forms->count())
-                    <div class="table-responsive">
-                        <table class="table table-hover ">
-                            <thead>
-                                <tr>
-                                    <th class="five">#</th>
-                                    <th>Name</th>
-                                    <th class="ten">Visibility</th>
-                                    <th class="fifteen">Allows Edit?</th>
-                                    <th class="ten">Submissions</th>
-                                    <th class="twenty-five">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($forms as $form)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $form->name }}</td>
-                                        <td>{{ $form->visibility }}</td>
-                                        <td>{{ $form->allowsEdit() ? 'YES' : 'NO' }}</td>
-                                        <td>{{ $form->submissions_count }}</td>
-                                        <td>
-                                            <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary btn-sm" title="View submissions for form '{{ $form->name }}'">
-                                                <i class="fa fa-th-list"></i> Data
-                                            </a>
-                                            <a href="{{ route('formbuilder::forms.show', $form) }}" class="btn btn-primary btn-sm" title="Preview form '{{ $form->name }}'">
-                                                <i class="fa fa-eye"></i> 
-                                            </a> 
-                                            <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary btn-sm" title="Edit form">
-                                                <i class="fa fa-pencil"></i> 
-                                            </a> 
-                                            <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="" data-original="" title="Copy form URL to clipboard">
-                                                <i class="fa fa-clipboard"></i> 
-                                            </button> 
-        
-                                            <form action="{{ route('formbuilder::forms.destroy', $form) }}" method="POST" id="deleteFormForm_{{ $form->id }}" class="d-inline-block">
-                                                @csrf 
-                                                @method('DELETE')
-        
-                                                <button type="submit" class="btn btn-danger btn-sm confirm-form" data-form="deleteFormForm_{{ $form->id }}" data-message="Delete form '{{ $form->name }}'?" title="Delete form '{{ $form->name }}'">
-                                                    <i class="fa fa-trash-o"></i> 
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    @if($forms->hasPages())
-                    <div>{{ $forms->links() }}</div>
-                    @endif
-                @else
+                <div class="card-content">
                     <div class="card-body">
+                        @if($forms->count())
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="five">#</th>
+                                        <th>Name</th>
+                                        <th class="ten">Visibility</th>
+                                        <th class="fifteen">Allows Edit?</th>
+                                        <th class="ten">Submissions</th>
+                                        <th class="twenty-five" data-sortable="false">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($forms as $index => $form)
+                                        <tr>
+                                            <td>{{ $index + $forms->firstItem() }}</td>
+                                            <td>{{ $form->name }}</td>
+                                            <td>{{ $form->visibility }}</td>
+                                            <td>{{ $form->allowsEdit() ? 'YES' : 'NO' }}</td>
+                                            <td>{{ $form->submissions_count }}</td>
+                                            <td>
+                                                <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary btn-sm" title="View submissions for form '{{ $form->name }}'">
+                                                    <i class="fa fa-th-list"></i> Data
+                                                </a>
+                                                <a href="{{ route('formbuilder::forms.show', $form) }}" class="btn btn-primary btn-sm" title="Preview form '{{ $form->name }}'">
+                                                    <i class="fa fa-eye"></i> 
+                                                </a> 
+                                                <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary btn-sm" title="Edit form">
+                                                    <i class="fa fa-pencil"></i> 
+                                                </a> 
+                                                <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="" data-original="" title="Copy form URL to clipboard">
+                                                    <i class="fa fa-clipboard"></i> 
+                                                </button> 
+            
+                                                <form action="{{ route('formbuilder::forms.destroy', $form) }}" method="POST" id="deleteFormForm_{{ $form->id }}" class="d-inline-block">
+                                                    @csrf 
+                                                    @method('DELETE')
+            
+                                                    <button type="submit" class="btn btn-danger btn-sm confirm-form" data-form="deleteFormForm_{{ $form->id }}" data-message="Delete form '{{ $form->name }}'?" title="Delete form '{{ $form->name }}'">
+                                                        <i class="fa fa-trash-o"></i> 
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>{{ $forms->links() }}</div>
+                        {{-- @if($forms->hasPages())
+                        @endif --}}
+                    @else  
                         <h4 class="text-danger text-center">
                             No form to display.
                         </h4>
-                    </div>  
-                @endif
+                    @endif
+                    </div>
+                </div>
             </div>
         </div>
     </div>
