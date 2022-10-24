@@ -22,7 +22,7 @@
                     <div class="card-body">
                         @if($submissions->count())
                         <div class="table-responsive">
-                            <table class="table  d-table table-hover" id="table">
+                            <table class="table  d-table table-striped" id="table">
                                 <thead>
                                     <tr>
                                         <th class="five">#</th>

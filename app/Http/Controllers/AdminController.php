@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use jazmy\FormBuilder\Models\Form;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\NewUserNotification;
+use App\Notifications\DeleteUserNotification;
+use App\Notifications\UpdateUserNotification;
 
 class AdminController extends Controller
 {
@@ -88,6 +90,8 @@ class AdminController extends Controller
     }
 
     public function update(Request $request, $id){
+        $notification = User::first();
+        $user = user::find($id);
         $validasi = $this->validate($request,[
             'name' => ['required'],
             'role' => ['required'],
@@ -96,13 +100,16 @@ class AdminController extends Controller
             'password' => ['required'],
             'alamat' => ['required'],
         ]);
-        User::where('id',$id)->update($validasi);
+        $user->update($validasi);
+        $notification->notify(new UpdateUserNotification($user));
         return redirect()->route('user')->with('success','Data berhasil di Ubah!');
     }
 
     public function destroy($id){
         $user = user::find($id);
+        $notification = User::first();
         $user->delete();
+        $notification->notify(new DeleteUserNotification($user));
         return redirect()->route('user')->with('success','User deleted successfully!');
     }
 

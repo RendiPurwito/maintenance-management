@@ -170,6 +170,10 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
     </script>
 
+    {{--! DataTable Button JS CDN --}}
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.js">
+    </script>
+
     <script>
         $(document).ready(function () {
             $('#table').DataTable({
@@ -180,6 +184,9 @@
                     [5, 10, 25, 50, 'All'],
                 ],
                 pagingType: 'full_numbers',
+                buttons: [
+                    'copy', 'excel', 'pdf', 'colvis'
+                ]
             });
         });
 

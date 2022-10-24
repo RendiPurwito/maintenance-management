@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header d-flex justify-content-between mb-3">
+                <div class="card-header d-flex justify-content-between ">
                     <h5 class="fw-bold">
                         Forms
                     </h5>
@@ -26,14 +26,16 @@
                     <div class="card-body">
                         @if($forms->count())
                         <div class="table-responsive">
-                            <table class="table table-hover" id="table">
+                            <table class="table table-striped" id="table">
                                 <thead>
                                     <tr>
                                         <th class="five">#</th>
-                                        <th>Name</th>
-                                        <th class="ten">Visibility</th>
-                                        <th class="fifteen">Allows Edit?</th>
+                                        <th class="twenty-five">Name</th>
+                                        {{-- <th class="ten">Visibility</th> --}}
+                                        <th>Allows Edit?</th>
                                         <th class="ten">Submissions</th>
+                                        <th class="twenty-five">Created On</th>
+                                        <th class="twenty-five">Updated On</th>
                                         <th class="twenty-five" data-sortable="false">Actions</th>
                                     </tr>
                                 </thead>
@@ -42,12 +44,14 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $form->name }}</td>
-                                            <td>{{ $form->visibility }}</td>
+                                            {{-- <td>{{ $form->visibility }}</td> --}}
                                             <td>{{ $form->allowsEdit() ? 'YES' : 'NO' }}</td>
                                             <td>{{ $form->submissions_count }}</td>
+                                            <td>{{ $form->created_at->toDayDateTimeString() }}</td>
+                                            <td>{{ $form->updated_at->toDayDateTimeString() }}</td>
                                             <td>
                                                 <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary btn-sm" title="View submissions for form '{{ $form->name }}'">
-                                                    <i class="fa fa-th-list"></i> Data
+                                                    <i class="fa fa-th-list"></i>
                                                 </a>
                                                 <a href="{{ route('formbuilder::forms.show', $form) }}" class="btn btn-primary btn-sm" title="Preview form '{{ $form->name }}'">
                                                     <i class="fa fa-eye"></i> 

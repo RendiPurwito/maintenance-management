@@ -16,6 +16,8 @@ use jazmy\FormBuilder\Models\Form;
 use App\Http\Controllers\Controller;
 use App\Notifications\NewFormNotification;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\DeleteFormNotification;
+use App\Notifications\UpdateFormNotification;
 use jazmy\FormBuilder\Events\Form\FormCreated;
 use jazmy\FormBuilder\Events\Form\FormDeleted;
 use jazmy\FormBuilder\Events\Form\FormUpdated;
@@ -84,13 +86,13 @@ class FormController extends Controller
 
         // generate a random identifier
         $input['identifier'] = $user->id.'-'.Helper::randomString(20);
-        $created = Form::create($input);
+        $form = Form::create($input);
 
         try {
             // dispatch the event
-            event(new FormCreated($created));
+            event(new FormCreated($form));
             // Notification::send($admins, new NewFormNotification($created));
-            $notification->notify(new NewFormNotification($created));
+            $notification->notify(new NewFormNotification($form));
             // $creation->notify(new NewFormNotification($created));
             DB::commit();
 
@@ -160,12 +162,14 @@ class FormController extends Controller
     {
         $user = auth()->user();
         $form = Form::where(['user_id' => $user->id, 'id' => $id])->firstOrFail();
+        $notification = User::first();
 
         $input = $request->except('_token');
 
         if ($form->update($input)) {
             // dispatch the event
             event(new FormUpdated($form));
+            $notification->notify(new UpdateFormNotification($form));
 
             return response()
                     ->json([
@@ -188,10 +192,12 @@ class FormController extends Controller
     {
         $user = auth()->user();
         $form = Form::where(['user_id' => $user->id, 'id' => $id])->firstOrFail();
+        $notification = User::first();
         $form->delete();
 
         // dispatch the event
         event(new FormDeleted($form));
+        $notification->notify(new DeleteFormNotification($form));
 
         return back()->with('success', "'{$form->name}' deleted.");
     }

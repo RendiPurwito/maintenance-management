@@ -19,13 +19,13 @@
                     <div class="card-body">
                         @if($submissions->count())
                         <div class="table-responsive">
-                            <table class="table  d-table table-hover pb-0 mb-0" id="table">
+                            <table class="table d-table table-striped pb-0 mb-0" id="table">
                                 <thead>
                                     <tr>
                                         <th class="five">#</th>
                                         <th class="">Form</th>
-                                        <th class="twenty-five">Updated On</th>
                                         <th class="twenty-five">Created On</th>
+                                        <th class="twenty-five">Updated On</th>
                                         <th class="fifteen" data-sortable="false">Actions</th>
                                     </tr>
                                 </thead>
@@ -34,8 +34,8 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $submission->form->name }}</td>
-                                        <td>{{ $submission->updated_at->toDayDateTimeString() }}</td>
                                         <td>{{ $submission->created_at->toDayDateTimeString() }}</td>
+                                        <td>{{ $submission->updated_at->toDayDateTimeString() }}</td>
                                         <td>
                                             <a href="{{ route('formbuilder::my-submissions.show', [$submission->id]) }}"
                                                 class="btn btn-primary btn-sm" title="View submission">

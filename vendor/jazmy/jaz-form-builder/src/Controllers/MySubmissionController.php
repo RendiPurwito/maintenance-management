@@ -8,11 +8,13 @@ Last Updated: 12/29/2018
 namespace jazmy\FormBuilder\Controllers;
 
 use Throwable;
+use App\Models\User;
 use Illuminate\Http\Request;
 use jazmy\FormBuilder\Helper;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use jazmy\FormBuilder\Models\Submission;
+use App\Notifications\UpdateSubmissionNotification;
 
 class MySubmissionController extends Controller
 {
@@ -98,6 +100,7 @@ class MySubmissionController extends Controller
     {
         $user = auth()->user();
         $submission = Submission::where(['user_id' => $user->id, 'id' => $id])->firstOrFail();
+        $notification = User::first();
 
         DB::beginTransaction();
 
@@ -114,7 +117,7 @@ class MySubmissionController extends Controller
             }
 
             $submission->update(['content' => $input]);
-
+            $notification->notify(new UpdateSubmissionNotification($submission));
             DB::commit();
 
             return redirect()

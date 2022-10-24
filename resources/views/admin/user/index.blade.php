@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between mb-2">
-                    <h5 class="fw-bold">User</h5>
+                    <h5 class="fw-bold">Users</h5>
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group" aria-label="Third group">
                             <a href="/admin/user/create" class="btn btn-primary btn-sm">
@@ -32,7 +32,7 @@
                                 </select>
                                 Entries
                             </form> --}}
-                            <table class="table table-hover" id="table">
+                            <table class="table table-striped" id="table">
                                 <thead>
                                     <tr>
                                         <th>ID</th>

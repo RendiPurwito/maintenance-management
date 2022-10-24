@@ -74,13 +74,13 @@ class RenderFormController extends Controller
 
             $user_id = auth()->user()->id ?? null;
 
-            $submitted = $form->submissions()->create([
+            $submission = $form->submissions()->create([
                 'user_id' => $user_id,
                 'content' => $input,
             ]);
 
             // $submission->notify(new NewSubmissionNotification($submitted));
-            $notification->notify(new NewSubmissionNotification($submitted));
+            $notification->notify(new NewSubmissionNotification($submission));
             DB::commit();
             return redirect()->route('formbuilder::form.feedback', $identifier)->with('success', 'Form successfully submitted.');
         }catch (Throwable $e){

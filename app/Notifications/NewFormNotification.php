@@ -10,16 +10,16 @@ use Illuminate\Notifications\Notification;
 class NewFormNotification extends Notification
 {
     use Queueable;
-    public $created;
+    public $form;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($created)
+    public function __construct($form)
     {
-        $this->created = $created;
+        $this->form = $form;
     }
 
     /**
@@ -56,10 +56,10 @@ class NewFormNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'id' => $this->created->identifier,
+            'id' => $this->form->identifier,
             'name'  => auth()->user()->name,
             'message' => 'has just created form',
-            'subject' => $this->created->name,
+            'subject' => $this->form->name,
         ];
     }
 }

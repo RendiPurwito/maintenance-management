@@ -7,11 +7,13 @@ Last Updated: 12/29/2018
 ----------------------*/
 namespace jazmy\FormBuilder\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
 use jazmy\FormBuilder\Helper;
 use jazmy\FormBuilder\Models\Form;
+use App\Http\Controllers\Controller;
 use jazmy\FormBuilder\Models\Submission;
-use Illuminate\Http\Request;
+use App\Notifications\DeleteSubmissionNotification;
 
 class SubmissionController extends Controller
 {
@@ -88,7 +90,9 @@ class SubmissionController extends Controller
     public function destroy($form_id, $submission_id)
     {
         $submission = Submission::where(['form_id' => $form_id, 'id' => $submission_id])->firstOrFail();
+        $notification = User::first();
         $submission->delete();
+        $notification->notify(new DeleteSubmissionNotification($submission));
 
         return redirect()
                     ->route('formbuilder::forms.submissions.index', $form_id)

@@ -4,15 +4,18 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card rounded-0">
-                <div class="card-header">
-                    <h5 class="card-title">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between mb-3">
+                    <h5 class="card-title fw-bold">
                         {{ $pageTitle }}
-
-                        <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary float-md-right btn-sm" title="Back To My Submissions">
-                            <i class="fa fa-arrow-left"></i>
-                        </a>
                     </h5>
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group" aria-label="Third group">
+                            <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary float-md-right btn-sm" title="Back To My Submissions">
+                                <i class="fa fa-arrow-left"></i> Back To My Submissions
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <form action="{{ route('formbuilder::my-submissions.update', $submission->id) }}" method="POST" id="submitForm" enctype="multipart/form-data">
@@ -23,10 +26,12 @@
                         <div id="fb-render"></div>
                     </div>
 
-                    <div class="card-footer">
+                    <div class="card-footer d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary confirm-form" data-form="submitForm" data-message="Submit update to your entry for '{{ $submission->form->name }}'?">
                             Submit Form
                         </button>
+                        <div class="float-end">
+                        </div>
                     </div>
                 </form>
             </div>

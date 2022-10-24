@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewSubmissionNotification extends Notification
+class DeleteSubmissionNotification extends Notification
 {
     use Queueable;
     public $submission;
@@ -56,13 +56,9 @@ class NewSubmissionNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            // 'name'  => $this->submitted->user_id,
-            // 'form' => $this->submitted->form_id,
-            // 'submission_id' => $this->submitted->id,
-            // 'message' => 'has just been submitted'
-            'id' => $this->submission->id,
+            'id' => $this->submission->id, 
             'name'  => auth()->user()->name,
-            'message' => 'has just submitted form',
+            'message' => 'has just deleted submission form',
             'subject' => $this->submission->form_id,
         ];
     }
