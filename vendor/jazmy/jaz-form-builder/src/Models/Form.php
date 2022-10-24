@@ -136,7 +136,7 @@ class Form extends Model
     {
         return static::withCount('submissions')
                     ->orderBy('name')
-                    ->paginate(10);
+                    ->get();
     }
 
     /**

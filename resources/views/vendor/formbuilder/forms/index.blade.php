@@ -38,9 +38,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($forms as $index => $form)
+                                    @foreach($forms as $form)
                                         <tr>
-                                            <td>{{ $index + $forms->firstItem() }}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $form->name }}</td>
                                             <td>{{ $form->visibility }}</td>
                                             <td>{{ $form->allowsEdit() ? 'YES' : 'NO' }}</td>
@@ -79,11 +79,11 @@
                         </h4>
                         @endif
                     </div>
-                    <div class="card-footer px-4">
-                        <div>{{ $forms->links('vendor.pagination.bootstrap-5') }}</div>
-                    {{-- @if($forms->hasPages())
-                    @endif --}}
-                    </div>
+                    {{-- <div class="card-footer px-4">
+                        @if($forms->hasPages())
+                            <div>{{ $forms->links('vendor.pagination.bootstrap-5') }}</div>
+                        @endif
+                    </div> --}}
                 </div>
             </div>
         </div>

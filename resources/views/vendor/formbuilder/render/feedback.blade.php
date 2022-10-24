@@ -4,17 +4,16 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card rounded-0">
-                <div class="card-header">
-                    <h5 class="card-title">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between mb-3">
+                    <h5 class="card-title fw-bold">
                         Form Successfully submitted
-
-                        @auth
-                            <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm float-md-right">
-                                <i class="fa fa-th-list"></i> Go To My Submissions
-                            </a>
-                        @endauth
                     </h5>
+                    @auth
+                        <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm float-md-right">
+                            <i class="fa fa-th-list"></i> Go To My Submissions
+                        </a>
+                    @endauth
                 </div>
 
                 <div class="card-body">
@@ -24,7 +23,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <a href="/dashboard" class="btn btn-primary">
+                    <a href="/dashboard" class="btn btn-primary float-end">
                         <i class="fa fa-home"></i> Return Home
                     </a>
                 </div>

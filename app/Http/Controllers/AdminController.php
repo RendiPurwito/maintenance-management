@@ -34,9 +34,10 @@ class AdminController extends Controller
     }
 
     // User CRUD
-    public function index(){
+    public function index(Request $request){
+        // $pages = $request->pages ?? 10; 
         return view('admin.user.index',[
-            'users' => User::orderBy('name')->Paginate(10),
+            'users' => User::All()->sortBy('name'),
         ]);
     }
 

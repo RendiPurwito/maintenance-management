@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header mb-3 d-flex pt-3">
-                    <h5 class="font-weight-bold">Notifcation</h5>
+                    <h5 class="fw-bold">Notification</h5>
                     {{-- <h5 class="font-weight-bold mr-3">
                         <a href="#" class="text-dark" id="showr">User</a>
                     </h5>
@@ -25,13 +25,13 @@
                             {{-- [{{ $registration->created_at }}] User {{ $registration->data['name'] }}
                             ({{ $registration->data['email'] }}) {{ $registration->data['message'] }}. --}}
                             [{{ $notification->created_at }}] User <b>{{ $notification->data['name'] }}</b> {{ $notification->data['message'] }} <b>{{ $notification->data['subject'] }}</b> (<a href="#">{{ $notification->data['id']}}</a>)
-                            <a href="#" class="float-right mark-as-read font-weight-bolder" data-id="{{ $notification->id }}">
+                            <a href="#" class="float-end mark-as-read fw-bolder" data-id="{{ $notification->id }}">
                                 Mark as read
                             </a>
                         </div>
         
                         @if($loop->last)
-                        <a href="#" id="mark-all">
+                        <a href="#" id="mark-all" class="float-end fw-bold">
                             Mark all as read
                         </a>
                         @endif

@@ -3,16 +3,19 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">
+                <div class="card-header d-flex justify-content-between">
+                    <h5 class="card-title fw-bold">
                         {{ $pageTitle ?? '' }}
-
-                        <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-sm btn-primary float-md-right">
-                            <i class="fa fa-arrow-left"></i> Back To My Form
-                        </a>
                     </h5>
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group" aria-label="Third group">
+                            <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-sm btn-primary float-md-right">
+                                <i class="fa fa-arrow-left"></i> Back To My Form
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <form action="{{ route('formbuilder::forms.store') }}" method="POST" id="createFormForm">
@@ -28,7 +31,7 @@
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
+                                            <strong class="text-danger">{{ $errors->first('name') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -85,12 +88,14 @@
                 </form>
 
                 <div class="card-footer" id="fb-editor-footer" style="display: none;">
-                    <button type="button" class="btn btn-primary fb-clear-btn">
-                        <i class="fa fa-remove"></i> Clear Form 
-                    </button> 
-                    <button type="button" class="btn btn-primary fb-save-btn">
-                        <i class="fa fa-save"></i> Submit &amp; Save Form
-                    </button>
+                    <div class="float-end">
+                        <button type="button" class="btn btn-primary fb-clear-btn">
+                            <i class="fa fa-remove"></i> Clear Form 
+                        </button> 
+                        <button type="button" class="btn btn-primary fb-save-btn">
+                            <i class="fa fa-save"></i> Submit &amp; Save Form
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

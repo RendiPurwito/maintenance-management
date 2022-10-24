@@ -167,19 +167,19 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     {{--! DataTable JS CDN --}}
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
     </script>
 
     <script>
         $(document).ready(function () {
             $('#table').DataTable({
-                paging: false,
-                info: false,
-                pagingType: 'full_numbers',
+                dom: 'Blfrtip',
+                pageLength: 5,
                 lengthMenu: [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, 'All'],
+                    [5, 10, 25, 50, -1],
+                    [5, 10, 25, 50, 'All'],
                 ],
+                pagingType: 'full_numbers',
             });
         });
 

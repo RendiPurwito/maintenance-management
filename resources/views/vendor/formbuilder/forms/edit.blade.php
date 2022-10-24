@@ -3,23 +3,22 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title">
+                <div class="card-header d-flex justify-content-between">
+                    <h5 class="card-title fw-bold">
                         {{ $pageTitle ?? '' }}
-
-                        <div class="btn-toolbar float-md-right" role="toolbar">
-                            <div class="btn-group" role="group">
-                                <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-sm btn-primary float-md-right">
-                                    <i class="fa fa-arrow-left"></i> Back To My Forms
-                                </a>
-                                <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="Link Copied" data-original="Copy Form Link" title="Copy form URL to clipboard">
-                                    <i class="fa fa-clipboard"></i> Copy Form Link
-                                </button> 
-                            </div>
-                        </div>
                     </h5>
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-sm btn-primary float-md-right">
+                                <i class="fa fa-arrow-left"></i> Back To My Forms
+                            </a>
+                            <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="Link Copied" data-original="Copy Form Link" title="Copy form URL to clipboard">
+                                <i class="fa fa-clipboard"></i> Copy Form Link
+                            </button> 
+                        </div>
+                    </div>
                 </div>
 
                 <form action="{{ route('formbuilder::forms.update', $form) }}" method="POST" id="createFormForm" data-form-method="PUT">
@@ -99,12 +98,14 @@
                 </form>
 
                 <div class="card-footer" id="fb-editor-footer" style="display: none;">
-                    <button type="button" class="btn btn-primary fb-clear-btn">
-                        <i class="fa fa-remove"></i> Clear Form 
-                    </button> 
-                    <button type="button" class="btn btn-primary fb-save-btn">
-                        <i class="fa fa-save"></i> Submit &amp; Save Form
-                    </button>
+                    <div class="float-end">
+                        <button type="button" class="btn btn-primary fb-clear-btn">
+                            <i class="fa fa-remove"></i> Clear Form 
+                        </button> 
+                        <button type="button" class="btn btn-primary fb-save-btn">
+                            <i class="fa fa-save"></i> Submit &amp; Save Form
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

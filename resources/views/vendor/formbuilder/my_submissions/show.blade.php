@@ -5,32 +5,31 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card rounded-0">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between mb-3">
                     <h5 class="card-title">
                         Viewing my submission for form 
                         <strong>{{ $submission->form->name }}</strong>
-                        
-                        <div class="btn-toolbar float-md-right" role="toolbar">
-                            <div class="btn-group" role="group" aria-label="First group">
-                                <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm" title="Back To My Submissions">
-                                    <i class="fa fa-arrow-left"></i> 
-                                </a>
-                                @if($submission->form->allowsEdit())
-                                    <a href="{{ route('formbuilder::my-submissions.edit', $submission) }}" class="btn btn-primary btn-sm" title="Edit this submission">
-                                        <i class="fa fa-pencil"></i> 
-                                    </a>
-                                @endif
-                                {{-- <form action="{{ route('formbuilder::my-submissions.destroy', [$submission->id]) }}" method="POST" id="deleteSubmissionForm_{{ $submission->id }}" class="d-inline-block">
-                                    @csrf 
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-danger btn-sm rounded-0 confirm-form" data-form="deleteSubmissionForm_{{ $submission->id }}" data-message="Delete submission" title="Delete this submission?">
-                                        <i class="fa fa-trash-o"></i> 
-                                    </button>
-                                </form> --}}
-                            </div>
-                        </div>
                     </h5>
+                    <div class="btn-toolbar float-end" role="toolbar">
+                        <div class="btn-group" role="group" aria-label="First group">
+                            <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm" title="Back To My Submissions">
+                                <i class="fa fa-arrow-left"></i> Back
+                            </a>
+                            @if($submission->form->allowsEdit())
+                                <a href="{{ route('formbuilder::my-submissions.edit', $submission) }}" class="btn btn-primary btn-sm" title="Edit this submission">
+                                    <i class="fa fa-pencil"></i> 
+                                </a>
+                            @endif
+                            {{-- <form action="{{ route('formbuilder::my-submissions.destroy', [$submission->id]) }}" method="POST" id="deleteSubmissionForm_{{ $submission->id }}" class="d-inline-block">
+                                @csrf 
+                                @method('DELETE')
+
+                                <button type="submit" class="btn btn-danger btn-sm rounded-0 confirm-form" data-form="deleteSubmissionForm_{{ $submission->id }}" data-message="Delete submission" title="Delete this submission?">
+                                    <i class="fa fa-trash-o"></i> 
+                                </button>
+                            </form> --}}
+                        </div>
+                    </div>
                 </div>
 
                 <ul class="list-group list-group-flush">

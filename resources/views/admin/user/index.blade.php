@@ -23,10 +23,19 @@
                 <div class="card-content">
                     <div class="card-body">
                         <div class="table-responsive">
+                            {{-- <form>
+                                Show
+                                <select id="pagination">
+                                    <option value="5" @if($page == 5) selected @endif >5</option>
+                                    <option value="10" @if($page == 10) selected @endif >10</option>
+                                    <option value="25" @if($page == 25) selected @endif >25</option>
+                                </select>
+                                Entries
+                            </form> --}}
                             <table class="table table-hover" id="table">
                                 <thead>
                                     <tr>
-                                        <th >ID</th>
+                                        <th>ID</th>
                                         <th>Name</th>
                                         <th>Role</th>
                                         <th>Email</th>
@@ -36,10 +45,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $index => $user)
+                                    @foreach ($users as $user)
                                     <tr>
                                         <td>
-                                            {{ $index + $users->firstItem() }}
+                                            {{ $loop->iteration }}
                                         </td>
                                         <td>
                                             <a href="" class="text-secondary">
@@ -51,10 +60,12 @@
                                         <td>{{ $user->no_telepon }}</td>
                                         <td>{{ $user->alamat }}</td>
                                         <td class="">
-                                            <a href="/admin/user/{{ $user->id }}/edit" class="btn btn-primary btn-sm mb-1">
+                                            <a href="/admin/user/{{ $user->id }}/edit"
+                                                class="btn btn-primary btn-sm mb-1">
                                                 <i class="fa-solid fa-pencil"></i>
                                             </a>
-                                            <a href="#" class="btn btn-danger btn-sm" onclick="confirmDel({{$user->id}})" data-name="user" id="deleteButton">
+                                            <a href="#" class="btn btn-danger btn-sm"
+                                                onclick="confirmDel({{$user->id}})" data-name="user" id="deleteButton">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </a>
                                         </td>
@@ -64,9 +75,11 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer px-4">
+                    {{-- <div class="card-footer px-4">
+                        @if ($users->hasPages())
                         <div>{{ $users->links('vendor.pagination.bootstrap-5') }}</div>
-                    </div>
+                        @endif
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -76,6 +89,26 @@
 @endsection
 
 @section('javascript')
+{{-- <script>
+    $(document).ready(function () {
+        $('#table').DataTable({
+            dom: 'Blfrtip',
+            info: true,
+            paging: true,
+            pageLength: 10,
+            lengthMenu: [
+                [10, 25, 50, -1],
+                [10, 25, 50, 'All'],
+            ],
+            pagingType: 'full_numbers',
+        });
+    });
+</script> --}}
+{{-- <script>
+    document.getElementById('pagination').onchange = function() { 
+        window.location = "{!! $members->url(1) !!}&items=" + this.value; 
+    }; 
+</script> --}}
 {{-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script> --}}
 {{-- <script src="/template/dist/assets/js/vendors.js"></script> --}}
 @endsection

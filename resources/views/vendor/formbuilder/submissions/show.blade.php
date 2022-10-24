@@ -43,7 +43,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title">Details</h5>
+                    <h5 class="card-title fw-bold">Details</h5>
                 </div>
 
                 <ul class="list-group list-group-flush">

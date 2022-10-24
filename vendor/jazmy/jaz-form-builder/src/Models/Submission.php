@@ -69,7 +69,7 @@ class Submission extends Model
      */
     public static function getForUser($user)
     {
-        return static::where('user_id', $user->id)->with('form')->latest()->paginate(10);
+        return static::where('user_id', $user->id)->with('form')->latest()->get();
     }
 
     /**
