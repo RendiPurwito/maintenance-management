@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
 
     {{--! DataTable CSS --}}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css"> --}}
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/fh-3.2.4/r-2.3.0/datatables.min.css" />
+
 
     {{-- Bootstrap CDN --}}
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
@@ -167,87 +170,102 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     {{--! DataTable JS CDN --}}
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/fh-3.2.4/r-2.3.0/datatables.min.js">
     </script>
 
-    {{--! DataTable Button JS CDN --}}
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.js">
-    </script>
 
     <script>
         $(document).ready(function () {
             $('#table').DataTable({
-                dom: 'Blfrtip',
-                pageLength: 5,
-                lengthMenu: [
-                    [5, 10, 25, 50, -1],
-                    [5, 10, 25, 50, 'All'],
-                ],
+                dom: 'Bfrtip',
+                // pageLength: 10,
+                // lengthMenu: [
+                //     [5, 10, 25, 50, -1],
+                //     [5, 10, 25, 50, 'All'],
+                // ],
                 pagingType: 'full_numbers',
                 buttons: [
-                    'copy', 'excel', 'pdf', 'colvis'
+                    'colvis'
                 ]
             });
         });
 
-        $('#submitButton').on('click', function (e) {
-            e.preventDefault();
-            var form = $(this).parents('form');
-            swal({
-                icon: "warning",
-                title: "Are you sure?",
-                text: "Save this user definition?",
-                buttons: true,
-                dangerMode: true
-            }).then((isConfirm) => {
-                if (isConfirm) {
-                    form.submit();
-                    swal({
-                        icon: "success",
-                        title: 'User successfully created!',
-                    });
-                }
-            });
-        });
+        // const showbtn = document.querySelectorAll('.show-btn') 
+        // const actionbtn = document.querySelectorAll('.action-btn') 
 
-        $('#submitEditButton').on('click', function (e) {
-            e.preventDefault();
-            var form = $(this).parents('form');
-            swal({
-                icon: "warning",
-                title: "Are you sure?",
-                text: "Save this user definition?",
-                buttons: true,
-                dangerMode: true
-            }).then((isConfirm) => {
-                if (isConfirm) {
-                    form.submit();
-                    swal({
-                        icon: "success",
-                        title: 'User successfully updated!',
-                    });
-                }
-            });
-        });
+        // for( let i = 0; i < showbtn.length; i++){ 
+        //     $(showbtn[i]).on('click',function(e){ 
+        //         e.preventDefault();
+        //         $(actionbtn[i]).toggle("slide");
+        //     }) 
+        // }
 
-        function confirmDel(id) {
-            let url = $('#deleteButton').attr('data-name');
-            swal({
-                icon: 'warning',
-                title: 'Are you sure?',
-                text: 'This action cannot be undone!',
-                buttons: true,
-                dangerMode: true
-            }).then((willDelete) => {
-                if (willDelete) {
-                    window.location = "/admin/" + url + "/" + id
+                // $('.show-btn').on('click', function (e) {
+                // $('.addproduct').each(function () {}
+                // e.preventDefault(); $('.action-btn').toggle("slide");
+                // });
+
+                $('#submitButton').on('click', function (e) {
+                    e.preventDefault();
+                    var form = $(this).parents('form');
                     swal({
-                        icon: "success",
-                        title: 'User successfully deleted!',
+                        icon: "warning",
+                        title: "Are you sure?",
+                        text: "Save this user definition?",
+                        buttons: true,
+                        dangerMode: true
+                    }).then((isConfirm) => {
+                        if (isConfirm) {
+                            form.submit();
+                            swal({
+                                icon: "success",
+                                title: 'User successfully created!',
+                            });
+                        }
                     });
+                });
+
+                $('#submitEditButton').on('click', function (e) {
+                    e.preventDefault();
+                    var form = $(this).parents('form');
+                    swal({
+                        icon: "warning",
+                        title: "Are you sure?",
+                        text: "Save this user definition?",
+                        buttons: true,
+                        dangerMode: true
+                    }).then((isConfirm) => {
+                        if (isConfirm) {
+                            form.submit();
+                            swal({
+                                icon: "success",
+                                title: 'User successfully updated!',
+                            });
+                        }
+                    });
+                });
+
+                function confirmDel(id) {
+                    let url = $('#deleteButton').attr('data-name');
+                    swal({
+                        icon: 'warning',
+                        title: 'Are you sure?',
+                        text: 'This action cannot be undone!',
+                        buttons: true,
+                        dangerMode: true
+                    }).then((willDelete) => {
+                        if (willDelete) {
+                            window.location = "/admin/" + url + "/" + id
+                            swal({
+                                icon: "success",
+                                title: 'User successfully deleted!',
+                            });
+                        }
+                    })
                 }
-            })
-        }
     </script>
 </body>
 

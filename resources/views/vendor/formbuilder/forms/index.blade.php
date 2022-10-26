@@ -35,7 +35,6 @@
                                         <th>Allows Edit?</th>
                                         <th class="ten">Submissions</th>
                                         <th class="twenty-five">Created On</th>
-                                        <th class="twenty-five">Updated On</th>
                                         <th class="twenty-five" data-sortable="false">Actions</th>
                                     </tr>
                                 </thead>
@@ -48,7 +47,6 @@
                                             <td>{{ $form->allowsEdit() ? 'YES' : 'NO' }}</td>
                                             <td>{{ $form->submissions_count }}</td>
                                             <td>{{ $form->created_at->toDayDateTimeString() }}</td>
-                                            <td>{{ $form->updated_at->toDayDateTimeString() }}</td>
                                             <td>
                                                 <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary btn-sm" title="View submissions for form '{{ $form->name }}'">
                                                     <i class="fa fa-th-list"></i>
@@ -59,10 +57,6 @@
                                                 <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary btn-sm" title="Edit form">
                                                     <i class="fa fa-pencil"></i> 
                                                 </a> 
-                                                {{-- <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="" data-original="" title="Copy form URL to clipboard">
-                                                    <i class="fa fa-clipboard"></i> 
-                                                </button>  --}}
-            
                                                 <form action="{{ route('formbuilder::forms.destroy', $form) }}" method="POST" id="deleteFormForm_{{ $form->id }}" class="d-inline-block">
                                                     @csrf 
                                                     @method('DELETE')
@@ -71,6 +65,32 @@
                                                         <i class="fa fa-trash-o"></i> 
                                                     </button>
                                                 </form>
+                                                {{-- <a href="#" class="btn btn-primary btn-sm show-btn">
+                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                                </a>
+                                                <div style="display: none;" class="mt-1 action-btn" >
+                                                    <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary btn-sm" title="View submissions for form '{{ $form->name }}'">
+                                                        <i class="fa fa-th-list"></i>
+                                                    </a>
+                                                    <a href="{{ route('formbuilder::forms.show', $form) }}" class="btn btn-primary btn-sm" title="Preview form '{{ $form->name }}'">
+                                                        <i class="fa fa-eye"></i> 
+                                                    </a> 
+                                                    <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary btn-sm" title="Edit form">
+                                                        <i class="fa fa-pencil"></i> 
+                                                    </a> 
+                                                    <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="" data-original="" title="Copy form URL to clipboard">
+                                                        <i class="fa fa-clipboard"></i> 
+                                                    </button> 
+                
+                                                    <form action="{{ route('formbuilder::forms.destroy', $form) }}" method="POST" id="deleteFormForm_{{ $form->id }}" class="d-inline-block">
+                                                        @csrf 
+                                                        @method('DELETE')
+                
+                                                        <button type="submit" class="btn btn-danger btn-sm confirm-form" data-form="deleteFormForm_{{ $form->id }}" data-message="Delete form '{{ $form->name }}'?" title="Delete form '{{ $form->name }}'">
+                                                            <i class="fa fa-trash-o"></i> 
+                                                        </button>
+                                                    </form>
+                                                </div> --}}
                                             </td>
                                         </tr>
                                     @endforeach

@@ -48,6 +48,9 @@
                                         </td>
                                         @endforeach
                                         <td>
+                                            {{-- <a href="" class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                            </a> --}}
                                             <a href="{{ route('formbuilder::forms.submissions.show', [$form, $submission->id]) }}"
                                                 class="btn btn-primary btn-sm" title="View submission">
                                                 <i class="fa fa-eye"></i> View

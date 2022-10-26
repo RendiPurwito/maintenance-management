@@ -41,7 +41,7 @@
                                         <th>Email</th>
                                         <th>No Telepon</th>
                                         <th>Alamat</th>
-                                        <th data-sortable="false">Action</th>
+                                        <th data-sortable="false" class="twenty-five">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,15 +59,28 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->no_telepon }}</td>
                                         <td>{{ $user->alamat }}</td>
-                                        <td class="">
+                                        <td >
                                             <a href="/admin/user/{{ $user->id }}/edit"
-                                                class="btn btn-primary btn-sm mb-1">
+                                                class="btn btn-primary btn-sm me-1">
                                                 <i class="fa-solid fa-pencil"></i>
                                             </a>
                                             <a href="#" class="btn btn-danger btn-sm"
                                                 onclick="confirmDel({{$user->id}})" data-name="user" id="deleteButton">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </a>
+                                            {{-- <a href="#" class="btn btn-primary btn-sm show-btn" >
+                                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                            </a>
+                                            <div style="display: none;" class="mt-1 action-btn" >
+                                                <a href="/admin/user/{{ $user->id }}/edit"
+                                                    class="btn btn-primary btn-sm me-1">
+                                                    <i class="fa-solid fa-pencil"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-danger btn-sm"
+                                                    onclick="confirmDel({{$user->id}})" data-name="user" id="deleteButton">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </a>
+                                            </div> --}}
                                         </td>
                                     </tr>
                                     @endforeach
@@ -89,26 +102,5 @@
 @endsection
 
 @section('javascript')
-{{-- <script>
-    $(document).ready(function () {
-        $('#table').DataTable({
-            dom: 'Blfrtip',
-            info: true,
-            paging: true,
-            pageLength: 10,
-            lengthMenu: [
-                [10, 25, 50, -1],
-                [10, 25, 50, 'All'],
-            ],
-            pagingType: 'full_numbers',
-        });
-    });
-</script> --}}
-{{-- <script>
-    document.getElementById('pagination').onchange = function() { 
-        window.location = "{!! $members->url(1) !!}&items=" + this.value; 
-    }; 
-</script> --}}
-{{-- <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script> --}}
-{{-- <script src="/template/dist/assets/js/vendors.js"></script> --}}
+
 @endsection
