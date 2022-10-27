@@ -65,7 +65,7 @@
                                                 <i class="fa-solid fa-pencil"></i>
                                             </a>
                                             <a href="#" class="btn btn-danger btn-sm"
-                                                onclick="confirmDel({{$user->id}})" data-name="user" id="deleteButton">
+                                                onclick="confirmDel({{$user->id}})" data-name="user" data-message="Delete user '{{ $user->name }}'?" id="deleteButton">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </a>
                                             {{-- <a href="#" class="btn btn-primary btn-sm show-btn" >
@@ -99,8 +99,4 @@
     </div>
 </div>
 </div>
-@endsection
-
-@section('javascript')
-
 @endsection
