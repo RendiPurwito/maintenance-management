@@ -9,6 +9,7 @@ namespace jazmy\FormBuilder\Controllers;
 
 use Throwable;
 use App\Models\User;
+use PDF;
 use Illuminate\Http\Request;
 use jazmy\FormBuilder\Helper;
 use Illuminate\Support\Facades\DB;
@@ -48,7 +49,7 @@ class FormController extends Controller
         $forms = Form::getForUser(auth()->user());
         // $submissions_count = Submission::
 
-        return view('formbuilder::forms.index', compact('pageTitle', 'forms'));
+        return view('admin.forms.index', compact('pageTitle', 'forms'));
     }
 
     /**
@@ -65,7 +66,7 @@ class FormController extends Controller
         // get the roles to use to populate the make the 'Access' section of the form builder work
         $form_roles = Helper::getConfiguredRoles();
 
-        return view('formbuilder::forms.create', compact('pageTitle', 'saveURL', 'form_roles'));
+        return view('admin.forms.create', compact('pageTitle', 'saveURL', 'form_roles'));
     }
 
     /**
@@ -126,7 +127,7 @@ class FormController extends Controller
 
         $pageTitle = "Preview Form";
 
-        return view('formbuilder::forms.show', compact('pageTitle', 'form'));
+        return view('admin.forms.show', compact('pageTitle', 'form'));
     }
 
     /**
@@ -148,7 +149,7 @@ class FormController extends Controller
         // get the roles to use to populate the make the 'Access' section of the form builder work
         $form_roles = Helper::getConfiguredRoles();
 
-        return view('formbuilder::forms.edit', compact('form', 'pageTitle', 'saveURL', 'form_roles'));
+        return view('admin.forms.edit', compact('form', 'pageTitle', 'saveURL', 'form_roles'));
     }
 
     /**
@@ -207,5 +208,19 @@ class FormController extends Controller
         return view('user.dashboard', [
             'forms' => $forms
         ]);
+    }
+
+    public function pdf()
+    {
+        $forms = Form::getForUser(auth()->user());
+        view()->share('forms', $forms);
+        $pdf = PDF::loadview('admin.forms.pdf');  
+        return $pdf->stream();
+    }
+
+    public function formpdf($identifier){
+        $form = Form::where('identifier', $identifier)->firstOrFail();
+        $pdf = PDF::loadview('admin.forms.form-pdf', compact('form'));
+        return $pdf->stream();
     }
 }

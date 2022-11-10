@@ -49,10 +49,10 @@ class SubmissionController extends Controller
         // get the header for the entries in the form
         $form_headers = $form->getEntriesHeader();
 
-        $pageTitle = "Submitted Entries for '{$form->name}'";
+        $pageTitle = "{$form->name}";
 
         return view(
-            'formbuilder::submissions.index',
+            'admin.submissions.index',
             compact('form', 'submissions', 'pageTitle', 'form_headers')
         );
     }
@@ -77,7 +77,7 @@ class SubmissionController extends Controller
 
         $pageTitle = "View Submission";
 
-        return view('formbuilder::submissions.show', compact('pageTitle', 'submission', 'form_headers'));
+        return view('admin.submissions.show', compact('pageTitle', 'submission', 'form_headers'));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use PDF;
 use Illuminate\Http\Request;
 use jazmy\FormBuilder\Models\Form;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +42,14 @@ class AdminController extends Controller
         return view('admin.user.index',[
             'users' => User::All()->sortBy('name'),
         ]);
+    }
+
+    public function pdf()
+    {
+        $users = User::all();
+        view()->share('users', $users);
+        $pdf = PDF::loadview('admin.user.pdf');  
+        return $pdf->stream();
     }
 
     public function create(){

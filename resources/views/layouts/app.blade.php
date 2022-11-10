@@ -86,7 +86,7 @@
                         <li class="sidebar-item @if (\Request::is('form-builder/forms')) active  @endif">
                             <a href="/form-builder" class='sidebar-link'>
                                 <i data-feather="file-plus" width="20"></i>
-                                <span>Form Builder</span>
+                                <span>Form</span>
                             </a>
                         </li>
                         @endif

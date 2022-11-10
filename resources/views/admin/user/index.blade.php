@@ -14,8 +14,11 @@
                     <h5 class="fw-bold">Users</h5>
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group" aria-label="Third group">
-                            <a href="/admin/user/create" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle"></i> Create User
+                            <a href="/admin/user/pdf" class="btn btn-primary btn-sm" title="Export To PDF" target="_blank">
+                                <i class="fa-solid fa-file-pdf"></i>
+                            </a>
+                            <a href="/admin/user/create" class="btn btn-primary btn-sm" title="Add a New User">
+                                <i class="fa fa-plus-circle"></i>
                             </a>
                         </div>
                     </div>

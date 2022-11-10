@@ -3,8 +3,15 @@
 @section('content')
 <div class="container">
     <div class="card">
-        <div class="card-header mb-2">
-            <h4 class="fw-bold">Edit User</h4>
+        <div class="card-header d-flex justify-content-between">
+            <h5 class="card-title fw-bold">Edit User</h5>
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group" role="group" aria-label="Third group">
+                    <a href="/admin/user" class="btn btn-sm btn-primary float-md-right" title="Back To Users">
+                        <i class="fa fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <form action="/admin/user/{{ $user->id }}" method="POST" id="editForm">

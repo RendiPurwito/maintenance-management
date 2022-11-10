@@ -42,7 +42,7 @@ class RenderFormController extends Controller
 
         $pageTitle = "{$form->name}";
 
-        return view('formbuilder::render.index', compact('form', 'pageTitle'));
+        return view('user.render.index', compact('form', 'pageTitle'));
     }
 
     /**
@@ -104,6 +104,6 @@ class RenderFormController extends Controller
 
         $pageTitle = "Form Submitted!";
 
-        return view('formbuilder::render.feedback', compact('form', 'pageTitle'));
+        return view('user.render.feedback', compact('form', 'pageTitle'));
     }
 }

@@ -23,7 +23,7 @@
                     <div class="alert alert-light-info text-dark" role="alert">
                         {{-- [{{ $registration->created_at }}] User {{ $registration->data['name'] }}
                         ({{ $registration->data['email'] }}) {{ $registration->data['message'] }}. --}}
-                        [{{ $notification->created_at }}] User <b>{{ $notification->data['name'] }}</b> {{ $notification->data['message'] }} <b>{{ $notification->data['subject'] }}</b> (<a href="#">{{ $notification->data['id']}}</a>)
+                        [{{ $notification->created_at }}] User <b>{{ $notification->data['name'] }}</b> {{ $notification->data['message'] }} <b>{{ $notification->data['subject'] }}</b> 
                         <a href="#" class="float-end mark-as-read fw-bolder" data-id="{{ $notification->id }}">
                             Mark as read
                         </a>
