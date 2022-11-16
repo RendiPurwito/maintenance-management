@@ -47,7 +47,7 @@
         <div id="sidebar">
             <div class="sidebar-wrapper ">
                 <div class="sidebar-header">
-                    <img src="/template/dist/assets/images/logo.svg" alt="" srcset="">
+                    <img src="/img/logo.png" alt="" srcset="" style="width: 8rem">
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
@@ -96,13 +96,16 @@
             </div>
         </div>
         <div id="main">
-            <nav class="navbar navbar-header navbar-expand navbar-light">
+            <nav class="navbar navbar-header navbar-expand navbar-light bg-white shadow-sm">
                 <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
                 <button class="btn navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div>
+                    <img src="/img/logo.png" alt="" srcset="" style="width: 8rem" class="image">
+                </div>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
                         {{-- <li class="dropdown nav-icon">

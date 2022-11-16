@@ -109,3 +109,7 @@ $('#deleteButton').on('click', function (e) {
         }
     });
 });
+
+$('.sidebar-toggler').on('click' , function (e){
+    $('.image').toggle();
+})
