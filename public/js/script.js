@@ -68,22 +68,44 @@ $('#submitEditButton').on('click', function (e) {
     });
 });
 
-function confirmDel(id) {
-    let url = $('#deleteButton').attr('data-name');
-    let message = $('#deleteButton').attr('data-message');
+// function confirmDel(id) {
+//     let url = $('#deleteButton').attr('data-name');
+//     let name = $('#deleteButton').attr('data-message');
+//     swal({
+//         icon: 'warning',
+//         title: 'Are you sure?',
+//         text: "Delete user" + name + '?',
+//         buttons: true,
+//         dangerMode: true
+//     }).then((willDelete) => {
+//         if (willDelete) {
+//             window.location = "/admin/" + url + "/" + id
+//             swal({
+//                 icon: "success",
+//                 title: 'User successfully deleted!',
+//             });
+//         }
+//     })
+// }
+
+$('#deleteButton').on('click', function (e) {
+    e.preventDefault();
+    var form = $(this).parents('form');
+    var message = $('#deleteButton').attr('data-message');
+    // var name = $('#deleteButton').attr('data-name');
     swal({
-        icon: 'warning',
-        title: 'Are you sure?',
-        text: message,
+        icon: "warning",
+        title: "Are you sure?",
+        text: message || 'Delete user' + ' ' + name + '?',
         buttons: true,
         dangerMode: true
-    }).then((willDelete) => {
-        if (willDelete) {
-            window.location = "/admin/" + url + "/" + id
+    }).then((isConfirm) => {
+        if (isConfirm) {
+            form.submit();
             swal({
                 icon: "success",
                 title: 'User successfully deleted!',
             });
         }
-    })
-}
+    });
+});

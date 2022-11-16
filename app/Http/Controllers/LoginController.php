@@ -57,7 +57,7 @@ class LoginController extends Controller
 
         $user = new User;
         $user->name = $request->name;
-        $user->role = 'user';
+        $user->role = 'field_support';
         $user->email = $request->email;
         $user->no_telepon = $request->no_telepon;
         $user->password = Hash::make($request->password);

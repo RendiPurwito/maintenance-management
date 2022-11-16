@@ -89,7 +89,7 @@ class AdminController extends Controller
         
         $notification = User::first();
         $notification->notify(new NewUserNotification($user));
-        return redirect()->route('user')->with('success','Data berhasil di Tambah!');
+        return redirect()->route('user')->with('success','User created successfully!');
     }
 
     public function edit($id){
@@ -111,11 +111,11 @@ class AdminController extends Controller
         ]);
         $user->update($validasi);
         $notification->notify(new UpdateUserNotification($user));
-        return redirect()->route('user')->with('success','Data berhasil di Ubah!');
+        return redirect()->route('user')->with('success','User updated successfully!');
     }
 
     public function destroy($id){
-        $user = user::find($id);
+        $user = User::where('id', $id)->firstOrFail();
         $notification = User::first();
         $user->delete();
         $notification->notify(new DeleteUserNotification($user));

@@ -26,7 +26,7 @@
                     <select name="role">
                         <option selected>{{$user->role}}</option>
                         <option value="admin">Admin</option>
-                        <option value="user">User</option>
+                        <option value="field_support">Field Support</option>
                     </select>
                 </div>
     
@@ -36,7 +36,7 @@
                 </div>
     
                 <div class="mb-4">
-                    <label for="no_telepon" class="form-label">No Telepon</label>
+                    <label for="no_telepon" class="form-label">Phone Number</label>
                     <input type="number" class="form-control" id="no_telepon" name="no_telepon" autocomplete="off" value="{{$user->no_telepon}}">
                 </div>
     
@@ -46,7 +46,7 @@
                 </div>
     
                 <div class="mb-4">
-                    <label for="alamat" class="form-label">Alamat</label>
+                    <label for="alamat" class="form-label">Address</label>
                     <textarea class="form-control" id="alamat" name="alamat" style="height: 70px">{{$user->alamat}}</textarea>
                 </div>
     

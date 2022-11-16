@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header d-flex justify-content-between">
-            <h5 class="card-title fw-bold">Tambah User</h5>
+            <h5 class="card-title fw-bold">Add User</h5>
             <div class="btn-toolbar" role="toolbar">
                 <div class="btn-group" role="group" aria-label="Third group">
                     <a href="/admin/user" class="btn btn-sm btn-primary float-md-right" title="Back To Users">
@@ -29,9 +29,9 @@
                 <div class="mb-4 d-flex flex-column">
                     <label for="role" class="form-label">Role</label>
                     <select name="role">
-                        <option selected> Pilih Role</option>
+                        <option selected>Select Role</option>
                         <option value="admin">Admin</option>
-                        <option value="user">User</option>
+                        <option value="field_support">Field Support</option>
                     </select>
                 </div>
     
@@ -46,7 +46,7 @@
                 </div>
     
                 <div class="mb-4">
-                    <label for="no_telepon" class="form-label">No Telepon</label>
+                    <label for="no_telepon" class="form-label">Phone Number</label>
                     <input type="number" class="form-control" id="no_telepon" name="no_telepon" autocomplete="off">
                     @error('no_telepon')
                         <div class="text-danger">
@@ -66,7 +66,7 @@
                 </div>
     
                 <div class="mb-4">
-                    <label for="alamat" class="form-label">Alamat</label>
+                    <label for="alamat" class="form-label">Address</label>
                     <textarea class="form-control" id="alamat" name="alamat" style="height: 70px"></textarea>
                     @error('alamat')
                         <div class="text-danger">

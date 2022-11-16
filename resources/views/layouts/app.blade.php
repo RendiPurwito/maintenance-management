@@ -52,7 +52,7 @@
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class='sidebar-title'>Main Menu</li>
-                        @if (auth()->user()->role == 'user')
+                        @if (auth()->user()->role == 'field_support')
                         <li class="sidebar-item  @if (\Request::is('dashboard')) active  @endif">
                             <a href="/dashboard" class='sidebar-link'>
                                 <i data-feather="home" width="20"></i>

@@ -121,7 +121,7 @@ class FormController extends Controller
     public function show($id)
     {
         $user = auth()->user();
-        $form = Form::with('user')
+        $form = Form::where('id', $id)->with('user')
                     ->withCount('submissions')
                     ->firstOrFail();
 
@@ -159,8 +159,7 @@ class FormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SaveFormRequest $request, $id)
-    {
+    public function update(SaveFormRequest $request, $id){
         $user = auth()->user();
         $form = Form::where(['user_id' => $user->id, 'id' => $id])->firstOrFail();
         $notification = User::first();
@@ -189,8 +188,7 @@ class FormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         $user = auth()->user();
         $form = Form::where(['user_id' => $user->id, 'id' => $id])->firstOrFail();
         $notification = User::first();
@@ -220,7 +218,8 @@ class FormController extends Controller
 
     public function formpdf($identifier){
         $form = Form::where('identifier', $identifier)->firstOrFail();
-        $pdf = PDF::loadview('admin.forms.form-pdf', compact('form'));
-        return $pdf->stream();
+        return view('admin.forms.test', compact('form'));
+        // $pdf = PDF::loadview('admin.forms.form-pdf', compact('form'));
+        // return $pdf->stream();
     }
 }

@@ -38,8 +38,9 @@ Route::get('/admin/user/create', [AdminController::class, 'create'])->middleware
 Route::post('/admin/user', [AdminController::class, 'store'])->middleware('admin');
 Route::get('/admin/user/{id}/edit', [AdminController::class, 'edit'])->middleware('admin');
 Route::post('/admin/user/{id}', [AdminController::class, 'update'])->middleware('admin');
-Route::get('/admin/user/{id}', [AdminController::class, 'destroy'])->middleware('admin');
+Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('delUser')->middleware('admin');
 
 // Form PDF
 Route::get('/admin/form/pdf', [FormController::class, 'pdf'])->middleware('admin');
+// Route::get('/admin/form/form-pdf/{id}', [FormController::class, 'formpdf'])->name('formpdf')->middleware('admin');
 Route::get('/admin/form/form-pdf/{id}', [FormController::class, 'formpdf'])->name('formpdf')->middleware('admin');

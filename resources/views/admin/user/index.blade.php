@@ -38,12 +38,12 @@
                             <table class="table table-striped" id="table">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Role</th>
-                                        <th>Email</th>
-                                        <th>No Telepon</th>
-                                        <th>Alamat</th>
+                                        <th class="five">#</th>
+                                        <th class="twenty-five">Name</th>
+                                        <th class="ten">Role</th>
+                                        <th class="twenty-five">Email</th>
+                                        <th class="twenty-five">Phone Number</th>
+                                        <th class="twenty-five">Address</th>
                                         <th data-sortable="false" class="twenty-five">Action</th>
                                     </tr>
                                 </thead>
@@ -64,13 +64,21 @@
                                         <td>{{ $user->alamat }}</td>
                                         <td >
                                             <a href="/admin/user/{{ $user->id }}/edit"
-                                                class="btn btn-primary btn-sm me-1">
+                                                class="btn btn-primary btn-sm me-1" title="Edit user '{{ $user->name }}'">
                                                 <i class="fa-solid fa-pencil"></i>
                                             </a>
-                                            <a href="#" class="btn btn-danger btn-sm"
-                                                onclick="confirmDel({{$user->id}})" data-name="user" data-message="Delete user '{{ $user->name }}'?" id="deleteButton">
+                                            {{-- <a href="#" class="btn btn-danger btn-sm"
+                                                onclick="confirmDel({{$user->id}})" data-name="user" data-message="Delete user '{{ $user->name }}'?" id="deleteButton" title="Delete user '{{ $user->name }}'">
                                                 <i class="fa-solid fa-trash-can"></i>
-                                            </a>
+                                            </a> --}}
+                                            <form action="{{ route('delUser', $user) }}" method="POST" class="d-inline-block" >
+                                                @csrf 
+                                                @method('DELETE')
+        
+                                                <button type="submit" class="btn btn-danger btn-sm" id="deleteButton" data-message="Delete user '{{ $user->name }}' ?" title="Delete user '{{ $user->name }}'">
+                                                    <i class="fa fa-trash-o"></i> 
+                                                </button>
+                                            </form>
                                             {{-- <a href="#" class="btn btn-primary btn-sm show-btn" >
                                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                                             </a>

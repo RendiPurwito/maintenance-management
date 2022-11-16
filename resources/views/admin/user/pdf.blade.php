@@ -48,8 +48,8 @@
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
-            <th>No Telepon</th>
-            <th>Alamat</th>
+            <th>Phone Number</th>
+            <th>Address</th>
         </tr>
         @foreach ($users as $user)
         <tr>
