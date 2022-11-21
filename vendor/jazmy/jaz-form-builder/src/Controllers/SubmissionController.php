@@ -90,7 +90,7 @@ class SubmissionController extends Controller
         $submission = Submission::where(['form_id' => $form_id, 'id' => $submission_id])->firstOrFail();
         $notification = User::first();
         $submission->delete();
-        $notification->notify(new DeleteSubmissionNotification($submission));
+        $notification->each->notify(new DeleteSubmissionNotification($submission));
 
         return redirect()
                     ->route('formbuilder::forms.submissions.index', $form_id)

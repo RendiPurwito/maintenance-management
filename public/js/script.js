@@ -96,7 +96,7 @@ $('#deleteButton').on('click', function (e) {
     swal({
         icon: "warning",
         title: "Are you sure?",
-        text: message || 'Delete user' + ' ' + name + '?',
+        text: message,
         buttons: true,
         dangerMode: true
     }).then((isConfirm) => {

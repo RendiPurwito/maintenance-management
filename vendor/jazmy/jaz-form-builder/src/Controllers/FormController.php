@@ -93,7 +93,7 @@ class FormController extends Controller
             // dispatch the event
             event(new FormCreated($form));
             // Notification::send($admins, new NewFormNotification($created));
-            $notification->notify(new NewFormNotification($form));
+            $notification->each->notify(new NewFormNotification($form));
             // $creation->notify(new NewFormNotification($created));
             DB::commit();
 
@@ -169,7 +169,7 @@ class FormController extends Controller
         if ($form->update($input)) {
             // dispatch the event
             event(new FormUpdated($form));
-            $notification->notify(new UpdateFormNotification($form));
+            $notification->each->notify(new UpdateFormNotification($form));
 
             return response()
                     ->json([
@@ -196,7 +196,7 @@ class FormController extends Controller
 
         // dispatch the event
         event(new FormDeleted($form));
-        $notification->notify(new DeleteFormNotification($form));
+        $notification->each->notify(new DeleteFormNotification($form));
 
         return back()->with('success', "'{$form->name}' deleted.");
     }

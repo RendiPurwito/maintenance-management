@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Notifications\NewUserNotification;
 use App\Notifications\DeleteUserNotification;
 use App\Notifications\UpdateUserNotification;
+use Illuminate\Support\Facades\Notification;
 
 class AdminController extends Controller
 {
@@ -59,16 +60,6 @@ class AdminController extends Controller
     }
 
     public function store(Request $request){
-        // $validatedData = $this->validate($request,[
-        //     'name' => 'required',
-        //     'role' => 'required',
-        //     'email' => 'required',
-        //     'no_telepon' => 'required',
-        //     'password' => 'required',
-        //     'alamat' => 'required',
-        // ]);
-        // $validatedData['password'] = bcrypt($validatedData['password']);
-        // User::create($validatedData);
         $request->validate([
             'name'  => 'required',
             'role'  => 'required',
@@ -87,8 +78,8 @@ class AdminController extends Controller
         $user->alamat = $request->alamat;
         $user->save();
         
-        $notification = User::first();
-        $notification->notify(new NewUserNotification($user));
+        $notification = User::where('role', 'admin')->get();
+        $notification->each->notify(new NewUserNotification($user));
         return redirect()->route('user')->with('success','User created successfully!');
     }
 
@@ -101,7 +92,7 @@ class AdminController extends Controller
     public function update(Request $request, $id){
         $notification = User::first();
         $user = user::find($id);
-        $validasi = $this->validate($request,[
+        $this->validate($request,[
             'name' => ['required'],
             'role' => ['required'],
             'email' => ['required'],
@@ -109,8 +100,16 @@ class AdminController extends Controller
             'password' => ['required'],
             'alamat' => ['required'],
         ]);
-        $user->update($validasi);
-        $notification->notify(new UpdateUserNotification($user));
+
+        $input = $request->all();
+        $input['name'] = $request['name'];
+        $input['role'] = $request['role'];
+        $input['email'] = $request['email'];
+        $input['no_telepon'] = $request['no_telepon'];
+        $input['password'] = Hash::make($request['password']);
+        $input['alamat'] = $request['alamat'];
+        $user->update($input);
+        $notification->each->notify(new UpdateUserNotification($user));
         return redirect()->route('user')->with('success','User updated successfully!');
     }
 
@@ -118,7 +117,7 @@ class AdminController extends Controller
         $user = User::where('id', $id)->firstOrFail();
         $notification = User::first();
         $user->delete();
-        $notification->notify(new DeleteUserNotification($user));
+        $notification->each->notify(new DeleteUserNotification($user));
         return redirect()->route('user')->with('success','User deleted successfully!');
     }
 
