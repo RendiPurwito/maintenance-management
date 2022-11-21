@@ -58,7 +58,7 @@ class DeleteSubmissionNotification extends Notification
         return [
             'id' => $this->submission->id, 
             'name'  => auth()->user()->name,
-            'message' => 'has just deleted submission form',
+            'message' => 'deleted submission form',
             'subject' => $this->submission->form_id,
         ];
     }

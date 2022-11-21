@@ -58,7 +58,7 @@ class UpdateUserNotification extends Notification
         return [
             'id' => $this->user->id, 
             'name'  => auth()->user()->name,
-            'message' => 'has just updated user',
+            'message' => 'updated user',
             'subject' => $this->user->name,
         ];
     }

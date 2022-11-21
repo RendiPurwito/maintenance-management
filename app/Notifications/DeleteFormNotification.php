@@ -58,7 +58,7 @@ class DeleteFormNotification extends Notification
         return [
             'id' => $this->form->identifier, 
             'name'  => auth()->user()->name,
-            'message' => 'has just deleted form',
+            'message' => 'deleted form',
             'subject' => $this->form->name,
         ];
     }

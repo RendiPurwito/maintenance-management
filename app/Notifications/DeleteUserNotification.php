@@ -58,7 +58,7 @@ class DeleteUserNotification extends Notification
         return [
             'id' => $this->user->id, 
             'name'  => auth()->user()->name,
-            'message' => 'has just deleted user',
+            'message' => 'deleted user',
             'subject' => $this->user->name,
         ];
     }

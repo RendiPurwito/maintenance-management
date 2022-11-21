@@ -58,7 +58,7 @@ class NewFormNotification extends Notification
         return [
             'id' => $this->form->identifier,
             'name'  => auth()->user()->name,
-            'message' => 'has just created form',
+            'message' => 'created form',
             'subject' => $this->form->name,
         ];
     }

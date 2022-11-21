@@ -59,7 +59,7 @@ class NewUserNotification extends Notification
             'id' => $this->user->id, 
             'name'  => auth()->user()->name,
             // 'email' => $this->user->email,
-            'message' => 'has just registered',
+            'message' => 'registered',
             'subject' => $this->user->name,
         ];
     }

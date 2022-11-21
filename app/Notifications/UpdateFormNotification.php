@@ -58,7 +58,7 @@ class UpdateFormNotification extends Notification
         return [
             'id' => $this->form->identifier, 
             'name'  => auth()->user()->name,
-            'message' => 'has just updated form',
+            'message' => 'updated form',
             'subject' => $this->form->name,
         ];
     }

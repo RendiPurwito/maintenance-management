@@ -58,7 +58,7 @@ class UpdateSubmissionNotification extends Notification
         return [
             'id' => $this->submission->id, 
             'name'  => auth()->user()->name,
-            'message' => 'has just updated form',
+            'message' => 'updated submission form',
             'subject' => $this->submission->form_id,
         ];
     }

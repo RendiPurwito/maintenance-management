@@ -62,7 +62,7 @@ class NewSubmissionNotification extends Notification
             // 'message' => 'has just been submitted'
             'id' => $this->submission->id,
             'name'  => auth()->user()->name,
-            'message' => 'has just submitted form',
+            'message' => 'submitted form',
             'subject' => $this->submission->form_id,
         ];
     }
