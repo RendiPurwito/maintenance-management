@@ -88,7 +88,7 @@ class SubmissionController extends Controller
     public function destroy($form_id, $submission_id)
     {
         $submission = Submission::where(['form_id' => $form_id, 'id' => $submission_id])->firstOrFail();
-        $notification = User::first();
+        $notification = User::where('role', 'admin')->get();
         $submission->delete();
         $notification->each->notify(new DeleteSubmissionNotification($submission));
 

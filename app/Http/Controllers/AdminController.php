@@ -90,7 +90,7 @@ class AdminController extends Controller
     }
 
     public function update(Request $request, $id){
-        $notification = User::first();
+        $notification = User::where('role', 'admin')->get();
         $user = user::find($id);
         $this->validate($request,[
             'name' => ['required'],
@@ -115,7 +115,7 @@ class AdminController extends Controller
 
     public function destroy($id){
         $user = User::where('id', $id)->firstOrFail();
-        $notification = User::first();
+        $notification = User::where('role', 'admin')->get();
         $user->delete();
         $notification->each->notify(new DeleteUserNotification($user));
         return redirect()->route('user')->with('success','User deleted successfully!');

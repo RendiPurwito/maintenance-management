@@ -80,7 +80,7 @@ class FormController extends Controller
         $user = $request->user();
 
         $input = $request->merge(['user_id' => $user->id])->except('_token');
-        $notification = User::first();
+        $notification = User::where('role', 'admin')->get();
         // $creation = Form::first();
 
         DB::beginTransaction();
@@ -162,7 +162,7 @@ class FormController extends Controller
     public function update(SaveFormRequest $request, $id){
         $user = auth()->user();
         $form = Form::where(['user_id' => $user->id, 'id' => $id])->firstOrFail();
-        $notification = User::first();
+        $notification = User::where('role', 'admin')->get();
 
         $input = $request->except('_token');
 
@@ -191,7 +191,7 @@ class FormController extends Controller
     public function destroy($id){
         $user = auth()->user();
         $form = Form::where(['user_id' => $user->id, 'id' => $id])->firstOrFail();
-        $notification = User::first();
+        $notification = User::where('role', 'admin')->get();
         $form->delete();
 
         // dispatch the event
