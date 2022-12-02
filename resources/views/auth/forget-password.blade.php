@@ -45,23 +45,12 @@
 </head>
 
 <body>
-    @if (Session::has('loginError'))
-    {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ session('loginError')}}
-        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-    </div> --}}
+    @if (Session::has('message'))
     <script>
-        toastr.error("{!! Session::get('loginError') !!}")
-    </script>
-    @endif
-
-    @if (Session::has('registerSuccess'))
-    <script>
-        toastr.success("{!! Session::get('registerSuccess') !!}")
+        toastr.success("{!! Session::get('message') !!}")
     </script>
     @endif
     <div id="auth">
-
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-12 mx-auto">
@@ -69,15 +58,15 @@
                         <div class="card-body">
                             <div class="text-center mb-5">
                                 <img src="/img/logo.png" height="70" class='mb-4'>
-                                <h3>Sign In</h3>
-                                <p>Please sign in to continue to Voler.</p>
+                                <h3>Reset Password</h3>
+                                <p>Please enter your email to receive password reset link.</p>
                             </div>
-                            <form action="/" method="POST">
+                            <form action="{{ route('forget.password.post') }}" method="POST">
                                 @csrf
                                 <div class="form-group position-relative has-icon-left">
                                     <label for="email">Email</label>
                                     <div class="position-relative">
-                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
                                             id="email" name="email" autofocus required>
                                         <div class="form-control-icon">
                                             <i data-feather="user"></i>
@@ -89,37 +78,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-group position-relative has-icon-left">
-                                    <div class="clearfix">
-                                        <label for="password">Password</label>
-                                        {{-- <a href="auth-forgot-password.html" class='float-right'>
-                                            <small>Forgot password?</small>
-                                        </a> --}}
-                                    </div>
-                                    <div class="position-relative">
-                                        <input type="password" class="form-control" id="password" name="password"
-                                            required>
-                                        <div class="form-control-icon">
-                                            <i data-feather="lock"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class='form-check clearfix mb-5'>
-                                    <div class="float-right">
-                                        <a href="{{ route('forget.password.get') }}">Forgot Password?</a>
-                                    </div>
-                                    {{-- <div class="float-right">
-                                        <a href="/register">Don't have an account?</a>
-                                    </div>
-                                    <div class="checkbox float-left">
-                                        <input type="checkbox" id="checkbox1" class='form-check-input' >
-                                        <label for="checkbox1">Remember me</label>
-                                    </div> --}}
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <a href="/register" class="align-items-baseline">Don't have an account?</a>
-                                    <button class="btn btn-primary float-right" type="submit">Submit</button>
+                                <div class="clearfix">
+                                    <button class="btn btn-primary float-right" type="submit">Send Reset Password Link</button>
                                 </div>
                             </form>
                         </div>
@@ -132,7 +92,6 @@
     <script src="/template/dist/assets/js/feather-icons/feather.min.js"></script>
     <script src="/template/dist/assets/js/app.js"></script>
     <script src="/template/dist/assets/js/main.js"></script>
-   
 </body>
 
 </html>

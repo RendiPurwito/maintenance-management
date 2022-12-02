@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use jazmy\FormBuilder\Controllers\FormController;
 
 /*
@@ -16,11 +16,15 @@ use jazmy\FormBuilder\Controllers\FormController;
 |
 */
 // Auth
-Route::get('/', [LoginController::class, 'login']);
-Route::post('/', [LoginController::class, 'authenticate'])->middleware('guest');
-Route::get('/logout',[LoginController::class,'logout']);
-Route::get('/register', [LoginController::class, 'register'])->middleware('guest');
-Route::post('/register', [LoginController::class, 'storeregister'])->middleware('guest');
+Route::get('/', [AuthController::class, 'login']);
+Route::post('/', [AuthController::class, 'authenticate'])->middleware('guest');
+Route::get('/logout',[AuthController::class,'logout']);
+Route::get('/register', [AuthController::class, 'register'])->middleware('guest');
+Route::post('/register', [AuthController::class, 'storeregister'])->middleware('guest');
+Route::get('/forget-password', [AuthController::class, 'showForgetPasswordForm'])->name('forget.password.get')->middleware('guest');
+Route::post('/forget-password', [AuthController::class, 'submitForgetPasswordForm'])->name('forget.password.post')->middleware('guest');
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('/reset-password/{token}', [AuthController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 // Dashboard Admin
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin-dashboard')->middleware('admin');
