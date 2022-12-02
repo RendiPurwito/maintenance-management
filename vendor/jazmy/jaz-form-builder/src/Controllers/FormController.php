@@ -218,8 +218,8 @@ class FormController extends Controller
 
     public function formpdf($identifier){
         $form = Form::where('identifier', $identifier)->firstOrFail();
-        return view('admin.forms.test', compact('form'));
-        // $pdf = PDF::loadview('admin.forms.form-pdf', compact('form'));
-        // return $pdf->stream();
+        // return view('admin.forms.test', compact('form'));
+        $pdf = PDF::loadview('admin.forms.form-pdf', compact('form'));
+        return $pdf->stream();
     }
 }

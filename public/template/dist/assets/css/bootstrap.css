@@ -4565,7 +4565,7 @@ progress {
 
 .alert {
   position: relative;
-  padding: 0.75rem 0.75rem;
+  padding: 2rem 2rem;
   margin-bottom: 1rem;
   border: none solid transparent;
   border-radius: 0.25rem;
