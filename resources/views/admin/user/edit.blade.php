@@ -41,10 +41,10 @@
                 <input type="number" class="form-control" id="no_telepon" name="no_telepon" autocomplete="off" value="{{$user->no_telepon}}">
             </div>
 
-            <div class="mb-4">
+            {{-- <div class="mb-4">
                 <label for="password" class="form-label">Password</label>
                 <input type="text" class="form-control" id="password" name="password" autocomplete="off" value="{{$user->password}}">
-            </div>
+            </div> --}}
 
             <div class="mb-4">
                 <label for="alamat" class="form-label">Address</label>

@@ -20,10 +20,11 @@ class AdminController extends Controller
 
     public function dashboard(){
         $notifications = auth()->user()->unreadNotifications;
+        $numberOfNotifications = auth()->user()->unreadNotifications->count();
         $form = Form::all();
 
 
-        return view('admin.dashboard', compact('notifications', 'form'));
+        return view('admin.dashboard', compact('notifications','numberOfNotifications', 'form'));
     }
 
     public function markNotif(Request $request){
@@ -97,7 +98,7 @@ class AdminController extends Controller
             'role' => ['required'],
             'email' => ['required'],
             'no_telepon' => ['required'],
-            'password' => ['required'],
+            // 'password' => ['required'],
             'alamat' => ['required'],
         ]);
 
@@ -106,7 +107,7 @@ class AdminController extends Controller
         $input['role'] = $request['role'];
         $input['email'] = $request['email'];
         $input['no_telepon'] = $request['no_telepon'];
-        $input['password'] = Hash::make($request['password']);
+        // $input['password'] = Hash::make($request['password']);
         $input['alamat'] = $request['alamat'];
         $user->update($input);
         $notification->each->notify(new UpdateUserNotification($user));

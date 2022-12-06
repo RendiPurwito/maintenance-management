@@ -9,11 +9,12 @@ namespace jazmy\FormBuilder\Models;
 
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
 class Form extends Model
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
     const FORM_PUBLIC = "PUBLIC";
     const FORM_PRIVATE = "PRIVATE";
 

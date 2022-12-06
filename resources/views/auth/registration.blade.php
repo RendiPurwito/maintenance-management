@@ -12,17 +12,15 @@
 </head>
 
 <body>
-    <div id="auth">
-
+    <div style="background: #6c757d; min-height: 100vh; padding-top: 50px; background-image: url(/img/auth.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-md-7 col-sm-12 mx-auto">
-                    <div class="card pt-4">
+                    <div class="card ">
                         <div class="card-body">
-                            <div class="text-center mb-5">
+                            <div class="text-center mb-3">
                                 <img src="/img/logo.png" height="70" class='mb-4'>
-                                <h3>Sign Up</h3>
-                                <p>Please fill the form to register.</p>
+                                <p class="text-dark" style="font-weight: 500; font-size: 16px">Please fill the form to register.</p>
                             </div>
                             <form action="/register" method="POST">
                                 @csrf
@@ -78,9 +76,9 @@
                                     </div>
                                 </diV>
 
-                                <a href="/">Have an account? Login</a>
                                 <div class="clearfix">
-                                    <button class="btn btn-primary float-right" type="submit">Submit</button>
+                                    <a href="/">Have an account? Login</a>
+                                    <button class="btn btn-primary float-right" type="submit">Register</button>
                                 </div>
                             </form>
                             

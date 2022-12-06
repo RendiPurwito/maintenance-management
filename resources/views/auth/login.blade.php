@@ -45,19 +45,19 @@
 </head>
 
 <body>
-    @if (Session::has('loginError'))
+    @if (Session::has('error'))
     {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ session('loginError')}}
         <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
     </div> --}}
     <script>
-        toastr.error("{!! Session::get('loginError') !!}")
+        toastr.error("{!! Session::get('error') !!}")
     </script>
     @endif
 
-    @if (Session::has('registerSuccess'))
+    @if (Session::has('success'))
     <script>
-        toastr.success("{!! Session::get('registerSuccess') !!}")
+        toastr.success("{!! Session::get('success') !!}")
     </script>
     @endif
     <div id="auth">
@@ -65,12 +65,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-12 mx-auto">
-                    <div class="card pt-4">
+                    <div class="card">
                         <div class="card-body">
-                            <div class="text-center mb-5">
-                                <img src="/img/logo.png" height="70" class='mb-4'>
-                                <h3>Sign In</h3>
-                                <p>Please sign in to continue to Voler.</p>
+                            <div class="text-center mb-3">
+                                <img src="/img/logo.png" height="70" class='mb-3'>
+                                <p class="text-dark" style="font-weight: 500">Please enter your credentials below.</p>
                             </div>
                             <form action="/" method="POST">
                                 @csrf
@@ -105,7 +104,7 @@
                                     </div>
                                 </div>
 
-                                <div class='form-check clearfix mb-5'>
+                                <div class='form-check clearfix mb-4'>
                                     <div class="float-right">
                                         <a href="{{ route('forget.password.get') }}">Forgot Password?</a>
                                     </div>
@@ -119,7 +118,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <a href="/register" class="align-items-baseline">Don't have an account?</a>
-                                    <button class="btn btn-primary float-right" type="submit">Submit</button>
+                                    <button class="btn btn-primary float-right font-weight-bold" type="submit">Login</button>
                                 </div>
                             </form>
                         </div>

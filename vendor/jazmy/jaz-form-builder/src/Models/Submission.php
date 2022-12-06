@@ -10,12 +10,13 @@ namespace jazmy\FormBuilder\Models;
 use Illuminate\Support\Str;
 use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 
 class Submission extends Model
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 	/**
 	 * The table name
 	 *

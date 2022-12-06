@@ -35,7 +35,7 @@ class AuthController extends Controller
                 return redirect()->intended('/dashboard');
             }
         }
-        return back()->with('loginError', 'Login Gagal!');
+        return back()->with('error', 'Login failed! Please try again');
     }
 
     // Log Out
@@ -82,7 +82,7 @@ class AuthController extends Controller
         //     'alamat' => $request->alamat,
         //     'remember_token' => Str::random(60)
         // ]);
-        return redirect("/")->with('registerSuccess', 'Registrasi Berhasil');
+        return redirect("/")->with('succes', 'User registered successfully');
     }
 
     public function showForgetPasswordForm()
@@ -115,7 +115,6 @@ class AuthController extends Controller
     }
 
     public function showResetPasswordForm($token) { 
- 
         $buttonReset = DB::table('password_resets')->where('token',$token)->first();
         if(!$buttonReset || Carbon::now()->subMinutes(10) > $buttonReset->created_at){
             // $buttonReset->delete();

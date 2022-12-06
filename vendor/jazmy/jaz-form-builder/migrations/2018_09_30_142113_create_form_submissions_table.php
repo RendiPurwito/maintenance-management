@@ -27,6 +27,7 @@ class CreateFormSubmissionsTable extends Migration
 
             $table->text('content');
 
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('form_id')->references('id')->on('forms')->onDelete('CASCADE');
