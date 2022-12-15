@@ -1,85 +1,85 @@
 @extends('formbuilder::layout')
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between mb-3">
-                    <h5 class="card-title fw-bold">
-                        {{ $pageTitle }} ({{ $submissions->count() }})
-                        {{-- <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary float-md-right
-                        btn-sm" title="Back To My Forms">
-                        <i class="fa fa-th-list"></i> My Forms
-                        </a> --}}
-                    </h5>
-                </div>
+        </div>
+    </div>
+</div> --}}
+<div class="card">
+    <div class="card-header d-flex justify-content-between mb-3">
+        <h5 class="card-title fw-bold">
+            {{ $pageTitle }} ({{ $submissions->count() }})
+            {{-- <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary float-md-right
+            btn-sm" title="Back To My Forms">
+            <i class="fa fa-th-list"></i> My Forms
+            </a> --}}
+        </h5>
+    </div>
 
-                <div class="card-content">
-                    <div class="card-body">
-                        @if($submissions->count())
-                        <div class="table-responsive">
-                            <table class="table d-table table-striped pb-0 mb-0" id="table">
-                                <thead>
-                                    <tr>
-                                        <th class="five">#</th>
-                                        <th class="">Form</th>
-                                        <th class="twenty-five">Created On</th>
-                                        <th class="twenty-five">Updated On</th>
-                                        <th class="fifteen" data-sortable="false">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($submissions as $submission)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $submission->form->name }}</td>
-                                        <td>{{ $submission->created_at->toDayDateTimeString() }}</td>
-                                        <td>{{ $submission->updated_at->toDayDateTimeString() }}</td>
-                                        <td>
-                                            <a href="{{ route('formbuilder::my-submissions.show', [$submission->id]) }}"
-                                                class="btn btn-primary btn-sm" title="View submission">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
+    <div class="card-content">
+        <div class="card-body">
+            @if($submissions->count())
+            <div class="table-responsive">
+                <table class="table d-table table-striped pb-0 mb-0" id="table">
+                    <thead>
+                        <tr>
+                            <th class="five">#</th>
+                            <th class="">Form</th>
+                            <th class="twenty-five">Created On</th>
+                            <th class="twenty-five">Updated On</th>
+                            <th class="fifteen" data-sortable="false">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($submissions as $submission)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $submission->form->name }}</td>
+                            <td>{{ $submission->created_at->toDayDateTimeString() }}</td>
+                            <td>{{ $submission->updated_at->toDayDateTimeString() }}</td>
+                            <td>
+                                <a href="{{ route('formbuilder::my-submissions.show', [$submission->id]) }}"
+                                    class="btn btn-primary btn-sm" title="View submission">
+                                    <i class="fa fa-eye"></i>
+                                </a>
 
-                                            @if($submission->form->allowsEdit())
-                                            <a href="{{ route('formbuilder::my-submissions.edit', [$submission->id]) }}"
-                                                class="btn btn-primary btn-sm" title="Edit submission">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                            @endif
+                                @if($submission->form->allowsEdit())
+                                <a href="{{ route('formbuilder::my-submissions.edit', [$submission->id]) }}"
+                                    class="btn btn-primary btn-sm" title="Edit submission">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                @endif
 
-                                            {{-- <form action="{{ route('formbuilder::my-submissions.destroy', [$submission]) }}"
-                                            method="POST" id="deleteSubmissionForm_{{ $submission->id }}"
-                                            class="d-inline-block">
-                                            @csrf
-                                            @method('DELETE')
+                                {{-- <form action="{{ route('formbuilder::my-submissions.destroy', [$submission]) }}"
+                                method="POST" id="deleteSubmissionForm_{{ $submission->id }}"
+                                class="d-inline-block">
+                                @csrf
+                                @method('DELETE')
 
-                                            <button type="submit" class="btn btn-danger btn-sm confirm-form"
-                                                data-form="deleteSubmissionForm_{{ $submission->id }}"
-                                                data-message="Delete this submission?" title="Delete submission">
-                                                <i class="fa fa-trash-o"></i>
-                                            </button>
-                                            </form> --}}
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        {{-- @if($submissions->hasPages())
-                        <div class="card-footer mb-0 pb-0">
-                            <div>{{ $submissions->links() }}</div>
-                        </div>
-                        @endif --}}
-                        @else
-                        <h4 class="text-danger text-center">
-                            No submission to display.
-                        </h4>
-                        @endif
-                    </div>
-                </div>
+                                <button type="submit" class="btn btn-danger btn-sm confirm-form"
+                                    data-form="deleteSubmissionForm_{{ $submission->id }}"
+                                    data-message="Delete this submission?" title="Delete submission">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                                </form> --}}
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
+            {{-- @if($submissions->hasPages())
+            <div class="card-footer mb-0 pb-0">
+                <div>{{ $submissions->links() }}</div>
+            </div>
+            @endif --}}
+            @else
+            <h4 class="text-danger text-center">
+                No submission to display.
+            </h4>
+            @endif
         </div>
     </div>
 </div>

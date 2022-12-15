@@ -88,7 +88,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-group position-relative has-icon-left">
+                                <div class="form-group position-relative has-icon-left mb-3">
                                     <div class="clearfix">
                                         <label for="password">Password</label>
                                         {{-- <a href="auth-forgot-password.html" class='float-right'>
@@ -105,6 +105,10 @@
                                 </div>
 
                                 <div class='form-check clearfix mb-4'>
+                                    <div class="checkbox float-left">
+                                        <input type="checkbox" id="remember_me" class='form-check-input' name="remember_me" value="1">
+                                        <label for="remember_me">Remember me</label>
+                                    </div>
                                     <div class="float-right">
                                         <a href="{{ route('forget.password.get') }}">Forgot Password?</a>
                                     </div>

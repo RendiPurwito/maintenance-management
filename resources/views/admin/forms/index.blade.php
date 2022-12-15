@@ -1,6 +1,8 @@
 @extends('formbuilder::layout')
 
 @section('content')
+{{-- <div class="col-12">
+</div> --}}
 <div class="card">
     <div class="card-header d-flex justify-content-between ">
         <h5 class="fw-bold">
@@ -25,9 +27,9 @@
 
     <div class="card-content">
         <div class="card-body">
-            @if($forms->count())
             <div class="table-responsive">
                 <table class="table table-striped" id="table">
+                    @if($forms->count())
                     <thead>
                         <tr>
                             <th class="five">#</th>
@@ -96,13 +98,13 @@
                             </tr>
                         @endforeach
                     </tbody>
+                    @else  
+                    <h4 class="text-danger text-center">
+                        There is no form available 
+                    </h4>
+                    @endif
                 </table>
             </div>
-            @else  
-            <h4 class="text-danger text-center">
-                No form to display.
-            </h4>
-            @endif
         </div>
         {{-- <div class="card-footer px-4">
             @if($forms->hasPages())
@@ -111,7 +113,6 @@
         </div> --}}
     </div>
 </div>
-<div class="col-12">
-</div>
+
 
 @endsection

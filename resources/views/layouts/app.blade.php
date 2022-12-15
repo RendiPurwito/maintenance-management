@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    {{--! JQUERY --}}
+    {{--! JQuery --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js" referrerpolicy="no-referrer"></script>
 
     {{--! Form Builder CSS --}}
@@ -16,11 +16,10 @@
 
     {{--! DataTable CSS --}}
     {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css"> --}}
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/fh-3.2.4/r-2.3.0/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"/>
 
 
-    {{-- Bootstrap CDN --}}
+    {{--! Bootstrap CDN --}}
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
 
     {{--! Voler CSS --}}
@@ -34,12 +33,15 @@
     {{--! Font Awesome --}}
     <script src="https://kit.fontawesome.com/e5a524ad24.js"></script>
 
+    {{--! Box Icon  --}}
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    {{--! Specific Page CSS --}}
     @yield('css')
-    {{-- <style>
-        *{
-            border: 1px solid
-        }
-    </style> --}}
+
+    {{--! Custom CSS --}}
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -153,6 +155,9 @@
     {{--! Form Builder JS --}}
     @stack('scripts')
 
+    {{--! Bootstrap JS --}}
+    <script src="/bootstrap/dist/js/bootstrap.js"></script>
+
     {{--! Footable JS --}}
     {{-- <script src="/footable/js/footable.js"></script> --}}
 
@@ -167,20 +172,19 @@
     {{-- <script src="/template/dist/assets/vendors/apexcharts/apexcharts.min.js"></script> --}}
     {{-- <script src="/template/dist/assets/js/pages/dashboard.js"></script> --}}
     <script src="/template/dist/assets/js/main.js"></script>
+
+    {{--! Specific Page JS --}}
     @yield('javascript')
 
     {{--! Sweet Alert JS --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     {{--! DataTable JS CDN --}}
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript"
-        src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/fh-3.2.4/r-2.3.0/datatables.min.js">
-    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 
-    {{--! Function JS  --}}
+    {{--! Custom JS  --}}
     <script src="/js/script.js"></script>
+
 </body>
 
 </html>

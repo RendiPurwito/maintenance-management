@@ -96,4 +96,10 @@ class SubmissionController extends Controller
                     ->route('formbuilder::forms.submissions.index', $form_id)
                     ->with('success', 'Submission successfully deleted.');
     }
+
+    public function pdf($id){
+        $submission = Submission::where('id', $id)->firstOrFail();
+        $form_headers = $submission->form->getEntriesHeader();
+        return view('admin.submissions.pdf', compact('submission', 'form_headers'));
+    }
 }

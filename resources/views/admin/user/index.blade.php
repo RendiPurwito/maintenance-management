@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('css')
-{{-- <link rel="stylesheet" href="assets/css/bootstrap.css"> --}}
-{{-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css"> --}}
+{{--! Datatable CSS CDN --}}
+{{-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css"> --}}
 @endsection
 
 @section('content')
@@ -28,26 +28,18 @@
     </div>
     <div class="card-content">
         <div class="card-body">
-            <div class="table-responsive">
-                {{-- <form>
-                    Show
-                    <select id="pagination">
-                        <option value="5" @if($page == 5) selected @endif >5</option>
-                        <option value="10" @if($page == 10) selected @endif >10</option>
-                        <option value="25" @if($page == 25) selected @endif >25</option>
-                    </select>
-                    Entries
-                </form> --}}
+            <div>
                 <table class="table table-striped" id="table">
                     <thead>
                         <tr>
-                            <th class="five">#</th>
+                            {{-- <th class="five">#</th> --}}
+                            <th class="five">ID</th>
                             <th class="twenty-five">Name</th>
-                            <th class="ten">Role</th>
-                            <th class="twenty-five">Email</th>
+                            <th class="twenty-five">Role</th>
+                            {{-- <th class="twenty-five">Email</th>
                             <th class="twenty-five">Phone Number</th>
-                            <th class="twenty-five">Address</th>
-                            <th data-sortable="false" class="twenty-five">Action</th>
+                            <th class="twenty-five">Address</th> --}}
+                            <th data-sortable="false" class="five">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,44 +49,37 @@
                                 {{ $loop->iteration }}
                             </td>
                             <td>
-                                <a href="" class="text-secondary">
-                                    {{ $user->name }}
-                                </a>
+                                {{ $user->name }}
                             </td>
                             <td>{{ $user->role}}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->no_telepon }}</td>
-                            <td>{{ $user->alamat }}</td>
-                            <td >
-                                <a href="/admin/user/{{ $user->id }}/edit"
-                                    class="btn btn-primary btn-sm me-1" title="Edit user '{{ $user->name }}'">
+                            {{-- <td>{{ $user->email }}</td>
+                            <td>{{ $user->phone_number }}</td>
+                            <td>{{ $user->address }}</td> --}}
+                            <td>
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailUserModal-{{$user->id}}" title="View detail user '{{$user->name}}'">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+
+                                <a href="/admin/user/{{ $user->id }}/edit" class="btn btn-primary btn-sm"
+                                    title="Edit user '{{ $user->name }}'">
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
                                 {{-- <a href="#" class="btn btn-danger btn-sm"
-                                    onclick="confirmDel({{$user->id}})" data-name="user" data-message="Delete user '{{ $user->name }}'?" id="deleteButton" title="Delete user '{{ $user->name }}'">
-                                    <i class="fa-solid fa-trash-can"></i>
+                                    onclick="confirmDel({{$user->id}})" data-name="user" data-message="Delete user
+                                '{{ $user->name }}'?" id="deleteButton" title="Delete user '{{ $user->name }}'">
+                                <i class="fa-solid fa-trash-can"></i>
                                 </a> --}}
-                                <form action="{{ route('delUser', $user) }}" method="POST" class="d-inline-block" >
-                                    @csrf 
+                                <form action="{{ route('delUser', $user) }}" method="POST" class="d-inline-block">
+                                    @csrf
                                     @method('DELETE')
 
-                                    <button type="submit" class="btn btn-danger btn-sm" id="deleteButton" data-message="Delete user '{{ $user->name }}' ?" title="Delete user '{{ $user->name }}'">
-                                        <i class="fa fa-trash-o"></i> 
+                                    <button type="submit" class="btn btn-danger btn-sm" id="deleteButton"
+                                        data-message="Delete user '{{ $user->name }}' ?"
+                                        title="Delete user '{{ $user->name }}'">
+                                        <i class="fa fa-trash-o"></i>
                                     </button>
                                 </form>
-                                {{-- <a href="#" class="btn btn-primary btn-sm show-btn" >
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </a>
-                                <div style="display: none;" class="mt-1 action-btn" >
-                                    <a href="/admin/user/{{ $user->id }}/edit"
-                                        class="btn btn-primary btn-sm me-1">
-                                        <i class="fa-solid fa-pencil"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-sm"
-                                        onclick="confirmDel({{$user->id}})" data-name="user" id="deleteButton">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </a>
-                                </div> --}}
+
                             </td>
                         </tr>
                         @endforeach
@@ -103,10 +88,63 @@
             </div>
         </div>
         {{-- <div class="card-footer px-4">
-            @if ($users->hasPages())
-            <div>{{ $users->links('vendor.pagination.bootstrap-5') }}</div>
-            @endif
-        </div> --}}
+            <div>{{ $users->links('vendor.pagination.bootstrap-5') }}
+    </div>
+</div> --}}
+</div>
+</div>
+
+@foreach ($users as $user)
+<div class="modal fade" id="detailUserModal-{{$user->id}}" tabindex="-1" 
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            {{-- <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div> --}}
+            <div class="modal-body">
+                <strong>Name </strong> <span>: {{ $user->name }}</span>
+                <br>
+                <hr>
+                <strong>Role </strong> <span>: {{ $user->role }}</span>
+                <br>
+                <hr>
+                <strong>Email </strong> <span>: {{ $user->email }}</span>
+                <br>
+                <hr>
+                <strong>Phone Number </strong> <span>: {{ $user->phone_number }}</span>
+                <br>
+                <hr>
+                <strong>Address </strong> <span>: {{ $user->address }}</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Close</span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
+@endforeach
+
+@endsection
+
+@section('javascript')
+{{-- <script>
+    function showModal() {
+        $('#detailUserModal').modal('show');
+    }
+</script> --}}
+{{--! DataTables & Plugins --}}
+{{-- <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script> --}}
+
+{{--! Adminlte JS  --}}
+{{-- <script src="/adminlte/js/adminlte.js"></script> --}}
+
+{{--! Datatables CDN --}}
+{{-- <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script> --}}
 @endsection

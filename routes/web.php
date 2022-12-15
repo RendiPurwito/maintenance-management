@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use jazmy\FormBuilder\Controllers\FormController;
+use jazmy\FormBuilder\Controllers\SubmissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,7 @@ Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('de
 
 // Form PDF
 Route::get('/admin/form/pdf', [FormController::class, 'pdf'])->middleware('admin');
-// Route::get('/admin/form/form-pdf/{id}', [FormController::class, 'formpdf'])->name('formpdf')->middleware('admin');
 Route::get('/admin/form/form-pdf/{id}', [FormController::class, 'formpdf'])->name('formpdf')->middleware('admin');
+
+// Submission PDF
+Route::get('/admin/submission/pdf/{id}', [SubmissionController::class, 'pdf'])->middleware('admin');

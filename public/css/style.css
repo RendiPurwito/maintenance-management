@@ -1,3 +1,135 @@
-@media screen and (min-width: 360px){
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
 
+.active, .collapsible:hover {
+    background-color: #555;
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+}
+
+#myBtn {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Fixed/sticky position */
+    height: 50px;
+    width: 50px;
+    bottom: 15px;
+    /* Place the button at the bottom of the page */
+    right: 15px;
+    /* Place the button 30px from the right */
+    z-index: 99;
+    /* Make sure it does not overlap */
+    outline: none;
+    /* Remove outline */
+    background-color: #56B6F7;
+    /* Set a background color */
+    color: white;
+    /* Text color */
+    cursor: pointer;
+    /* Add a mouse pointer on hover */
+    padding: 10px;
+    /* Some padding */
+    border: none;
+    border-radius: 100%;
+    /* Rounded corners */
+    font-size: 18px;
+    /* Increase font size */
+}
+
+#myBtn:hover {
+    background-color: #377aa6;
+    /* Add a dark-grey background on hover */
+}
+
+#myBtn i {
+    font-size: 25px;
+}
+
+#detailBtn {
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    /* border: none; */
+    vertical-align: middle;
+}
+
+#detailBtn i {
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+[data-widget="expandable-table"] {
+    cursor: pointer;
+}
+
+[data-widget="expandable-table"] i.expandable-table-caret {
+    transition: -webkit-transform 0.3s linear;
+    transition: transform 0.3s linear;
+    transition: transform 0.3s linear, -webkit-transform 0.3s linear;
+}
+
+[data-widget="expandable-table"][aria-expanded="true"] i.expandable-table-caret[class*="right"] {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+[data-widget="expandable-table"][aria-expanded="true"] i.expandable-table-caret[class*="left"] {
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+[aria-expanded="true"] {
+    cursor: pointer;
+}
+
+[aria-expanded="true"] i.expandable-table-caret {
+    transition: -webkit-transform 0.3s linear;
+    transition: transform 0.3s linear;
+    transition: transform 0.3s linear, -webkit-transform 0.3s linear;
+}
+
+[aria-expanded="true"] [data-widget="expandable-table"] i.expandable-table-caret[class*="right"] {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+[aria-expanded="true"] [data-widget="expandable-table"] i.expandable-table-caret[class*="left"] {
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.expandable-body>td {
+    padding: 0 !important;
+    width: 100%;
+}
+
+.expandable-body>td>div,
+.expandable-body>td>p {
+    padding: 0.75rem;
+}
+
+.expandable-body .table {
+    width: calc(100% - 0.75rem);
+    margin: 0 0 0 0.75rem;
+}
+
+.expandable-body .table tr:first-child td,
+.expandable-body .table tr:first-child th {
+    border-top: none;
 }

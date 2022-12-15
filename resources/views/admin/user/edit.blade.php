@@ -37,8 +37,8 @@
             </div>
 
             <div class="mb-4">
-                <label for="no_telepon" class="form-label">Phone Number</label>
-                <input type="number" class="form-control" id="no_telepon" name="no_telepon" autocomplete="off" value="{{$user->no_telepon}}">
+                <label for="phone_number" class="form-label">Phone Number</label>
+                <input type="number" class="form-control" id="phone_number" name="phone_number" autocomplete="off" value="{{$user->phone_number}}">
             </div>
 
             {{-- <div class="mb-4">
@@ -47,8 +47,8 @@
             </div> --}}
 
             <div class="mb-4">
-                <label for="alamat" class="form-label">Address</label>
-                <textarea class="form-control" id="alamat" name="alamat" style="height: 70px">{{$user->alamat}}</textarea>
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" id="address" name="address" style="height: 70px">{{$user->address}}</textarea>
             </div>
 
             <button type="submit" class="btn btn-primary float-end" id="submitEditButton">Submit</button>

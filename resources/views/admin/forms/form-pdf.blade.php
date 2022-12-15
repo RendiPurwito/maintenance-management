@@ -8,27 +8,18 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css"
         href="{{ asset('/vendor/formbuilder/css/styles.css') }}{{ jazmy\FormBuilder\Helper::bustCache() }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/template/dist/assets/css/app.css">
     <style>
-        .fb-editor{
-            background-image: #f2f2f2; 
+        * {}
+        body {
+            margin: 50px;
         }
-        .five {
-            width: 5% !important;
-        }
-        .ten {
-            width: 10% !important;
-        }
-        .fifteen {
-            width: 15% !important;
-        }
-        .twenty {
-            width: 20% !important;
-        }
-        .twenty-five {
-            width: 25% !important;
-        }
-        .d-inline-block {
-            display: inline-block !important;
+
+        @media print{
+            .btn{
+                display: none;
+            }
         }
 
         .form-control {
@@ -89,6 +80,7 @@
 </head>
 
 <body>
+    <button onclick="window.print()" class="btn">Print</button>
     <div id="fb-render"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">

@@ -43,6 +43,7 @@ class AdminController extends Controller
         // $pages = $request->pages ?? 10; 
         return view('admin.user.index',[
             'users' => User::All()->sortBy('name'),
+            // 'users' => User::orderBy('name')->paginate(5),
         ]);
     }
 
@@ -65,18 +66,18 @@ class AdminController extends Controller
             'name'  => 'required',
             'role'  => 'required',
             'email' => 'required|email|unique:users',
-            'no_telepon' => 'required',
+            'phone_number' => 'required',
             'password' => 'required',
-            'alamat' => 'required'
+            'address' => 'required'
         ]);
 
         $user = new User;
         $user->name = $request->name;
         $user->role = $request->role;
         $user->email = $request->email;
-        $user->no_telepon = $request->no_telepon;
+        $user->phone_number = $request->phone_number;
         $user->password = Hash::make($request->password);
-        $user->alamat = $request->alamat;
+        $user->address = $request->address;
         $user->save();
         
         $notification = User::where('role', 'admin')->get();
@@ -97,18 +98,18 @@ class AdminController extends Controller
             'name' => ['required'],
             'role' => ['required'],
             'email' => ['required'],
-            'no_telepon' => ['required'],
+            'phone_number' => ['required'],
             // 'password' => ['required'],
-            'alamat' => ['required'],
+            'address' => ['required'],
         ]);
 
         $input = $request->all();
         $input['name'] = $request['name'];
         $input['role'] = $request['role'];
         $input['email'] = $request['email'];
-        $input['no_telepon'] = $request['no_telepon'];
+        $input['phone_number'] = $request['phone_number'];
         // $input['password'] = Hash::make($request['password']);
-        $input['alamat'] = $request['alamat'];
+        $input['address'] = $request['address'];
         $user->update($input);
         $notification->each->notify(new UpdateUserNotification($user));
         return redirect()->route('user')->with('success','User updated successfully!');

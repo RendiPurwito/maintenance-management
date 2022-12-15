@@ -14,6 +14,9 @@
                             <a href="{{ route('formbuilder::forms.submissions.index', $submission->form->id) }}" class="btn btn-primary float-md-right btn-sm" title="Back To Submissions">
                                 <i class="fa fa-arrow-left"></i> 
                             </a>
+                            <a href="/admin/submission/pdf/{{$submission->id}}" class="btn btn-primary btn-sm" title="Export To PDF" target="_blank">
+                                <i class="fa-solid fa-file-pdf"></i>
+                            </a>
                             <form action="{{ route('formbuilder::forms.submissions.destroy', [$submission->form, $submission]) }}" method="POST" id="deleteSubmissionForm_{{ $submission->id }}" class="d-inline-block">
                                 @csrf 
                                 @method('DELETE')
@@ -29,7 +32,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach($form_headers as $header)
                         <li class="list-group-item">
-                            <strong>{{ $header['label'] ?? title_case($header['name']) }}: </strong> 
+                            <strong>{{ $header['label'] ?? ucwords($header['name']) }}: </strong> 
                             {{-- <br> --}}
                             <span class="">
                                 {{ $submission->renderEntryContent($header['name'], $header['type']) }}
@@ -68,4 +71,33 @@
         </div>
     </div>
 </div>
+<button onclick="topFunction()" id="myBtn" title="Go to top">
+    <i class='bx bx-up-arrow-alt'></i>
+</button>   
+@endsection
+
+@section('javascript')
+<script>
+    // Get the button:
+    let mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }   
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
 @endsection

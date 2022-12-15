@@ -60,8 +60,8 @@
                 {{ $user->name }}
             </td>
             <td>{{ $user->email }}</td>
-            <td>{{ $user->no_telepon }}</td>
-            <td>{{ $user->alamat }}</td>
+            <td>{{ $user->phone_number }}</td>
+            <td>{{ $user->address }}</td>
         </tr>
         @endforeach
     </table>

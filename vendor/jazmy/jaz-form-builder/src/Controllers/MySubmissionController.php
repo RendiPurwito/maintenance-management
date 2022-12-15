@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use jazmy\FormBuilder\Models\Submission;
 use App\Notifications\UpdateSubmissionNotification;
+use Illuminate\Support\Str;
 
 class MySubmissionController extends Controller
 {

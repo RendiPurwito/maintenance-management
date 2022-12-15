@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-</div>
+{{-- <div class="container">
+</div> --}}
 <div class="card">
     <div class="card-header d-flex justify-content-between">
         <h5 class="card-title fw-bold">Add User</h5>
@@ -47,9 +47,9 @@
             </div>
 
             <div class="mb-4">
-                <label for="no_telepon" class="form-label">Phone Number</label>
-                <input type="number" class="form-control" id="no_telepon" name="no_telepon" autocomplete="off">
-                @error('no_telepon')
+                <label for="phone_number" class="form-label">Phone Number</label>
+                <input type="number" class="form-control" id="phone_number" name="phone_number" autocomplete="off">
+                @error('phone_number')
                     <div class="text-danger">
                         {{ $message }}
                     </div>
@@ -67,9 +67,9 @@
             </div>
 
             <div class="mb-4">
-                <label for="alamat" class="form-label">Address</label>
-                <textarea class="form-control" id="alamat" name="alamat" style="height: 70px"></textarea>
-                @error('alamat')
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" id="address" name="address" style="height: 70px"></textarea>
+                @error('address')
                     <div class="text-danger">
                         {{ $message }}
                     </div>

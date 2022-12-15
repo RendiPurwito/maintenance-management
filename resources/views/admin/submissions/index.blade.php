@@ -30,10 +30,12 @@
                         <tr>
                             <th class="five">#</th>
                             <th class="fifteen">User Name</th>
-                            @foreach($form_headers as $header)
+                            {{-- @foreach($form_headers as $header)
                             <th>{{ $header['label'] ?? title_case($header['name']) }}</th>
-                            @endforeach
-                            <th class="fifteen" data-sortable="false">Actions</th>
+                            @endforeach --}}
+                            <th class="ten">Submitted On</th>
+                            <th class="ten">Last Updated On</th>
+                            <th class="five" data-sortable="false">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +43,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $submission->user->name ?? 'n/a' }}</td>
-                            @foreach($form_headers as $header)
+                            {{-- @foreach($form_headers as $header)
                             <td>
                                 {{ 
                                                 $submission->renderEntryContent(
@@ -49,8 +51,10 @@
                                                 ) 
                                             }}
                             </td>
-                            @endforeach
-                            <td>
+                            @endforeach --}}
+                            <td>{{ $submission->created_at }}</td>
+                            <td>{{ $submission->updated_at }}</td>
+                            <td class="">
                                 {{-- <a href="" class="btn btn-primary btn-sm">
                                     <i class="fa-solid fa-ellipsis-vertical"></i>
                                 </a> --}}
