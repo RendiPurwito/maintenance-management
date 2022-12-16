@@ -33,7 +33,7 @@
                     <thead>
                         <tr>
                             {{-- <th class="five">#</th> --}}
-                            <th class="five">ID</th>
+                            <th class="five">#</th>
                             <th class="twenty-five">Name</th>
                             <th class="twenty-five">Role</th>
                             {{-- <th class="twenty-five">Email</th>
@@ -56,7 +56,7 @@
                             <td>{{ $user->phone_number }}</td>
                             <td>{{ $user->address }}</td> --}}
                             <td>
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailUserModal-{{$user->id}}" title="View detail user '{{$user->name}}'">
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailUserModal-{{$user->id}}" title="View detail for user '{{$user->name}}'">
                                     <i class="fa fa-eye"></i>
                                 </button>
 

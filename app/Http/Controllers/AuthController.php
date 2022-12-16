@@ -21,14 +21,14 @@ class AuthController extends Controller
     }
 
     public function authenticate(Request $request ){
-        $credentials = $request->validate ([
+        $this->validate ($request, [
             'email' => 'required|email:dns',
             'password' => 'required'
         ]);
 
         $remember_me = $request->has('remember_me') ? true : false; 
 
-        if (Auth::attempt($credentials, $remember_me)) {
+        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')], $remember_me)) {
             if(auth()->user()->role == 'admin'){
                 $request->session()->regenerate();
                 return redirect()->intended('/admin');

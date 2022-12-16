@@ -40,7 +40,7 @@
             @foreach($form_headers as $header)
             <tr>
                 <td class="p-2 w-25">
-                    <strong class="">{{ $header['label'] ?? title_case($header['name']) }}: </strong>
+                    <strong class="">{{ $header['label'] ?? ucwords($header['name']) }}: </strong>
                 </td>
                 <td class="p-2">
                     <p class="">
