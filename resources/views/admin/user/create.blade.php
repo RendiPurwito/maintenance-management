@@ -1,4 +1,17 @@
 @extends('layouts.app')
+@section('css')
+<style>
+    @media screen and (min-width: 360px) {
+        .card-body{
+            padding: 1rem;
+        }
+
+        option{
+            font-size: 1rem;
+        }
+    }
+</style>
+@endsection
 
 @section('content')
 {{-- <div class="container">
@@ -29,7 +42,7 @@
 
             <div class="mb-4 d-flex flex-column">
                 <label for="role" class="form-label">Role</label>
-                <select name="role">
+                <select name="role" class="selectpicker">
                     <option selected>Select Role</option>
                     <option value="admin">Admin</option>
                     <option value="field_support">Field Support</option>

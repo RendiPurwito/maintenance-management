@@ -3,15 +3,20 @@ $(document).ready(function () {
     $('#table').DataTable({
         dom: 'lfrtip',
         responsive: true,
-        pagingType: 'full_numbers',
+        pagingType: 'first_last_numbers',
         pageLength: 10,
         lengthMenu: [
             [5, 10, 25, 50, -1],
             [5, 10, 25, 50, 'All'],
         ],
+        // scrollX: "100vw",
+        // scrollCollapse: true,
         // buttons: [
         //     'colvis'
         // ],
+        fixedColumns:{
+            right: 1
+        }
     });
 });
 
@@ -101,5 +106,8 @@ $('.sidebar-toggler').on('click', function (e) {
     $('.image').toggle();
 })
 
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+    $('.selectpicker').selectpicker('mobile');
+}
 
 

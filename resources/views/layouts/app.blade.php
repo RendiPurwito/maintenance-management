@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
 
     {{--! DataTable CSS --}}
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css"> --}}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"/>
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"/> --}}
+    <link rel="stylesheet" href="/datatable/DataTables-1.13.1/css/jquery.dataTables.css">
 
 
     {{--! Bootstrap CDN --}}

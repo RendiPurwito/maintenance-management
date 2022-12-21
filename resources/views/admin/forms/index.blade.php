@@ -10,9 +10,9 @@
         </h5>
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="group" aria-label="Third group">
-                <a href="/admin/form/pdf" class="btn btn-primary btn-sm" title="Export To PDF" target="_blank">
+                {{-- <a href="/admin/form/pdf" class="btn btn-primary btn-sm" title="Export To PDF" target="_blank">
                     <i class="fa-solid fa-file-pdf"></i>
-                </a>
+                </a> --}}
 
                 <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary btn-sm" title="Add a New Form">
                     <i class="fa fa-plus-circle"></i>

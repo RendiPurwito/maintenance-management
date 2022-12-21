@@ -1,5 +1,22 @@
 @extends('layouts.app')
 @section('title', 'Dashboard')
+@section('css')
+    <style>
+        .overflow-auto{
+            height: 50vh;
+        }
+        /* .mark-as-read{
+            float: right !important;
+        } */
+
+        @media screen and (min-width: 360px) {
+            #main .main-content {
+                padding: 1rem 1rem;
+            }
+
+        }
+    </style>
+@endsection
 @section('content')
 {{-- <div class="container">
     <div class="row">
@@ -17,11 +34,11 @@
                 <div class="alert alert-light-info text-dark fs-6" role="alert">
                 {{-- [{{ $registration->created_at }}] User {{ $registration->data['name'] }}
                 ({{ $registration->data['email'] }}) {{ $registration->data['message'] }}. --}}
-                <p>
+                <p class="notif">
                     [{{ $notification->created_at }}] User <b>{{ $notification->data['name'] }}</b>
                     {{ $notification->data['message'] }} <b>{{ $notification->data['subject'] }}</b>
                 </p>
-                <a href="#" class="float-end mark-as-read fw-bolder" data-id="{{ $notification->id }}" id="markAsRead">
+                <a href="#" class="mark-as-read fw-bolder" data-id="{{ $notification->id }}" id="markAsRead">
                     Mark as read
                 </a>
                 </div>
@@ -32,8 +49,8 @@
         @endif
     </div>
     @if ($numberOfNotifications>0)
-    <div class="card-footer">
-        <a href="#" id="mark-all" class="float-end fw-bold">
+    <div class="card-footer mt-3">
+        <a href="#" id="mark-all" class="float-end fw-bold me-4">
             Mark all as read
         </a>
     </div>

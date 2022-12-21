@@ -3,6 +3,13 @@
 @section('css')
 {{--! Datatable CSS CDN --}}
 {{-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css"> --}}
+<style>
+    @media screen and (min-width: 360px) {
+        #main .main-content {
+            padding: 1rem 1rem;
+        }
+    }
+</style>
 @endsection
 
 @section('content')
@@ -17,9 +24,9 @@
         <h5 class="fw-bold">Users</h5>
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="group" aria-label="Third group">
-                <a href="/admin/user/pdf" class="btn btn-primary btn-sm" title="Export To PDF" target="_blank">
+                {{-- <a href="/admin/user/pdf" class="btn btn-primary btn-sm" title="Export To PDF" target="_blank">
                     <i class="fa-solid fa-file-pdf"></i>
-                </a>
+                </a> --}}
                 <a href="/admin/user/create" class="btn btn-primary btn-sm" title="Add a New User">
                     <i class="fa fa-plus-circle"></i>
                 </a>
@@ -28,7 +35,7 @@
     </div>
     <div class="card-content">
         <div class="card-body">
-            <div>
+            <div class="table-wrapper">
                 <table class="table table-striped" id="table">
                     <thead>
                         <tr>

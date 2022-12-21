@@ -57,20 +57,20 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="no_telepon-column">No Telepon</label>
-                                            <input type="number" id="no_telepon-column" class="form-control"
-                                                name="no_telepon">
-                                                @if ($errors->has('no_telepon'))
-                                                <span class="text-danger">{{ $errors->first('no_telepon') }}</span>
+                                            <label for="phone_number-column">Phone Number</label>
+                                            <input type="number" id="phone_number-column" class="form-control"
+                                                name="phone_number">
+                                                @if ($errors->has('phone_number'))
+                                                <span class="text-danger">{{ $errors->first('phone_number') }}</span>
                                                 @endif
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="alamat-column">Alamat</label> <br>
-                                            <textarea name="alamat" id="alamat-column" class="col-12" rows="2"></textarea>
-                                            @if ($errors->has('alamat'))
-                                            <span class="text-danger">{{ $errors->first('alamat') }}</span>
+                                            <label for="address-column">Address</label> <br>
+                                            <textarea name="address" id="address-column" class="col-12" rows="2"></textarea>
+                                            @if ($errors->has('address'))
+                                            <span class="text-danger">{{ $errors->first('address') }}</span>
                                             @endif
                                         </div>
                                     </div>
