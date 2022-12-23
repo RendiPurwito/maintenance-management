@@ -101,6 +101,7 @@
 @media screen and (max-width: 640px) {
     #main .main-content {
         padding-top: 1rem;
+        padding-bottom: 4.5rem;
     }
 
     .overflow-auto{
@@ -112,16 +113,6 @@
         margin-top: 1vh;
     }
 
-    .alert{
-        padding: 1rem;
-        margin: 0.5rem;
-    }
-
-    .alert::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
 
     a{
         text-decoration: none;

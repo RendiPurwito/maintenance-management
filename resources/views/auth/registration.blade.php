@@ -9,6 +9,21 @@
 
     <link rel="shortcut icon" href="/template/dist/assets/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="/template/dist/assets/css/app.css">
+    <style>
+        @media screen and (min-width: 360px) {
+            .card-body{
+                padding: 1.5rem 1rem;
+            }
+            a{
+                text-decoration: none;
+            }
+
+            textarea{
+                border: 1px solid #DFE3E7;
+                border-radius: 0.25rem;
+            }
+        }
+    </style>
 </head>
 
 <body>

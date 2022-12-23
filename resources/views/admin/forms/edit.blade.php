@@ -1,5 +1,36 @@
 @extends('formbuilder::layout')
 
+@section('css')
+    <style>
+        @media screen and (max-width: 640px) {
+            .card .card-body{
+                padding: 0.5rem;
+            }
+
+            .alert{
+                padding: 1rem;
+            }
+
+            .card-footer{
+                padding: 0.5rem;
+            }
+
+            .btn-footer{
+                float: none;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .btn{
+                padding: 0.375rem 1.4rem;
+            }
+
+            .form-wrap.form-builder .frmb-control li:before {
+                font-size: 25px;
+            }
+        }
+    </style>
+@endsection
 @section('content')
 {{-- <div class="container">
     <div class="row justify-content-center">
@@ -101,7 +132,7 @@
     </form>
 
     <div class="card-footer" id="fb-editor-footer" style="display: none;">
-        <div class="float-end">
+        <div class="btn-footer">
             <button type="button" class="btn btn-primary fb-clear-btn">
                 <i class="fa fa-remove"></i> Clear Form 
             </button> 

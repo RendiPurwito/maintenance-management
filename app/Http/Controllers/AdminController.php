@@ -40,20 +40,22 @@ class AdminController extends Controller
 
     // User CRUD
     public function index(Request $request){
-        // $pages = $request->pages ?? 10; 
-        return view('admin.user.index',[
-            'users' => User::All()->sortBy('name'),
-            // 'users' => User::orderBy('name')->paginate(5),
-        ]);
+        $users = User::All()->sortBy('name');
+
+        if($request->has('view_deleted'))
+        {
+            $users = User::onlyTrashed()->get();
+        }
+        return view('admin.user.index', compact('users'));
     }
 
-    public function pdf()
-    {
-        $users = User::all();
-        view()->share('users', $users);
-        $pdf = PDF::loadview('admin.user.pdf');  
-        return $pdf->stream();
-    }
+    // public function pdf()
+    // {
+    //     $users = User::all();
+    //     view()->share('users', $users);
+    //     $pdf = PDF::loadview('admin.user.pdf');  
+    //     return $pdf->stream();
+    // }
 
     public function create(){
         return view('admin.user.create',[
@@ -123,5 +125,17 @@ class AdminController extends Controller
         return redirect()->route('user')->with('success','User deleted successfully!');
     }
 
+    public function restore($id)
+    {
+        User::withTrashed()->find($id)->restore();
+
+        return back()->with('success', 'User restored successfully');
+    }  
     
+    public function restore_all()
+    {
+        User::onlyTrashed()->restore();
+
+        return back()->with('success', 'all User restored successfully');
+    }
 }

@@ -206,8 +206,7 @@
                                                                 <p
                                                                     style="font-size: 14px; line-height: 140%; text-align: center;">
                                                                     <span
-                                                                        style="font-size: 28px; line-height: 39.2px; color: #ffffff; font-family: Lato, sans-serif;">Mengatur
-                                                                        ulang kata sandi</span></p>
+                                                                        style="font-size: 28px; line-height: 39.2px; color: #ffffff; font-family: Lato, sans-serif;">Reset Password</span></p>
                                                             </div>
 
                                                         </td>
@@ -257,14 +256,10 @@
                                                                         style="font-size: 18px; line-height: 25.2px; color: #666666;">Hi,
                                                                         {{ $user->name }}</span></p>
                                                                 <p style="font-size: 14px; line-height: 140%;"> </p>
-                                                                <p style="font-size: 14px; line-height: 140%;">Kami
-                                                                    mengirimkan email ini kepada Anda sebagai tanggapan
-                                                                    atas permintaan Anda untuk mengatur ulang kata sandi
-                                                                    anda.</p>
+                                                                <p style="font-size: 14px; line-height: 140%;">
+                                                                    We sent this email to you in response to your request to reset your password.</p>
                                                                 <p style="font-size: 14px; line-height: 140%;"> </p>
-                                                                <p style="font-size: 14px; line-height: 140%;">Untuk
-                                                                    mereset kata sandi Anda, silakan ikuti tautan di
-                                                                    bawah ini</p>
+                                                                <p style="font-size: 14px; line-height: 140%;">To reset your password, please click the link below</p>
                                                             </div>
 
                                                         </td>
@@ -293,8 +288,7 @@
                                                                             Password</span></span>
                                                                 </a>
                                                                 <p style="font-size: 14px; line-height: 140%;"> </p>
-                                                                <p style="font-size: 11px; line-height: 140%;">Reset
-                                                                    link akan hangus dalam 10 menit</p>
+                                                                <p style="font-size: 11px; line-height: 140%;">The reset link will expire in 10 minutes</p>
                                                                 <!--[if mso]></center></v:roundrect><![endif]-->
                                                             </div>
 

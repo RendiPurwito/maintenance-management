@@ -1,5 +1,14 @@
 @extends('formbuilder::layout')
-
+@section('css')
+    <style>
+        @media screen and (max-width: 640px) {
+            .col-md-4{
+                order: -1;
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

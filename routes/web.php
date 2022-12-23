@@ -37,13 +37,15 @@ Route::post('/mark-as-read', [AdminController::class, 'markNotif'])->name('markN
 Route::get('/dashboard', [FormController::class, 'formList'])->name('dashboard');
 
 // Admin CRUD User
-Route::get('/admin/user', [AdminController::class, 'index'])->name('user')->middleware('admin');
+Route::get('/admin/user', [AdminController::class, 'index'])->name('user.index')->middleware('admin');
 Route::get('/admin/user/pdf', [AdminController::class, 'pdf'])->middleware('admin');
 Route::get('/admin/user/create', [AdminController::class, 'create'])->middleware('admin');
 Route::post('/admin/user', [AdminController::class, 'store'])->middleware('admin');
 Route::get('/admin/user/{id}/edit', [AdminController::class, 'edit'])->middleware('admin');
 Route::post('/admin/user/{id}', [AdminController::class, 'update'])->middleware('admin');
 Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('delUser')->middleware('admin');
+Route::get('/admin/user/restore/{id}', [AdminController::class, 'restore'])->name('user.restore');
+Route::get('/admin/user/restore_all', [AdminController::class, 'restore_all'])->name('user.restore_all');
 
 // Form PDF
 Route::get('/admin/form/pdf', [FormController::class, 'pdf'])->middleware('admin');

@@ -37,6 +37,10 @@ class Form extends Model
         'id', 'created_at', 'updated_at',
     ];
 
+    protected $dates = [
+        'deleted_at'
+    ];
+
     /**
      * The attributes that should be casted to another data type
      *

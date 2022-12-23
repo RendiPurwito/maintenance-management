@@ -19,6 +19,11 @@
         </div>
     </div>
 </div> --}}
+@if (Session::has('success'))
+    <script>
+        toastr.success("{!! Session::get('success') !!}")
+    </script>
+@endif
 <div class="card">
     <div class="card-header d-flex justify-content-between mb-2">
         <h5 class="fw-bold">Users</h5>
@@ -27,6 +32,12 @@
                 {{-- <a href="/admin/user/pdf" class="btn btn-primary btn-sm" title="Export To PDF" target="_blank">
                     <i class="fa-solid fa-file-pdf"></i>
                 </a> --}}
+                @if(request()->has('view_deleted'))
+                    <a href="{{ route('user.index') }}" class="btn btn-primary btn-sm">View All Post</a>
+                    <a href="{{ route('user.restore_all') }}" class="btn btn-primary btn-sm">Restore All</a>
+                @else
+                    <a href="{{ route('user.index', ['view_deleted' => 'DeletedRecords']) }}" class="btn btn-primary btn-sm">View Deleted Post</a>
+                @endif
                 <a href="/admin/user/create" class="btn btn-primary btn-sm" title="Add a New User">
                     <i class="fa fa-plus-circle"></i>
                 </a>
@@ -76,17 +87,20 @@
                                 '{{ $user->name }}'?" id="deleteButton" title="Delete user '{{ $user->name }}'">
                                 <i class="fa-solid fa-trash-can"></i>
                                 </a> --}}
-                                <form action="{{ route('delUser', $user) }}" method="POST" class="d-inline-block">
-                                    @csrf
-                                    @method('DELETE')
+                                @if(request()->has('view_deleted'))
+                                    <a href="{{ route('user.restore', $row->id) }}" class="btn btn-success btn-sm">Restore</a>
+                                @else
+                                    <form action="{{ route('delUser', $user) }}" method="POST" class="d-inline-block">
+                                        @csrf
+                                        @method('DELETE')
 
-                                    <button type="submit" class="btn btn-danger btn-sm" id="deleteButton"
-                                        data-message="Delete user '{{ $user->name }}' ?"
-                                        title="Delete user '{{ $user->name }}'">
-                                        <i class="fa fa-trash-o"></i>
-                                    </button>
-                                </form>
-
+                                        <button type="submit" class="btn btn-danger btn-sm" id="deleteButton"
+                                            data-message="Delete user '{{ $user->name }}' ?"
+                                            title="Delete user '{{ $user->name }}'">
+                                            <i class="fa fa-trash-o"></i>
+                                        </button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

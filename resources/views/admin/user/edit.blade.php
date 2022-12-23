@@ -1,5 +1,21 @@
 @extends('layouts.app')
 
+@section('css')
+<style>
+    @media screen and (min-width: 360px) {
+        .card .card-body{
+            padding: 1rem
+        }
+        
+        select{
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            padding: 0.25rem
+        }
+    }
+</style>
+@endsection
+
 @section('content')
 <div class="container">
 </div>

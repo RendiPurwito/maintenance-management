@@ -43,6 +43,16 @@
             max-width: 100%;
             margin-top: 50px;
         }
+
+        #auth{
+            padding-top: 150px;
+        }
+
+        @media screen and (min-width: 360px) {
+            a{
+                text-decoration: none;
+            }
+        }
     </style>
 </head>
 

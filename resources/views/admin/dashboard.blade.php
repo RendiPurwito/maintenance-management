@@ -14,6 +14,16 @@
                 padding: 1rem 1rem;
             }
 
+            .alert{
+                padding: 1rem;
+                margin: 0.5rem;
+            }
+
+            .alert::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
         }
     </style>
 @endsection
