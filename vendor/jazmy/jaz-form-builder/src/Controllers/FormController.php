@@ -42,11 +42,15 @@ class FormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $pageTitle = "Forms";
 
         $forms = Form::getForUser(auth()->user());
+        if($request->has('view_deleted'))
+        {
+            $forms = Form::onlyTrashed()->get();
+        }
         // $submissions_count = Submission::
 
         return view('admin.forms.index', compact('pageTitle', 'forms'));
@@ -201,6 +205,20 @@ class FormController extends Controller
         return back()->with('success', "'{$form->name}' deleted.");
     }
 
+    public function restore($id)
+    {
+        Form::withTrashed()->find($id)->restore();
+
+        return back()->with('success', 'Form restored successfully');
+    }  
+    
+    public function restore_all()
+    {
+        Form::onlyTrashed()->restore();
+
+        return back()->with('success', 'All Form restored successfully');
+    }
+
     public function formList(){
         $forms = Form::all();
         return view('user.dashboard', [
@@ -208,13 +226,13 @@ class FormController extends Controller
         ]);
     }
 
-    public function pdf()
-    {
-        $forms = Form::getForUser(auth()->user());
-        view()->share('forms', $forms);
-        $pdf = PDF::loadview('admin.forms.pdf');  
-        return $pdf->stream();
-    }
+    // public function pdf()
+    // {
+    //     $forms = Form::getForUser(auth()->user());
+    //     view()->share('forms', $forms);
+    //     $pdf = PDF::loadview('admin.forms.pdf');  
+    //     return $pdf->stream();
+    // }
 
     public function formpdf($identifier){
         $form = Form::where('identifier', $identifier)->firstOrFail();

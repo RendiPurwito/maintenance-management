@@ -74,14 +74,6 @@
                             <td>{{ $user->phone_number }}</td>
                             <td>{{ $user->address }}</td> --}}
                             <td>
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailUserModal-{{$user->id}}" title="View detail for user '{{$user->name}}'">
-                                    <i class="fa fa-eye"></i>
-                                </button>
-
-                                <a href="/admin/user/{{ $user->id }}/edit" class="btn btn-primary btn-sm"
-                                    title="Edit user '{{ $user->name }}'">
-                                    <i class="fa-solid fa-pencil"></i>
-                                </a>
                                 {{-- <a href="#" class="btn btn-danger btn-sm"
                                     onclick="confirmDel({{$user->id}})" data-name="user" data-message="Delete user
                                 '{{ $user->name }}'?" id="deleteButton" title="Delete user '{{ $user->name }}'">
@@ -90,6 +82,15 @@
                                 @if(request()->has('view_deleted'))
                                     <a href="{{ route('user.restore', $user->id) }}" class="btn btn-success btn-sm">Restore</a>
                                 @else
+                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailUserModal-{{$user->id}}" title="View detail for user '{{$user->name}}'">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+
+                                    <a href="/admin/user/{{ $user->id }}/edit" class="btn btn-primary btn-sm"
+                                        title="Edit user '{{ $user->name }}'">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </a>
+                                    
                                     <form action="{{ route('delUser', $user) }}" method="POST" class="d-inline-block">
                                         @csrf
                                         @method('DELETE')

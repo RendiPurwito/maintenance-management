@@ -3,6 +3,11 @@
 @section('content')
 {{-- <div class="col-12">
 </div> --}}
+@if (Session::has('success'))
+    <script>
+        toastr.success("{!! Session::get('success') !!}")
+    </script>
+@endif
 <div class="card">
     <div class="card-header d-flex justify-content-between ">
         <h5 class="fw-bold">
@@ -13,6 +18,12 @@
                 {{-- <a href="/admin/form/pdf" class="btn btn-primary btn-sm" title="Export To PDF" target="_blank">
                     <i class="fa-solid fa-file-pdf"></i>
                 </a> --}}
+                @if(request()->has('view_deleted'))
+                    <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary btn-sm">View All Form</a>
+                    <a href="{{ route('form.restore_all') }}" class="btn btn-primary btn-sm">Restore All</a>
+                @else
+                    <a href="{{ route('formbuilder::forms.index', ['view_deleted' => 'DeletedRecords']) }}" class="btn btn-primary btn-sm">View Deleted Form</a>
+                @endif
 
                 <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary btn-sm" title="Add a New Form">
                     <i class="fa fa-plus-circle"></i>
@@ -29,7 +40,6 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-striped" id="table">
-                    @if($forms->count())
                     <thead>
                         <tr>
                             <th class="five">#</th>
@@ -51,23 +61,27 @@
                                 <td>{{ $form->submissions_count }}</td>
                                 <td>{{ $form->created_at->toDayDateTimeString() }}</td>
                                 <td>
-                                    <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary btn-sm" title="View submissions for form '{{ $form->name }}'">
-                                        <i class="fa fa-th-list"></i>
-                                    </a>
-                                    <a href="{{ route('formbuilder::forms.show', $form) }}" class="btn btn-primary btn-sm" title="Preview form '{{ $form->name }}'">
-                                        <i class="fa fa-eye"></i> 
-                                    </a> 
-                                    <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary btn-sm" title="Edit form '{{ $form->name }}'">
-                                        <i class="fa fa-pencil"></i> 
-                                    </a> 
-                                    <form action="{{ route('formbuilder::forms.destroy', $form) }}" method="POST" id="deleteFormForm_{{ $form->id }}" class="d-inline-block">
-                                        @csrf 
-                                        @method('DELETE')
+                                    @if(request()->has('view_deleted'))
+                                        <a href="{{ route('form.restore', $form->id) }}" class="btn btn-success btn-sm">Restore</a>
+                                    @else
+                                        <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary btn-sm" title="View submissions for form '{{ $form->name }}'">
+                                            <i class="fa fa-th-list"></i>
+                                        </a>
+                                        <a href="{{ route('formbuilder::forms.show', $form) }}" class="btn btn-primary btn-sm" title="Preview form '{{ $form->name }}'">
+                                            <i class="fa fa-eye"></i> 
+                                        </a> 
+                                        <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary btn-sm" title="Edit form '{{ $form->name }}'">
+                                            <i class="fa fa-pencil"></i> 
+                                        </a> 
+                                        <form action="{{ route('formbuilder::forms.destroy', $form) }}" method="POST" id="deleteFormForm_{{ $form->id }}" class="d-inline-block">
+                                            @csrf 
+                                            @method('DELETE')
 
-                                        <button type="submit" class="btn btn-danger btn-sm confirm-form" data-form="deleteFormForm_{{ $form->id }}" data-message="Delete form '{{ $form->name }}'?" title="Delete form '{{ $form->name }}'">
-                                            <i class="fa fa-trash-o"></i> 
-                                        </button>
-                                    </form>
+                                            <button type="submit" class="btn btn-danger btn-sm confirm-form" data-form="deleteFormForm_{{ $form->id }}" data-message="Delete form '{{ $form->name }}'?" title="Delete form '{{ $form->name }}'">
+                                                <i class="fa fa-trash-o"></i> 
+                                            </button>
+                                        </form>
+                                    @endif
                                     {{-- <a href="#" class="btn btn-primary btn-sm show-btn">
                                         <i class="fa-solid fa-ellipsis-vertical"></i>
                                     </a>
@@ -98,11 +112,12 @@
                             </tr>
                         @endforeach
                     </tbody>
+                    {{-- @if($forms->count())
                     @else  
                     <h4 class="text-danger text-center">
                         There is no form available 
                     </h4>
-                    @endif
+                    @endif --}}
                 </table>
             </div>
         </div>
