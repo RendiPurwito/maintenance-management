@@ -33,10 +33,10 @@
                     <i class="fa-solid fa-file-pdf"></i>
                 </a> --}}
                 @if(request()->has('view_deleted'))
-                    <a href="{{ route('user.index') }}" class="btn btn-primary btn-sm">View All Post</a>
+                    <a href="{{ route('user.index') }}" class="btn btn-primary btn-sm">View All User</a>
                     <a href="{{ route('user.restore_all') }}" class="btn btn-primary btn-sm">Restore All</a>
                 @else
-                    <a href="{{ route('user.index', ['view_deleted' => 'DeletedRecords']) }}" class="btn btn-primary btn-sm">View Deleted Post</a>
+                    <a href="{{ route('user.index', ['view_deleted' => 'DeletedRecords']) }}" class="btn btn-primary btn-sm">View Deleted User</a>
                 @endif
                 <a href="/admin/user/create" class="btn btn-primary btn-sm" title="Add a New User">
                     <i class="fa fa-plus-circle"></i>
@@ -88,7 +88,7 @@
                                 <i class="fa-solid fa-trash-can"></i>
                                 </a> --}}
                                 @if(request()->has('view_deleted'))
-                                    <a href="{{ route('user.restore', $row->id) }}" class="btn btn-success btn-sm">Restore</a>
+                                    <a href="{{ route('user.restore', $user->id) }}" class="btn btn-success btn-sm">Restore</a>
                                 @else
                                     <form action="{{ route('delUser', $user) }}" method="POST" class="d-inline-block">
                                         @csrf

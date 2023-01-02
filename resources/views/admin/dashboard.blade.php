@@ -8,6 +8,11 @@
         /* .mark-as-read{
             float: right !important;
         } */
+        @media screen and (min-width: 1280px){
+            .mark-as-read{
+                float: right;
+            }
+        }
 
         @media screen and (min-width: 360px) {
             #main .main-content {
