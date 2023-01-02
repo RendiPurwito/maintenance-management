@@ -33,7 +33,7 @@ class SubmissionController extends Controller
      * @param integer $form_id
      * @return \Illuminate\Http\Response
      */
-    public function index($form_id)
+    public function index($form_id, Request $request)
     {
         $user = auth()->user();
 
@@ -44,8 +44,13 @@ class SubmissionController extends Controller
         $submissions = $form->submissions()
                             ->with('user')
                             ->latest()
-                            ->paginate(100);
+                            ->get();
 
+        if($request->has('view_deleted'))
+        {
+            $submissions = Submission::onlyTrashed()->get();
+        }
+        
         // get the header for the entries in the form
         $form_headers = $form->getEntriesHeader();
 
@@ -95,6 +100,20 @@ class SubmissionController extends Controller
         return redirect()
                     ->route('formbuilder::forms.submissions.index', $form_id)
                     ->with('success', 'Submission successfully deleted.');
+    }
+
+    public function restore($id)
+    {
+        Submission::withTrashed()->find($id)->restore();
+
+        return back()->with('success', 'Submission restored successfully');
+    }  
+    
+    public function restore_all()
+    {
+        Submission::onlyTrashed()->restore();
+
+        return back()->with('success', 'All Submission restored successfully');
     }
 
     public function pdf($id){

@@ -55,3 +55,5 @@ Route::get('/form-builder/forms/restore_all', [FormController::class, 'restore_a
 
 // Submission PDF
 Route::get('/admin/submission/pdf/{id}', [SubmissionController::class, 'pdf'])->middleware('admin');
+Route::get('/form-builder/forms/submissions/restore/{id}', [SubmissionController::class, 'restore'])->name('submission.restore');
+Route::get('/form-builder/forms/submissions/restore_all', [SubmissionController::class, 'restore_all'])->name('submission.restore_all');
