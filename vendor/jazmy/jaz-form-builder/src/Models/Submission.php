@@ -10,13 +10,14 @@ namespace jazmy\FormBuilder\Models;
 use Illuminate\Support\Str;
 use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Prunable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Submission extends Model
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, Prunable;
 	/**
 	 * The table name
 	 *
@@ -190,5 +191,10 @@ class Submission extends Model
         }
 
         return new HtmlString($str);
+    }
+
+    public function prunable()
+    {
+        return static::where('deleted_at', '<=', now()->subWeek());
     }
 }

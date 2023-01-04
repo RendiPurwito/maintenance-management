@@ -16,6 +16,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('prune:user')->weekly();
+        $schedule->command('prune:form')->weekly();
+        $schedule->command('prune:submission')->weekly();
     }
 
     /**
