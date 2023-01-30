@@ -84,19 +84,19 @@ class FormController extends Controller
         $user = $request->user();
 
         $input = $request->merge(['user_id' => $user->id])->except('_token');
-        $notification = User::where('role', 'admin')->get();
         // $creation = Form::first();
-
+        
         DB::beginTransaction();
-
+        
         // generate a random identifier
         $input['identifier'] = $user->id.'-'.Helper::randomString(20);
         $form = Form::create($input);
-
+        
         try {
             // dispatch the event
             event(new FormCreated($form));
             // Notification::send($admins, new NewFormNotification($created));
+            $notification = User::where('role', 'admin')->get();
             $notification->each->notify(new NewFormNotification($form));
             // $creation->notify(new NewFormNotification($created));
             DB::commit();
@@ -166,13 +166,13 @@ class FormController extends Controller
     public function update(SaveFormRequest $request, $id){
         $user = auth()->user();
         $form = Form::where(['user_id' => $user->id, 'id' => $id])->firstOrFail();
-        $notification = User::where('role', 'admin')->get();
-
+        
         $input = $request->except('_token');
-
+        
         if ($form->update($input)) {
             // dispatch the event
             event(new FormUpdated($form));
+            $notification = User::where('role', 'admin')->get();
             $notification->each->notify(new UpdateFormNotification($form));
 
             return response()
@@ -195,11 +195,11 @@ class FormController extends Controller
     public function destroy($id){
         $user = auth()->user();
         $form = Form::where(['user_id' => $user->id, 'id' => $id])->firstOrFail();
-        $notification = User::where('role', 'admin')->get();
         $form->delete();
-
+        
         // dispatch the event
         event(new FormDeleted($form));
+        $notification = User::where('role', 'admin')->get();
         $notification->each->notify(new DeleteFormNotification($form));
 
         return back()->with('success', "'{$form->name}' deleted.");
@@ -208,14 +208,12 @@ class FormController extends Controller
     public function restore($id)
     {
         Form::withTrashed()->find($id)->restore();
-
         return back()->with('success', 'Form restored successfully');
     }  
     
     public function restore_all()
     {
         Form::onlyTrashed()->restore();
-
         return back()->with('success', 'All Form restored successfully');
     }
 
@@ -234,10 +232,8 @@ class FormController extends Controller
     //     return $pdf->stream();
     // }
 
-    public function formpdf($identifier){
+    public function pdf($identifier){
         $form = Form::where('identifier', $identifier)->firstOrFail();
         return view('admin.forms.form-pdf', compact('form'));
-        // $pdf = PDF::loadview('admin.forms.form-pdf', compact('form'));
-        // return $pdf->stream();
     }
 }

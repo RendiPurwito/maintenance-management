@@ -3,6 +3,11 @@
 @section('content')
 {{-- <div class="container">
 </div> --}}
+<a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary mb-2" >
+    {{-- <i class="fa fa-arrow-left"></i>  --}}
+    <i class="fa-solid fa-chevron-left"></i>
+    Back To My Submissions
+</a>
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card rounded-0">
@@ -13,9 +18,9 @@
                 </h5>
                 <div class="btn-toolbar float-end" role="toolbar">
                     <div class="btn-group" role="group" aria-label="First group">
-                        <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm" title="Back To My Submissions">
+                        {{-- <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm" title="Back To My Submissions">
                             <i class="fa fa-arrow-left"></i> 
-                        </a>
+                        </a> --}}
                         @if($submission->form->allowsEdit())
                             <a href="{{ route('formbuilder::my-submissions.edit', $submission) }}" class="btn btn-primary btn-sm" title="Edit this submission">
                                 <i class="fa fa-pencil"></i> 

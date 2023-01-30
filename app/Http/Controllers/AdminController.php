@@ -49,14 +49,6 @@ class AdminController extends Controller
         return view('admin.user.index', compact('users'));
     }
 
-    // public function pdf()
-    // {
-    //     $users = User::all();
-    //     view()->share('users', $users);
-    //     $pdf = PDF::loadview('admin.user.pdf');  
-    //     return $pdf->stream();
-    // }
-
     public function create(){
         return view('admin.user.create',[
             'user' => User::all()
@@ -81,10 +73,9 @@ class AdminController extends Controller
         $user->password = Hash::make($request->password);
         $user->address = $request->address;
         $user->save();
-        
         $notification = User::where('role', 'admin')->get();
         $notification->each->notify(new NewUserNotification($user));
-        return redirect()->route('user')->with('success','User created successfully!');
+        return redirect()->route('user.index')->with('success','User created successfully!');
     }
 
     public function edit($id){
@@ -94,7 +85,6 @@ class AdminController extends Controller
     }
 
     public function update(Request $request, $id){
-        $notification = User::where('role', 'admin')->get();
         $user = user::find($id);
         $this->validate($request,[
             'name' => ['required'],
@@ -104,7 +94,7 @@ class AdminController extends Controller
             // 'password' => ['required'],
             'address' => ['required'],
         ]);
-
+        
         $input = $request->all();
         $input['name'] = $request['name'];
         $input['role'] = $request['role'];
@@ -113,29 +103,28 @@ class AdminController extends Controller
         // $input['password'] = Hash::make($request['password']);
         $input['address'] = $request['address'];
         $user->update($input);
+        $notification = User::where('role', 'admin')->get();
         $notification->each->notify(new UpdateUserNotification($user));
-        return redirect()->route('user')->with('success','User updated successfully!');
+        return redirect()->route('user.index')->with('success','User updated successfully!');
     }
 
     public function destroy($id){
         $user = User::where('id', $id)->firstOrFail();
-        $notification = User::where('role', 'admin')->get();
         $user->delete();
+        $notification = User::where('role', 'admin')->get();
         $notification->each->notify(new DeleteUserNotification($user));
-        return redirect()->route('user')->with('success','User deleted successfully!');
+        return redirect()->route('user.index')->with('success','User deleted successfully!');
     }
 
     public function restore($id)
     {
         User::withTrashed()->find($id)->restore();
-
         return back()->with('success', 'User restored successfully');
     }  
     
     public function restore_all()
     {
         User::onlyTrashed()->restore();
-
-        return back()->with('success', 'all User restored successfully');
+        return back()->with('success', 'All User restored successfully');
     }
 }

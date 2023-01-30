@@ -1,5 +1,15 @@
 @extends('formbuilder::layout')
 
+@section('css')
+<style>
+    @media screen and (max-width: 640px) {
+        .card .card-body{
+            padding: 0.5rem;
+        }
+    }
+</style>
+@endsection
+
 @section('content')
 {{-- <div class="container">
     <div class="row justify-content-center">
@@ -9,14 +19,15 @@
 </div> --}}
 <div class="card mb-5">
     <div class="card-header d-flex justify-content-between mb-3">
-        <h5 class="card-title fw-bold">
-            {{ $pageTitle }}
+        <h5 class="card-title">
+            Edit My Submission for <strong>{{ $submission->form->name }}</strong>
+            {{-- {{ $pageTitle }} --}}
         </h5>
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="group" aria-label="Third group">
-                <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary float-md-right btn-sm" title="Back To My Submissions">
+                {{-- <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary float-md-right btn-sm" title="Back To My Submissions">
                     <i class="fa fa-arrow-left"></i>
-                </a>
+                </a> --}}
             </div>
         </div>
     </div>
@@ -30,6 +41,13 @@
         </div>
 
         <div class="card-footer d-flex justify-content-end">
+            <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-danger me-1" >
+                {{-- <i class="fa fa-arrow-left"></i> --}}
+                Cancel
+            </a>
+            {{-- <a href="{{ url()->previous() }}" class="btn btn-danger me-1" title="Back To Dashboard">
+                Cancel
+            </a> --}}
             <button type="submit" class="btn btn-primary confirm-form" data-form="submitForm" data-message="Submit update to your entry for '{{ $submission->form->name }}'?">
                 Submit Form
             </button>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +24,6 @@
         }
     </style>
 </head>
-
 <body>
     <div style="background: #6c757d; min-height: 100vh; padding-top: 50px; background-image: url(/img/auth.jpg);">
         <div class="container">
@@ -90,24 +88,19 @@
                                         </div>
                                     </div>
                                 </diV>
-
                                 <div class="clearfix">
                                     <a href="/">Have an account? Login</a>
                                     <button class="btn btn-primary float-right" type="submit">Register</button>
                                 </div>
                             </form>
-                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     <script src="/template/dist/assets/js/feather-icons/feather.min.js"></script>
     <script src="/template/dist/assets/js/app.js"></script>
-
     <script src="/template/dist/assets/js/main.js"></script>
 </body>
-
 </html>

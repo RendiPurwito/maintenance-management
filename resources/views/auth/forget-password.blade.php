@@ -70,7 +70,6 @@
                         <div class="card-body">
                             <div class="text-center mb-3">
                                 <img src="/img/logo.png" height="70" class='mb-3'>
-                                {{-- <h3>Reset Password</h3> --}}
                                 <p class="text-dark" style="font-weight: 500; font-size: 15px">Please enter your email to receive password reset link.</p>
                             </div>
                             <form action="{{ route('forget.password.post') }}" method="POST">
@@ -91,10 +90,6 @@
                                     </div>
                                 </div>
                                 <div class="clearfix mt-3">
-                                    {{-- <button type="button" class="btn btn-outline-light">
-                                        <i class="fa-solid fa-chevron-left"></i>
-                                        Back To Login
-                                    </button> --}}
                                     <button class="btn btn-primary col-12" type="submit">Send Reset Password Link</button>
                                 </div>
                                 <div class="mt-4">

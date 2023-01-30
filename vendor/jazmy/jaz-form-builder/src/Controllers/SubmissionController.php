@@ -93,8 +93,8 @@ class SubmissionController extends Controller
     public function destroy($form_id, $submission_id)
     {
         $submission = Submission::where(['form_id' => $form_id, 'id' => $submission_id])->firstOrFail();
-        $notification = User::where('role', 'admin')->get();
         $submission->delete();
+        $notification = User::where('role', 'admin')->get();
         $notification->each->notify(new DeleteSubmissionNotification($submission));
 
         return redirect()
@@ -105,14 +105,12 @@ class SubmissionController extends Controller
     public function restore($id)
     {
         Submission::withTrashed()->find($id)->restore();
-
         return back()->with('success', 'Submission restored successfully');
     }  
     
     public function restore_all()
     {
         Submission::onlyTrashed()->restore();
-
         return back()->with('success', 'All Submission restored successfully');
     }
 

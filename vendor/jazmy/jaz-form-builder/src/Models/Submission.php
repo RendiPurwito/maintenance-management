@@ -195,6 +195,6 @@ class Submission extends Model
 
     public function prunable()
     {
-        return static::where('deleted_at', '<=', now()->subWeek());
+        return static::where('deleted_at', '<=', now()->subDays(2));
     }
 }

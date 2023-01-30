@@ -70,7 +70,7 @@ class AuthController extends Controller
         $user->alamat = $request->alamat;
         $user->save();
         $notification = User::first();
-        #store notification info into notifications table
+        // store notification info into notifications table
         $notification->notify(new NewUserNotification($user));
         // dd('user registered successfully, Notification send to Admin Successfully.');
 
@@ -87,6 +87,7 @@ class AuthController extends Controller
         return redirect("/")->with('succes', 'User registered successfully');
     }
 
+    // Forgot Password
     public function showForgetPasswordForm()
     {
         return view('auth.forget-password');
@@ -116,6 +117,7 @@ class AuthController extends Controller
         return redirect()->back()->with("message","Your reset link is being sent to your email");
     }
 
+    // Reset Password
     public function showResetPasswordForm($token) { 
         $buttonReset = DB::table('password_resets')->where('token',$token)->first();
         if(!$buttonReset || Carbon::now()->subMinutes(10) > $buttonReset->created_at){

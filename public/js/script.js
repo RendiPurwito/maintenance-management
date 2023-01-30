@@ -31,7 +31,8 @@ $('#submitButton').on('click', function (e) {
         dangerMode: true
     }).then((isConfirm) => {
         if (isConfirm) {
-            form.submit();
+            document.getElementById("myForm").submit();
+            // form.submit();
             swal({
                 icon: "success",
                 title: 'User successfully created!',

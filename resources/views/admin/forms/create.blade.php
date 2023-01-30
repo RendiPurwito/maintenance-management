@@ -44,9 +44,9 @@
         </h5>
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="group" aria-label="Third group">
-                <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-sm btn-primary float-md-right" title="Back To Forms">
+                {{-- <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-sm btn-primary float-md-right" title="Back To Forms">
                     <i class="fa fa-arrow-left"></i>
-                </a>
+                </a> --}}
             </div>
         </div>
     </div>
@@ -122,6 +122,10 @@
 
     <div class="card-footer" id="fb-editor-footer" style="display: none;">
         <div class="btn-footer">
+            <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-danger">
+                {{-- <i class="fa fa-arrow-left"></i>  --}}
+                Cancel
+            </a>
             <button type="button" class="btn btn-primary fb-clear-btn">
                 <i class="fa fa-remove"></i> Clear Form 
             </button> 

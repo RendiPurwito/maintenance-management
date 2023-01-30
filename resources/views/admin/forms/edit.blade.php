@@ -2,6 +2,10 @@
 
 @section('css')
     <style>
+        .btn-footer{
+            float: right;
+        }
+
         @media screen and (max-width: 640px) {
             .card .card-body{
                 padding: 0.5rem;
@@ -13,16 +17,18 @@
 
             .card-footer{
                 padding: 0.5rem;
+                display: flex;
+                justify-content: end
             }
 
-            .btn-footer{
-                float: none;
+            /* .btn-footer{
                 display: flex;
                 justify-content: space-between;
-            }
+            } */
 
             .btn{
-                padding: 0.375rem 1.4rem;
+                padding: 0.375rem 1rem;
+                margin-left: 0.20rem;
             }
 
             .form-wrap.form-builder .frmb-control li:before {
@@ -45,9 +51,9 @@
         </h5>
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="group">
-                <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-sm btn-primary float-md-right" title="Back To Forms">
+                {{-- <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-sm btn-primary float-md-right" title="Back To Forms">
                     <i class="fa fa-arrow-left"></i> 
-                </a>
+                </a> --}}
                 {{-- <button class="btn btn-primary btn-sm clipboard" data-clipboard-text="{{ route('formbuilder::form.render', $form->identifier) }}" data-message="Link Copied" data-original="Copy Form Link" title="Copy form URL to clipboard">
                     <i class="fa fa-clipboard"></i> Copy Form Link
                 </button>  --}}
@@ -133,11 +139,15 @@
 
     <div class="card-footer" id="fb-editor-footer" style="display: none;">
         <div class="btn-footer">
+            <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-danger">
+                {{-- <i class="fa fa-arrow-left"></i>  --}}
+                Cancel
+            </a>
             <button type="button" class="btn btn-primary fb-clear-btn">
                 <i class="fa fa-remove"></i> Clear Form 
             </button> 
             <button type="button" class="btn btn-primary fb-save-btn">
-                <i class="fa fa-save"></i> Submit &amp; Save Form
+                <i class="fa fa-save"></i> Save Form
             </button>
         </div>
     </div>

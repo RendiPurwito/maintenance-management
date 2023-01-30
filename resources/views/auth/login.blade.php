@@ -69,7 +69,6 @@
     </script>
     @endif
     <div id="auth">
-
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-12 mx-auto">
@@ -138,12 +137,10 @@
                 </div>
             </div>
         </div>
-
     </div>
     <script src="/template/dist/assets/js/feather-icons/feather.min.js"></script>
     <script src="/template/dist/assets/js/app.js"></script>
     <script src="/template/dist/assets/js/main.js"></script>
-   
 </body>
 
 </html>

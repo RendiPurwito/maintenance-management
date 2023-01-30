@@ -12,6 +12,11 @@
         toastr.success("{!! Session::get('success') !!}")
     </script>
 @endif
+<a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary mb-2" >
+    {{-- <i class="fa fa-arrow-left"></i>  --}}
+    <i class="fa-solid fa-chevron-left"></i>
+    Back To Forms
+</a>
 <div class="card">
     <div class="card-header d-flex justify-content-between mb-3">
         <h5 class="card-title">
@@ -20,14 +25,20 @@
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="group" aria-label="Third group">
                 @if(request()->has('view_deleted'))
-                    <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary btn-sm">View All Submission</a>
-                    <a href="{{ route('submission.restore_all') }}" class="btn btn-primary btn-sm">Restore All</a>
+                    <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary btn-sm" title="View All Submission">
+                        <i class="fa-solid fa-table-list"></i>
+                    </a>
+                    <a href="{{ route('submission.restore_all') }}" class="btn btn-primary btn-sm" title="Restore All Submission">
+                        <i class="fa-solid fa-arrows-spin"></i>
+                    </a>
                 @else
-                    <a href="{{ route('formbuilder::forms.submissions.index', [$form, 'view_deleted' => 'DeletedRecords']) }}" class="btn btn-primary btn-sm">View Deleted Submission</a>
+                    <a href="{{ route('formbuilder::forms.submissions.index', [$form, 'view_deleted' => 'DeletedRecords']) }}" class="btn btn-primary btn-sm" title="View Deleted Submission">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                    {{-- <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary btn-sm" title="Back To Forms">
+                        <i class="fa fa-arrow-left"></i>
+                    </a> --}}
                 @endif
-                <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary btn-sm" title="Back To Forms">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
             </div>
         </div>
     </div>

@@ -69,7 +69,6 @@
                         <div class="card-body">
                             <div class="text-center mb-4">
                                 <img src="/img/logo.png" height="70" class='mb-3'>
-                                {{-- <h3>Reset Password</h3> --}}
                                 <p class="text-dark" style="font-weight: 500; font-size: 15px">Please enter your email and your new password</p>
                             </div>
                             <form action="/reset-password/{{ $token }}" method="POST">

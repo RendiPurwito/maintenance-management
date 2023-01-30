@@ -47,8 +47,6 @@
         <div class="overflow-auto" >
             @foreach($notifications as $notification)
                 <div class="alert alert-light-info text-dark fs-6" role="alert">
-                {{-- [{{ $registration->created_at }}] User {{ $registration->data['name'] }}
-                ({{ $registration->data['email'] }}) {{ $registration->data['message'] }}. --}}
                 <p class="notif">
                     [{{ $notification->created_at }}] User <b>{{ $notification->data['name'] }}</b>
                     {{ $notification->data['message'] }} <b>{{ $notification->data['subject'] }}</b>

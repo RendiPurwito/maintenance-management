@@ -19,15 +19,21 @@
                     <i class="fa-solid fa-file-pdf"></i>
                 </a> --}}
                 @if(request()->has('view_deleted'))
-                    <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary btn-sm">View All Form</a>
-                    <a href="{{ route('form.restore_all') }}" class="btn btn-primary btn-sm">Restore All</a>
+                    <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary btn-sm" title="View All Form">
+                        <i class="fa-solid fa-table-list"></i>
+                    </a>
+                    <a href="{{ route('form.restore_all') }}" class="btn btn-primary btn-sm" title="Restore All Form">
+                        <i class="fa-solid fa-arrows-spin"></i>
+                    </a>
                 @else
-                    <a href="{{ route('formbuilder::forms.index', ['view_deleted' => 'DeletedRecords']) }}" class="btn btn-primary btn-sm">View Deleted Form</a>
+                    <a href="{{ route('formbuilder::forms.index', ['view_deleted' => 'DeletedRecords']) }}" class="btn btn-primary btn-sm" title="View Deleted Form">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                    <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary btn-sm" title="Add a New Form">
+                        <i class="fa fa-plus-circle"></i>
+                    </a>
                 @endif
 
-                <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary btn-sm" title="Add a New Form">
-                    <i class="fa fa-plus-circle"></i>
-                </a>
 
                 {{-- <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary btn-sm">
                     <i class="fa fa-th-list"></i> My Submissions

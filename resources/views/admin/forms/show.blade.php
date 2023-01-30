@@ -1,7 +1,26 @@
 @extends('formbuilder::layout')
 
+@section('css')
+    <style>
+        @media screen and (max-width: 640px){
+            .col-md-4{
+                order: -1;
+                margin-bottom: 1rem;
+            }
+            .card-body{
+                padding: 1.5rem;
+            }
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="">
+    <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary mb-2" >
+        {{-- <i class="fa fa-arrow-left"></i>  --}}
+        <i class="fa-solid fa-chevron-left"></i>
+        Back To Forms
+    </a>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card ">
@@ -11,16 +30,18 @@
                     </h5>
                     <div class="btn-toolbar float-md-end" role="toolbar">
                         <div class="btn-group" role="group">
-                            <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary float-md-right btn-sm" title="Back To Forms">
+                            {{-- <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary float-md-right btn-sm" >
                                 <i class="fa fa-arrow-left"></i> 
-                            </a>
-                            <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary float-md-right btn-sm" title="View Submissions">
+                                <i class="fa-solid fa-chevron-left"></i>
+                                Back To Forms
+                            </a> --}}
+                            <a href="{{ route('formbuilder::forms.submissions.index', $form) }}" class="btn btn-primary btn-sm" title="View Submissions">
                                 <i class="fa fa-th-list"></i> 
                             </a> 
                             <a href="{{route('formpdf', $form->identifier)}}" class="btn btn-primary btn-sm" title="Export To PDF" target="_blank">
                                 <i class="fa-solid fa-file-pdf"></i>
                             </a>
-                            <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary float-md-right btn-sm" title="Edit Form">
+                            <a href="{{ route('formbuilder::forms.edit', $form) }}" class="btn btn-primary btn-sm" title="Edit Form">
                                 <i class="fa fa-edit"></i> 
                             </a> 
                             {{-- <a href="{{ route('formbuilder::forms.create') }}" class="btn btn-primary float-md-right btn-sm" title="Add New Form">
@@ -63,7 +84,7 @@
                     <li class="list-group-item">
                         <strong>Owner: </strong> <span class="float-right">{{ $form->user->name }}</span>
                     </li>
-                     <li class="list-group-item">
+                    <li class="list-group-item">
                         <strong>Current Submissions: </strong> 
                         <span class="float-right">{{ $form->submissions_count }}</span>
                     </li>

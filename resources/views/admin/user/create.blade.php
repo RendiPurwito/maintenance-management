@@ -21,14 +21,14 @@
         <h5 class="card-title fw-bold">Add User</h5>
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="group" aria-label="Third group">
-                <a href="/admin/user" class="btn btn-sm btn-primary float-md-right" title="Back To Users">
+                {{-- <a href="/admin/user" class="btn btn-sm btn-primary float-md-right" title="Back To Users">
                     <i class="fa fa-arrow-left"></i>
-                </a>
+                </a> --}}
             </div>
         </div>
     </div>
     <div class="card-body">
-        <form action="/admin/user" method="POST">
+        <form action="/admin/user" method="POST" id="myForm">
             @csrf
             <div class="mb-4">
                 <label for="name" class="form-label">Name</label>
@@ -88,9 +88,16 @@
                     </div>
                 @enderror
             </div>
-
-            <button type="submit" class="btn btn-primary float-end" id="submitButton">Submit</button>
         </form>
+    </div>
+    <div class="card-footer">
+        <div class="btn-footer float-end">
+            <a href="/admin/user" class="btn btn-danger me-1 cancel-button">
+                {{-- <i class="fa fa-arrow-left"></i>  --}}
+                Cancel
+            </a>
+            <button type="submit" class="btn btn-primary float-end" id="submitButton">Submit</button>
+        </div> 
     </div>
 </div>
 @endsection

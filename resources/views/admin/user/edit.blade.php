@@ -17,18 +17,16 @@
 @endsection
 
 @section('content')
-<div class="container">
-</div>
+{{-- <div class="container">
+</div> --}}
 <div class="card">
     <div class="card-header d-flex justify-content-between">
         <h5 class="card-title fw-bold">Edit User</h5>
-        <div class="btn-toolbar" role="toolbar">
+        {{-- <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="group" aria-label="Third group">
-                <a href="/admin/user" class="btn btn-sm btn-primary float-md-right" title="Back To Users">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
+                
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="card-body">
         <form action="/admin/user/{{ $user->id }}" method="POST" id="editForm">
@@ -66,8 +64,13 @@
                 <label for="address" class="form-label">Address</label>
                 <textarea class="form-control" id="address" name="address" style="height: 70px">{{$user->address}}</textarea>
             </div>
-
-            <button type="submit" class="btn btn-primary float-end" id="submitEditButton">Submit</button>
+            <div class="btn-footer float-end">
+                <a href="/admin/user" class="btn btn-danger me-1 cancel-button">
+                    {{-- <i class="fa fa-arrow-left"></i>  --}}
+                    Cancel
+                </a>
+                <button type="submit" class="btn btn-primary" id="submitEditButton">Submit</button>
+            </div>
         </form>
     </div>
 </div>

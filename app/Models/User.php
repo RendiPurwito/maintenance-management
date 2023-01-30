@@ -24,9 +24,9 @@ class User extends Authenticatable
         'name',
         'role',
         'email',
-        'no_telepon',
+        'phone_number',
         'password',
-        'alamat'
+        'address'
     ];
 
     /**
@@ -50,6 +50,6 @@ class User extends Authenticatable
 
     public function prunable()
     {
-        return static::where('deleted_at', '<=', now()->subWeek());
+        return static::where('deleted_at', '<=', now()->subDays(2));
     }
 }

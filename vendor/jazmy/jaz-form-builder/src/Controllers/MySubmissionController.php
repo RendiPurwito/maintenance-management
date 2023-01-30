@@ -101,13 +101,12 @@ class MySubmissionController extends Controller
     {
         $user = auth()->user();
         $submission = Submission::where(['user_id' => $user->id, 'id' => $id])->firstOrFail();
-        $notification = User::first();
-
+        
         DB::beginTransaction();
-
+        
         try {
             $input = $request->except(['_token', '_method']);
-
+            
             // check if files were uploaded and process them
             $uploadedFiles = $request->allFiles();
             foreach ($uploadedFiles as $key => $file) {
@@ -116,9 +115,10 @@ class MySubmissionController extends Controller
                     $input[$key] = $file->store('fb_uploads', 'public');
                 }
             }
-
+            
             $submission->update(['content' => $input]);
-            $notification->notify(new UpdateSubmissionNotification($submission));
+            $notification = User::where('role', 'admin')->get();
+            $notification->each->notify(new UpdateSubmissionNotification($submission));
             DB::commit();
 
             return redirect()

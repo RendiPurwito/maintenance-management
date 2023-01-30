@@ -55,14 +55,14 @@ class RenderFormController extends Controller
     public function submit(Request $request, $identifier)
     {
         $form = Form::where('identifier', $identifier)->firstOrFail();
-
+        
         DB::beginTransaction();
+        $notification = User::where('role', 'admin')->get();
         // $submission = User::first();
-        $notification = User::first();
-
+        
         try {
             $input = $request->except('_token');
-
+            
             // check if files were uploaded and process them
             $uploadedFiles = $request->allFiles();
             foreach ($uploadedFiles as $key => $file) {
@@ -71,16 +71,16 @@ class RenderFormController extends Controller
                     $input[$key] = $file->store('fb_uploads', 'public');
                 }
             }
-
+            
             $user_id = auth()->user()->id ?? null;
-
+            
             $submission = $form->submissions()->create([
                 'user_id' => $user_id,
                 'content' => $input,
             ]);
-
+            
             // $submission->notify(new NewSubmissionNotification($submitted));
-            $notification->notify(new NewSubmissionNotification($submission));
+            $notification->each->notify(new NewSubmissionNotification($submission));
             DB::commit();
             return redirect()->route('formbuilder::form.feedback', $identifier)->with('success', 'Form successfully submitted.');
         }catch (Throwable $e){
