@@ -2,11 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Console\Command;
 
-class PruneUser extends Command
+class PruneSoftDeletedUsers extends Command
 {
     /**
      * The name and signature of the console command.
@@ -29,13 +28,6 @@ class PruneUser extends Command
      */
     public function handle()
     {
-        $deletedUsers = User::onlyTrashed()
-        ->whereDate('deleted_at', '<', Carbon::now()->subWeek())
-        ->get();
-
-    foreach ($deletedUsers as $user) {
-        $user->forceDelete();
-    }
-        // return Command::SUCCESS;
+        User::onlyTrashed()->forceDelete();
     }
 }
