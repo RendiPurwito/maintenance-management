@@ -65,25 +65,10 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->role = 'field_support';
         $user->email = $request->email;
-        $user->no_telepon = $request->no_telepon;
         $user->password = Hash::make($request->password);
-        $user->alamat = $request->alamat;
         $user->save();
         $notification = User::first();
-        // store notification info into notifications table
         $notification->notify(new NewUserNotification($user));
-        // dd('user registered successfully, Notification send to Admin Successfully.');
-
-        // dd($request->all());
-        // User::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => bcrypt($request->password),
-        //     'role' => 'user',
-        //     'no_telepon' => $request->no_telepon,
-        //     'alamat' => $request->alamat,
-        //     'remember_token' => Str::random(60)
-        // ]);
         return redirect("/")->with('succes', 'User registered successfully');
     }
 
@@ -127,6 +112,8 @@ class AuthController extends Controller
             return view('auth.reset-password',[
                 'token' => $token
             ]);
+
+
         }
         
     }
