@@ -12,12 +12,10 @@ use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Prunable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Submission extends Model
 {
-    use Notifiable, SoftDeletes, Prunable;
+    use Notifiable;
 	/**
 	 * The table name
 	 *
@@ -191,10 +189,5 @@ class Submission extends Model
         }
 
         return new HtmlString($str);
-    }
-
-    public function prunable()
-    {
-        return static::where('deleted_at', '<=', now()->subDays(2));
     }
 }

@@ -41,11 +41,6 @@ class AdminController extends Controller
     // User CRUD
     public function index(Request $request){
         $users = User::All()->sortBy('name');
-
-        if($request->has('view_deleted'))
-        {
-            $users = User::onlyTrashed()->get();
-        }
         return view('admin.user.index', compact('users'));
     }
 
@@ -60,18 +55,14 @@ class AdminController extends Controller
             'name'  => 'required',
             'role'  => 'required',
             'email' => 'required|email|unique:users',
-            'phone_number' => 'required',
             'password' => 'required',
-            'address' => 'required'
         ]);
 
         $user = new User;
         $user->name = $request->name;
         $user->role = $request->role;
         $user->email = $request->email;
-        $user->phone_number = $request->phone_number;
         $user->password = Hash::make($request->password);
-        $user->address = $request->address;
         $user->save();
         $notification = User::where('role', 'admin')->get();
         $notification->each->notify(new NewUserNotification($user));
@@ -90,18 +81,12 @@ class AdminController extends Controller
             'name' => ['required'],
             'role' => ['required'],
             'email' => ['required'],
-            'phone_number' => ['required'],
-            // 'password' => ['required'],
-            'address' => ['required'],
         ]);
         
         $input = $request->all();
         $input['name'] = $request['name'];
         $input['role'] = $request['role'];
         $input['email'] = $request['email'];
-        $input['phone_number'] = $request['phone_number'];
-        // $input['password'] = Hash::make($request['password']);
-        $input['address'] = $request['address'];
         $user->update($input);
         $notification = User::where('role', 'admin')->get();
         $notification->each->notify(new UpdateUserNotification($user));
@@ -114,17 +99,5 @@ class AdminController extends Controller
         $notification = User::where('role', 'admin')->get();
         $notification->each->notify(new DeleteUserNotification($user));
         return redirect()->route('user.index')->with('success','User deleted successfully!');
-    }
-
-    public function restore($id)
-    {
-        User::withTrashed()->find($id)->restore();
-        return back()->with('success', 'User restored successfully');
-    }  
-    
-    public function restore_all()
-    {
-        User::onlyTrashed()->restore();
-        return back()->with('success', 'All User restored successfully');
     }
 }

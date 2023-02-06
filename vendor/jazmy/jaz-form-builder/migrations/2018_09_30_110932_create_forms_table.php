@@ -20,19 +20,13 @@ class CreateFormsTable extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->increments('id');
-
             $table->unsignedBigInteger('user_id')->nullable();
-
             $table->string('name');
             $table->string('visibility');
             $table->boolean('allows_edit')->default(false);
-
             $table->string('identifier')->unique();
             $table->text('form_builder_json')->nullable();
-
-            $table->softDeletes();
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
         });
     }

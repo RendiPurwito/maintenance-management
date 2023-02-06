@@ -205,32 +205,12 @@ class FormController extends Controller
         return back()->with('success', "'{$form->name}' deleted.");
     }
 
-    public function restore($id)
-    {
-        Form::withTrashed()->find($id)->restore();
-        return back()->with('success', 'Form restored successfully');
-    }  
-    
-    public function restore_all()
-    {
-        Form::onlyTrashed()->restore();
-        return back()->with('success', 'All Form restored successfully');
-    }
-
     public function formList(){
         $forms = Form::all();
         return view('user.dashboard', [
             'forms' => $forms
         ]);
     }
-
-    // public function pdf()
-    // {
-    //     $forms = Form::getForUser(auth()->user());
-    //     view()->share('forms', $forms);
-    //     $pdf = PDF::loadview('admin.forms.pdf');  
-    //     return $pdf->stream();
-    // }
 
     public function pdf($identifier){
         $form = Form::where('identifier', $identifier)->firstOrFail();

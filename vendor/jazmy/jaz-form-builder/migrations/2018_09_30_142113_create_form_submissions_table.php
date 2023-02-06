@@ -20,16 +20,10 @@ class CreateFormSubmissionsTable extends Migration
     {
         Schema::create('form_submissions', function (Blueprint $table) {
             $table->increments('id');
-
             $table->unsignedInteger('form_id');
-
             $table->unsignedBigInteger('user_id')->nullable();
-
             $table->text('content');
-
-            $table->softDeletes();
             $table->timestamps();
-
             $table->foreign('form_id')->references('id')->on('forms')->onDelete('CASCADE');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
         });

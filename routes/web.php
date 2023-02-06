@@ -48,13 +48,3 @@ Route::delete('/admin/user/{id}', [AdminController::class, 'destroy'])->name('de
 // Print
 Route::get('/form-builder/forms/pdf/{id}', [FormController::class, 'pdf'])->name('formpdf')->middleware('admin');
 Route::get('/admin/submission/pdf/{id}', [SubmissionController::class, 'pdf'])->middleware('admin');
-
-// Restore Data
-Route::get('/admin/user/restore/{id}', [AdminController::class, 'restore'])->name('user.restore');
-Route::get('/admin/user/restore_all', [AdminController::class, 'restore_all'])->name('user.restore_all');
-
-Route::get('/form-builder/forms/restore/{id}', [FormController::class, 'restore'])->name('form.restore');
-Route::get('/form-builder/forms/restore_all', [FormController::class, 'restore_all'])->name('form.restore_all');
-
-Route::get('/form-builder/forms/submissions/restore/{id}', [SubmissionController::class, 'restore'])->name('submission.restore');
-Route::get('/form-builder/forms/submissions/restore_all', [SubmissionController::class, 'restore_all'])->name('submission.restore_all');

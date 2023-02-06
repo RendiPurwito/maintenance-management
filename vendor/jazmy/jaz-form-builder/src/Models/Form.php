@@ -10,12 +10,10 @@ namespace jazmy\FormBuilder\Models;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Prunable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Form extends Model
 {
-    use Notifiable, SoftDeletes, Prunable;
+    use Notifiable;
     const FORM_PUBLIC = "PUBLIC";
     const FORM_PRIVATE = "PRIVATE";
 
@@ -163,10 +161,5 @@ class Form extends Model
                             'type' => $entry['type'] ?? null,
                         ];
                     });
-    }
-
-    public function prunable()
-    {
-        return static::where('deleted_at', '<=', now()->subDays(2));
     }
 }

@@ -102,18 +102,6 @@ class SubmissionController extends Controller
                     ->with('success', 'Submission successfully deleted.');
     }
 
-    public function restore($id)
-    {
-        Submission::withTrashed()->find($id)->restore();
-        return back()->with('success', 'Submission restored successfully');
-    }  
-    
-    public function restore_all()
-    {
-        Submission::onlyTrashed()->restore();
-        return back()->with('success', 'All Submission restored successfully');
-    }
-
     public function pdf($id){
         $submission = Submission::where('id', $id)->firstOrFail();
         $form_headers = $submission->form->getEntriesHeader();

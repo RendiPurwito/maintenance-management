@@ -5,15 +5,13 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Prunable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use jazmy\FormBuilder\Traits\HasFormBuilderTraits;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasFormBuilderTraits, SoftDeletes, Prunable;
+    use HasApiTokens, HasFactory, Notifiable, HasFormBuilderTraits;
 
     /**
      * The attributes that are mass assignable.
@@ -24,9 +22,7 @@ class User extends Authenticatable
         'name',
         'role',
         'email',
-        'phone_number',
         'password',
-        'address'
     ];
 
     /**
@@ -47,9 +43,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function prunable()
-    {
-        return static::where('deleted_at', '<=', now()->subDays(2));
-    }
 }
