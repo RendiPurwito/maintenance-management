@@ -52,7 +52,8 @@ $('#submitEditButton').on('click', function (e) {
         dangerMode: true
     }).then((isConfirm) => {
         if (isConfirm) {
-            form.submit();
+            document.getElementById("editForm").submit();
+            // form.submit();
             swal({
                 icon: "success",
                 title: 'User successfully updated!',
@@ -107,8 +108,5 @@ $('.sidebar-toggler').on('click', function (e) {
     $('.image').toggle();
 })
 
-if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
-    $('.selectpicker').selectpicker('mobile');
-}
 
 

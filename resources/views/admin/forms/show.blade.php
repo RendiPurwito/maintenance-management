@@ -3,19 +3,27 @@
 @section('css')
     <style>
         @media screen and (max-width: 640px){
+            #main .main-content {
+                padding: 1rem 1rem;
+            }
+
+            .container-fluid{
+                padding: 0;
+            }
             .col-md-4{
                 order: -1;
                 margin-bottom: 1rem;
             }
+
             .card-body{
-                padding: 1.5rem;
+                padding: 0.5rem;
             }
         }
     </style>
 @endsection
 
 @section('content')
-<div class="">
+<div class="container-fluid">
     <a href="{{ route('formbuilder::forms.index') }}" class="btn btn-primary mb-2" >
         {{-- <i class="fa fa-arrow-left"></i>  --}}
         <i class="fa-solid fa-chevron-left"></i>
@@ -24,7 +32,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card ">
-                <div class="card-header d-flex justify-content-between mb-3">
+                <div class="card-header d-flex justify-content-between">
                     <h5 class="card-title">
                         Form Preview for <strong>'{{ $form->name }}'</strong>
                     </h5>

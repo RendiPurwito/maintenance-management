@@ -13,7 +13,7 @@
     /* Fixed/sticky position */
     height: 50px;
     width: 50px;
-    bottom: 15px;
+    bottom: 70px;
     /* Place the button at the bottom of the page */
     right: 15px;
     /* Place the button 30px from the right */
@@ -56,7 +56,6 @@
     } */
     .card {
         box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, 0.13);
-        margin-bottom: 3rem;
     }
 
     .card .card-body {
@@ -125,9 +124,9 @@
         text-decoration: none;
     }
 
-    .container-fluid {
+    /* .container-fluid {
         padding: 0;
-    }
+    } */
 
     .card {
         margin-bottom: 0;

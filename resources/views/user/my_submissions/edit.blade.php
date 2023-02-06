@@ -4,57 +4,57 @@
 <style>
     @media screen and (max-width: 640px) {
         .card .card-body{
-            padding: 0.5rem;
+            padding: 1rem;
         }
     }
 </style>
 @endsection
 
 @section('content')
-{{-- <div class="container">
-    <div class="row justify-content-center">
+<div class="container-fluid">
+    <div class="row">
         <div class="col-md-12">
-        </div>
-    </div>
-</div> --}}
-<div class="card mb-5">
-    <div class="card-header d-flex justify-content-between mb-3">
-        <h5 class="card-title">
-            Edit My Submission for <strong>{{ $submission->form->name }}</strong>
-            {{-- {{ $pageTitle }} --}}
-        </h5>
-        <div class="btn-toolbar" role="toolbar">
-            <div class="btn-group" role="group" aria-label="Third group">
-                {{-- <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary float-md-right btn-sm" title="Back To My Submissions">
-                    <i class="fa fa-arrow-left"></i>
-                </a> --}}
+            <div class="card mb-5">
+                <div class="card-header d-flex justify-content-between mb-3">
+                    <h5 class="card-title">
+                        Edit My Submission for <strong>{{ $submission->form->name }}</strong>
+                        {{-- {{ $pageTitle }} --}}
+                    </h5>
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group" role="group" aria-label="Third group">
+                            {{-- <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-primary float-md-right btn-sm" title="Back To My Submissions">
+                                <i class="fa fa-arrow-left"></i>
+                            </a> --}}
+                        </div>
+                    </div>
+                </div>
+            
+                <form action="{{ route('formbuilder::my-submissions.update', $submission->id) }}" method="POST" id="submitForm" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    
+                    <div class="card-body">
+                        <div id="fb-render"></div>
+                    </div>
+            
+                    <div class="card-footer d-flex justify-content-end">
+                        <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-danger me-1" >
+                            {{-- <i class="fa fa-arrow-left"></i> --}}
+                            Cancel
+                        </a>
+                        {{-- <a href="{{ url()->previous() }}" class="btn btn-danger me-1" title="Back To Dashboard">
+                            Cancel
+                        </a> --}}
+                        <button type="submit" class="btn btn-primary confirm-form" data-form="submitForm" data-message="Submit update to your entry for '{{ $submission->form->name }}'?">
+                            Submit Form
+                        </button>
+                        <div class="float-end">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-    <form action="{{ route('formbuilder::my-submissions.update', $submission->id) }}" method="POST" id="submitForm" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
-        
-        <div class="card-body">
-            <div id="fb-render"></div>
-        </div>
-
-        <div class="card-footer d-flex justify-content-end">
-            <a href="{{ route('formbuilder::my-submissions.index') }}" class="btn btn-danger me-1" >
-                {{-- <i class="fa fa-arrow-left"></i> --}}
-                Cancel
-            </a>
-            {{-- <a href="{{ url()->previous() }}" class="btn btn-danger me-1" title="Back To Dashboard">
-                Cancel
-            </a> --}}
-            <button type="submit" class="btn btn-primary confirm-form" data-form="submitForm" data-message="Submit update to your entry for '{{ $submission->form->name }}'?">
-                Submit Form
-            </button>
-            <div class="float-end">
-            </div>
-        </div>
-    </form>
 </div>
 <button onclick="topFunction()" id="myBtn" title="Go to top">
     <i class='bx bx-up-arrow-alt'></i>

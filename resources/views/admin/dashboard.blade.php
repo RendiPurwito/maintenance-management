@@ -14,9 +14,14 @@
             }
         }
 
-        @media screen and (min-width: 360px) {
+        @media screen and (max-width: 640px) {
             #main .main-content {
                 padding: 1rem 1rem;
+            }
+            
+            .container-fluid {
+            margin: 0;
+            padding: 0;
             }
 
             .alert{
@@ -33,41 +38,58 @@
     </style>
 @endsection
 @section('content')
-{{-- <div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-        </div>
-    </div>
-</div> --}}
-<div class="card">
-    <div class="card-header mb-3 d-flex pt-3">
-        <h5 class="fw-bold">Notifications ({{$numberOfNotifications}})</h5>
-    </div>
-    <div class="card-body">
-        <div class="overflow-auto" >
-            @foreach($notifications as $notification)
-                <div class="alert alert-light-info text-dark fs-6" role="alert">
-                <p class="notif">
-                    [{{ $notification->created_at }}] User <b>{{ $notification->data['name'] }}</b>
-                    {{ $notification->data['message'] }} <b>{{ $notification->data['subject'] }}</b>
-                </p>
-                <a href="#" class="mark-as-read fw-bolder" data-id="{{ $notification->id }}" id="markAsRead">
-                    Mark as read
-                </a>
+            <div class="card">
+                <div class="card-header mb-3 d-flex pt-3">
+                    <h5 class="fw-bold">Notifications ({{$numberOfNotifications}})</h5>
                 </div>
-            @endforeach
+                <div class="card-body">
+                    @if ($numberOfNotifications<=3)
+                    <div>
+                        @foreach($notifications as $notification)
+                            <div class="alert alert-light-info text-dark fs-6" role="alert">
+                            <p class="notif">
+                                [{{ $notification->created_at }}] User <b>{{ $notification->data['name'] }}</b>
+                                {{ $notification->data['message'] }} <b>{{ $notification->data['subject'] }}</b>
+                            </p>
+                            <a href="#" class="mark-as-read fw-bolder" data-id="{{ $notification->id }}" id="markAsRead">
+                                Mark as read
+                            </a>
+                            </div>
+                        @endforeach
+                    </div>
+                    @else
+                    <div class="overflow-auto" >
+                        @foreach($notifications as $notification)
+                            <div class="alert alert-light-info text-dark fs-6" role="alert">
+                            <p class="notif">
+                                [{{ $notification->created_at }}] User <b>{{ $notification->data['name'] }}</b>
+                                {{ $notification->data['message'] }} <b>{{ $notification->data['subject'] }}</b>
+                            </p>
+                            <a href="#" class="mark-as-read fw-bolder" data-id="{{ $notification->id }}" id="markAsRead">
+                                Mark as read
+                            </a>
+                            </div>
+                        @endforeach
+                    </div>
+                    @endif
+                    
+                    @if ($numberOfNotifications==0)
+                        <p class="fs-5 align-middle text-center mt-3 fw-normal text-danger">There is no new notifications</p>
+                    @endif
+                </div>
+                @if ($numberOfNotifications>0)
+                <div class="card-footer mt-3">
+                    <a href="#" id="mark-all" class="float-end fw-bold me-4">
+                        Mark all as read
+                    </a>
+                </div>
+                @endif
+            </div>
         </div>
-        @if ($numberOfNotifications==0)
-            <p class="fs-5 align-middle text-center mt-3 fw-normal text-danger">There is no new notifications</p>
-        @endif
     </div>
-    @if ($numberOfNotifications>0)
-    <div class="card-footer mt-3">
-        <a href="#" id="mark-all" class="float-end fw-bold me-4">
-            Mark all as read
-        </a>
-    </div>
-    @endif
 </div>
 @endsection
 

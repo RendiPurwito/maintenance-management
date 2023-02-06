@@ -41,7 +41,8 @@
             max-width: 100%;
             margin-top: 50px;
         }
-        @media screen and (min-width: 360px) {
+
+        @media screen and (max-width: 640px) {
             #auth{
                 padding-top: 150px
             }
@@ -54,10 +55,6 @@
 
 <body>
     @if (Session::has('error'))
-    {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ session('loginError')}}
-        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
-    </div> --}}
     <script>
         toastr.error("{!! Session::get('error') !!}")
     </script>

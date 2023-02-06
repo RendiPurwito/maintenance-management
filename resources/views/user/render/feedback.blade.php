@@ -1,7 +1,7 @@
 @extends('formbuilder::layout')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -23,16 +23,18 @@
                     </h3>
                 </div>
 
-                <div class="card-footer d-flex justify-content-end">
-                    @auth
-                    <a href="{{ route('formbuilder::my-submissions.index') }}"
-                        class="btn btn-primary float-end" title="Go To My Submissions">
-                        <i class="fa fa-th-list"></i>
-                    </a>
-                    @endauth
-                    <a href="/dashboard" class="btn btn-primary float-end" title="Return Home">
-                        <i class="fa fa-home"></i>
-                    </a>
+                <div class="card-footer float-end">
+                    <div class="btn-footer float-end">
+                        @auth
+                        <a href="{{ route('formbuilder::my-submissions.index') }}"
+                            class="btn btn-primary" title="Go To My Submissions">
+                            <i class="fa fa-th-list"></i>
+                        </a>
+                        @endauth
+                        <a href="/dashboard" class="btn btn-primary" title="Return Home">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
